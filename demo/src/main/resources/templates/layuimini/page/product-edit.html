@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">I D</label>
+        <div class="layui-input-block">
+            <input type="text" name="product_id" value="" readonly="readonly" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品名</label>
+        <div class="layui-input-block">
+            <input type="text" name="productName" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品图片</label>
+        <div class="layui-input-block" >
+             <img alt="" id="picture" src="" width="100px" height="100px"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片路径</label>
+        <div class="layui-input-block">
+            <input type="text" name="imgPath" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">新旧程度</label>
+        <div class="layui-input-block">
+            <input type="text" name="degree" value="" class="layui-input">
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">价格</label>
+        <div class="layui-input-block">
+            <input type="text" name="price" value="" class="layui-input">
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">销量</label>
+        <div class="layui-input-block">
+            <input type="text" name="sales" value="" class="layui-input">
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">库存</label>
+        <div class="layui-input-block">
+            <input type="text" name="stock" value="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">商品描述</label>
+        <div class="layui-input-block">
+            <textarea name="description" class="layui-textarea" ></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</form>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (arg) {
+          var index = layer.confirm('确定保存吗？', {
+                title: '提示'
+            }, function () {
+            	layer.close(index);
+            	$.ajax({
+    		        url: '/UsedProduct/product/updateProduct',
+    		        data: {"product_id":arg.field.product_id, 
+    		               "productName":arg.field.productName, 
+    		               "imgPath":arg.field.imgPath,
+    		               "degree":arg.field.degree,
+    		               "price":arg.field.price,
+    		               "sales":arg.field.sales,
+    		               "stock":arg.field.stock,
+    		               "description":arg.field.description},
+    		        dataType: 'json',
+    		        type: 'POST',
+    		        success:function(result){
+	    	             if(result.code == 0){
+	    		                 layer.msg(result.msg);
+	    		                 console.info(result);
+	    		                /*  layer.close(index); // 关闭提示框弹出层 */
+	    		                 var iframeIndex = parent.layer.getFrameIndex(window.name);
+	    		                 parent.layer.close(iframeIndex);
+	    		                parent.location.reload(); //刷新父页面
+	    	             }
+    	             }
+    		     });  
+            });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

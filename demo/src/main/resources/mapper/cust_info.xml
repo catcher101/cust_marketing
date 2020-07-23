@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.dao.CustInfoMapper">
+
+    <sql id="insertFields">
+        created_zoneno,created_brno,individualid,seq_no,dapcode,individual_stat,reg_type,reg_no,name,en_name,last_name,mid_name,first_name,
+        nat_id_no,dflt_greet,gender,race,birthdate,city_of_birth,cntry_of_birth,marital_stat,marital_stat_date,educ_level,dateofgraduate,
+        techniquelevel,prof,prof_stat,executivelevel,start_work_date,employer,employer_type,emp_start_date,emp_stat,no_of_dpnd,
+        cr_rsk_rating,emp_no,icbcemplyeeflag,customerinothbank,gov_bnft_rcpt_flag,greencardflag,how_refer,nonadultflag,sales_stat,tempresidentflag,
+        localornot,blacklistcustflag,customerlevel,customermanager,seccustomermanager,numoftransaction,amtoftransaction,
+        useofdeposit,sourceofdeposit,nameofmotherbemar,religion,citycode,customertype,backup1,backup2,backup3,backup4,cust_attribute,
+        adv_recv_flag,prv_cnt_ind,bank_related,risk_score,next_rev_date,domicile_cnt,domicile_prv,risk_cnt,next_rev_date,domicile_cnt,domicile_prv,risk_cnt,
+        residen_act_date,forever_type,degree_id,co_post,hire_kind,agreement_end_date,adv_mobile_flag,adv_extend_flag,credit_grade,credit_value,cust_type,
+        en_name_rule,delivery_option,deliver_to,written_language,speaking_language,exist_name_date,birthdate_flag,residence_status,res_status_desc,residence_date,
+        res_country_desc,prof_desc,high_risk_ind,high_risk_desc,no_of_kids,religion_desc,affirm_flag,affirm_date,belong_brno,cust_attr_chg_date,
+        kyc_reason_code,kyc_complete_flag,kyc_complete_date,kyc_missing_doc,title_name,bk1,bk2,bk3,bk4,bk5,bk6,bk7,bk8,bk9,bk10,pref_lang,
+        prim_nat,sec_nat,created_ts,updated_ts,created_date_sys,created_date_bus,updated_date_sys,updated_date_bus,updated_zoneno,updated_brno,
+        created_by,updated_by,created_pgm,updated_pgm,created_app,updated_app,created_system_id,updated_system_id,checked_by,pt_dt
+    </sql>
+
+    <sql id="selectFields">
+        created_zoneno,created_brno,individualid,seq_no,dapcode,individual_stat,reg_type,reg_no,name,en_name,last_name,mid_name,first_name,
+        nat_id_no,dflt_greet,gender,race,birthdate,city_of_birth,cntry_of_birth,marital_stat,marital_stat_date,educ_level,dateofgraduate,
+        techniquelevel,prof,prof_stat,executivelevel,start_work_date,employer,employer_type,emp_start_date,emp_stat,no_of_dpnd,
+        cr_rsk_rating,emp_no,icbcemplyeeflag,customerinothbank,gov_bnft_rcpt_flag,greencardflag,how_refer,nonadultflag,sales_stat,tempresidentflag,
+        localornot,blacklistcustflag,customerlevel,customermanager,seccustomermanager,numoftransaction,amtoftransaction,
+        useofdeposit,sourceofdeposit,nameofmotherbemar,religion,citycode,customertype,backup1,backup2,backup3,backup4,cust_attribute,
+        adv_recv_flag,prv_cnt_ind,bank_related,risk_score,next_rev_date,domicile_cnt,domicile_prv,risk_cnt,next_rev_date,domicile_cnt,domicile_prv,risk_cnt,
+        residen_act_date,forever_type,degree_id,co_post,hire_kind,agreement_end_date,adv_mobile_flag,adv_extend_flag,credit_grade,credit_value,cust_type,
+        en_name_rule,delivery_option,deliver_to,written_language,speaking_language,exist_name_date,birthdate_flag,residence_status,res_status_desc,residence_date,
+        res_country_desc,prof_desc,high_risk_ind,high_risk_desc,no_of_kids,religion_desc,affirm_flag,affirm_date,belong_brno,cust_attr_chg_date,
+        kyc_reason_code,kyc_complete_flag,kyc_complete_date,kyc_missing_doc,title_name,bk1,bk2,bk3,bk4,bk5,bk6,bk7,bk8,bk9,bk10,pref_lang,
+        prim_nat,sec_nat,created_ts,updated_ts,created_date_sys,created_date_bus,updated_date_sys,updated_date_bus,updated_zoneno,updated_brno,
+        created_by,updated_by,created_pgm,updated_pgm,created_app,updated_app,created_system_id,updated_system_id,checked_by,pt_dt
+    </sql>
+
+    <select id="selectByIndividualid" resultType="CustInfo">
+        select <include refid="selectFields"></include>
+        from cust_info
+        where individualid = #{individualid}
+    </select>
+
+    <!--
+    <insert id=" id =insertCustInfo" parameterType="CustInfo">
+        insert into user (<include refid="insertFields"></include>
+        values(#{createdZoneno}, #{createdBrno}, #{individualid}, #{seqNo}, #{dapcode},
+                #{individualStat},
+                ", regType='" + regType + '\'' +
+                ", regNo='" + regNo + '\'' +
+                ", name='" + name + '\'' +
+                ", enName='" + enName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", midName='" + midName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", natIdNo='" + natIdNo + '\'' +
+                ", dfltGreet='" + dfltGreet + '\'' +
+                ", gender='" + gender + '\'' +
+                ", race='" + race + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", cityOfBirth='" + cityOfBirth + '\'' +
+                ", cntryOfBirth='" + cntryOfBirth + '\'' +
+                ", maritalStat='" + maritalStat + '\'' +
+                ", maritalStatDate='" + maritalStatDate + '\'' +
+                ", educLevel='" + educLevel + '\'' +
+                ", dateofgraduate='" + dateofgraduate + '\'' +
+                ", techniquelevel='" + techniquelevel + '\'' +
+                ", prof='" + prof + '\'' +
+                ", profStat='" + profStat + '\'' +
+                ", executivelevel='" + executivelevel + '\'' +
+                ", startWorkDate='" + startWorkDate + '\'' +
+                ", employer='" + employer + '\'' +
+                ", employerType='" + employerType + '\'' +
+                ", empStartDate='" + empStartDate + '\'' +
+                ", empStat='" + empStat + '\'' +
+                ", noOfDpnd='" + noOfDpnd + '\'' +
+                ", crRskRating='" + crRskRating + '\'' +
+                ", empNo='" + empNo + '\'' +
+                ", icbcemplyeeflag='" + icbcemplyeeflag + '\'' +
+                ", customerinothbank='" + customerinothbank + '\'' +
+                ", govBnftRcptFlag='" + govBnftRcptFlag + '\'' +
+                ", greencardflag='" + greencardflag + '\'' +
+                ", howRefer='" + howRefer + '\'' +
+                ", nonadultflag='" + nonadultflag + '\'' +
+                ", salesStat='" + salesStat + '\'' +
+                ", tempresidentflag='" + tempresidentflag + '\'' +
+                ", localornot='" + localornot + '\'' +
+                ", blacklistcustflag='" + blacklistcustflag + '\'' +
+                ", customerlevel='" + customerlevel + '\'' +
+                ", customermanager='" + customermanager + '\'' +
+                ", seccustomermanager='" + seccustomermanager + '\'' +
+                ", numoftransaction='" + numoftransaction + '\'' +
+                ", amtoftransaction='" + amtoftransaction + '\'' +
+                ", useofdeposit='" + useofdeposit + '\'' +
+                ", sourceofdeposit='" + sourceofdeposit + '\'' +
+                ", nameofmotherbemar='" + nameofmotherbemar + '\'' +
+                ", religion='" + religion + '\'' +
+                ", citycode='" + citycode + '\'' +
+                ", customertype='" + customertype + '\'' +
+                ", backup1='" + backup1 + '\'' +
+                ", backup2='" + backup2 + '\'' +
+                ", backup3='" + backup3 + '\'' +
+                ", backup4='" + backup4 + '\'' +
+                ", custAttribute='" + custAttribute + '\'' +
+                ", advRecvFlag='" + advRecvFlag + '\'' +
+                ", prvCntInd='" + prvCntInd + '\'' +
+                ", bankRelated='" + bankRelated + '\'' +
+                ", riskScore='" + riskScore + '\'' +
+                ", nextRevDate='" + nextRevDate + '\'' +
+                ", domicileCnt='" + domicileCnt + '\'' +
+                ", domicilePrv='" + domicilePrv + '\'' +
+                ", riskCnt='" + riskCnt + '\'' +
+                ", residenActDate='" + residenActDate + '\'' +
+                ", foreverType='" + foreverType + '\'' +
+                ", degreeId='" + degreeId + '\'' +
+                ", coPost='" + coPost + '\'' +
+                ", hireKind='" + hireKind + '\'' +
+                ", agreementEndDate='" + agreementEndDate + '\'' +
+                ", advMobileFlag='" + advMobileFlag + '\'' +
+                ", advExtendFlag='" + advExtendFlag + '\'' +
+                ", creditGrade='" + creditGrade + '\'' +
+                ", creditValue='" + creditValue + '\'' +
+                ", custType='" + custType + '\'' +
+                ", enNameRule='" + enNameRule + '\'' +
+                ", deliveryOption='" + deliveryOption + '\'' +
+                ", deliverTo='" + deliverTo + '\'' +
+                ", writtenLanguage='" + writtenLanguage + '\'' +
+                ", speakingLanguage='" + speakingLanguage + '\'' +
+                ", existNameDate='" + existNameDate + '\'' +
+                ", birthdateFlag='" + birthdateFlag + '\'' +
+                ", residenceStatus='" + residenceStatus + '\'' +
+                ", resStatusDesc='" + resStatusDesc + '\'' +
+                ", residenceDate='" + residenceDate + '\'' +
+                ", resCountryDesc='" + resCountryDesc + '\'' +
+                ", profDesc='" + profDesc + '\'' +
+                ", highRiskInd='" + highRiskInd + '\'' +
+                ", highRiskDesc='" + highRiskDesc + '\'' +
+                ", noOfKids='" + noOfKids + '\'' +
+                ", religionDesc='" + religionDesc + '\'' +
+                ", affirmFlag='" + affirmFlag + '\'' +
+                ", affirmDate='" + affirmDate + '\'' +
+                ", belongBrno='" + belongBrno + '\'' +
+                ", custAttrChgDate='" + custAttrChgDate + '\'' +
+                ", kycReasonCode='" + kycReasonCode + '\'' +
+                ", kycCompleteFlag='" + kycCompleteFlag + '\'' +
+                ", kycCompleteDate='" + kycCompleteDate + '\'' +
+                ", kycMissingDoc='" + kycMissingDoc + '\'' +
+                ", titleName='" + titleName + '\'' +
+                ", bk1='" + bk1 + '\'' +
+                ", bk2='" + bk2 + '\'' +
+                ", bk3='" + bk3 + '\'' +
+                ", bk4='" + bk4 + '\'' +
+                ", bk5='" + bk5 + '\'' +
+                ", bk6='" + bk6 + '\'' +
+                ", bk7='" + bk7 + '\'' +
+                ", bk8='" + bk8 + '\'' +
+                ", bk9='" + bk9 + '\'' +
+                ", bk10='" + bk10 + '\'' +
+                ", prefLang='" + prefLang + '\'' +
+                ", primNat='" + primNat + '\'' +
+                ", secNat='" + secNat + '\'' +
+                ", createdTs='" + createdTs + '\'' +
+                ", updatedTs='" + updatedTs + '\'' +
+                ", createdDateSys='" + createdDateSys + '\'' +
+                ", createdDateBus='" + createdDateBus + '\'' +
+                ", updatedDateSys='" + updatedDateSys + '\'' +
+                ", updatedDateBus='" + updatedDateBus + '\'' +
+                ", updatedZoneno='" + updatedZoneno + '\'' +
+                ", updatedBrno='" + updatedBrno + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", updatedBy='" + updatedBy + '\'' +
+                ", createdPgm='" + createdPgm + '\'' +
+                ", updatedPgm='" + updatedPgm + '\'' +
+                ", createdApp='" + createdApp + '\'' +
+                ", updatedApp='" + updatedApp + '\'' +
+                ", createdSystemId='" + createdSystemId + '\'' +
+                ", updatedSystemId='" + updatedSystemId + '\'' +
+                ", checkedBy='" + checkedBy + '\'' +
+                ", ptDt='" + ptDt},#{})
+    </insert> -->
+
+</mapper>

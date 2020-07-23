@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <style type="text/css">
+            .layui-table-cell{
+                height: auto!important;
+                white-space: normal;
+            }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+
+        <script type="text/html" id="toolbarDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-add-btn" lay-event="buy"> 结算 </button>
+                <button class="layui-btn layui-btn-sm  data-delete-btn" lay-event="delete"> 删除购物项 </button>
+                <button class="layui-btn layui-btn-sm  data-delete-btn" lay-event="refresh"> 刷新 </button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-xs data-count-detail" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="buy">购买</a>
+            <a class="layui-btn layui-btn-xs  data-count-delete" lay-event="delete">删除</a>
+        </script>
+
+    </div>
+</div>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script type="text/html" id="imgTpl">
+<img src="{{ d.imgPath }}">
+</script>
+<script>
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+        var tableRender = renderTable();
+        
+	   function renderTable(){
+		   table.render({
+	           elem: '#currentTableId',
+	           url: getRootPath + '/cart/getCartitemsPage',
+	           toolbar: '#toolbarDemo',
+	           totalRow: true,
+	           defaultToolbar: ['filter', 'exports', 'print', {
+	               title: '提示',
+	               layEvent: 'LAYTABLE_TIPS',
+	               icon: 'layui-icon-tips'
+	           }],
+	           cols: [[
+	               {type: "checkbox"},
+	               {field: 'cartitem_id', width:'5%',  title: 'ID', sort: true, align: "center", totalRowText: '合计'},
+	               {field: 'product_id', width:'5%',  title: '商品ID', sort: true, align: "center"},
+	               {field: 'productName', width:'8%', title: '商品名', align: "center"},
+	               {field: 'imgPath', title: '商品封面', templet:'#imgTpl', align: "center"},
+	               {field: 'description', title: '商品描述', align: "center"},
+	               {field: 'price', width:'7%', title: '价格', align: "center", totalRow: true},
+	               {field: 'num', width:'5%', title: '数量', align: "center"},
+	               {field: 'cart_id', width:'5%', title: '购物车ID', align: "center"},
+	               {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+	           ]],
+	           page: true
+	       });
+	   }
+        
+
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function (obj) {
+        	var checkStatus = table.checkStatus('currentTableId')
+            , data = checkStatus.data;
+        	
+            if (obj.event === 'buy') {  // 监听添加操作
+            	if(data.length === 0){
+            		layer.msg('请选择要结算的商品');
+            	}else{
+            		layer.confirm('确定购买吗?', function(index){
+            			layer.close(index);
+            			var ids = "";
+            			var amount = 0.00;
+            			if(data.length > 0){
+            				for(var i = 0; i < data.length; i++){
+            					ids += data[i].cartitem_id + ",";
+            					amount += data[i].num * data[i].price;
+            				}
+            				console.info("ids" + ids);
+            			}
+            		//向服务端发送数据提交订单
+            			$.ajax({
+            				url: getRootPath + '/order/submitOrder2',
+            				type: 'GET',
+            				data: {"ids":ids, "amount":amount},
+            				dataType: 'json',
+            				success: function(result){
+            					if(result.code==0){
+	    		        			layer.msg(result.msg, {icon: 1, time: 2000});
+	    		        			renderTable();
+    		        		    }else{
+    		        		    	layer.msg(result.msg, {icon: 2, time: 2000});
+    		        		    }
+            				}
+            			});
+                    });
+            	}
+               
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                
+                if(data.length === 0){
+      	          layer.msg('请选择要删除的商品');
+      	        } else {
+      	          layer.confirm('确定删除么?', function(index){
+      	          layer.close(index);
+      	          var ids = "";
+      	          if(data.length > 0){
+      	        	  for(var i = 0; i < data.length; i++){
+      	        		  ids += data[i].cartitem_id + ",";
+      	        	  }
+      	          }
+        		        //向服务端发送删除指令
+        		       $.ajax({
+        		        	url: getRootPath + '/cart/deleteCartitems',
+        		        	type: 'POST',
+        		        	data: {'ids':ids},
+        		        	dataType: 'json',
+        		        	success: function(result){
+        		        		    if(result.code==0){
+    	    		        			layer.msg(result.msg, {icon: 1, time: 2000});
+    	    		        			renderTable();
+        		        		    }else{
+        		        		    	layer.msg(result.msg, {icon: 2, time: 2000});
+        		        		    }
+        		        	}
+        		        }); 
+        		      });
+      	        }
+            } else if(obj.event === 'refresh'){
+            	renderTable();//刷新订单表格
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function (obj) {
+            console.log(obj)
+        });
+
+        //监听行工具
+        table.on('tool(currentTableFilter)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'buy') {
+                  var amount = data.price * data.num
+            	  layer.confirm('确定购买吗?', function(index){
+      			    $.ajax({
+      			    	url: getRootPath + '/order/submitOrder3',
+      			    	type: 'GET',
+      			    	data: {
+      			    		    "cartitem_id": data.cartitem_id,
+      			    		    "product_id": data.product_id,
+      			    		    "productName": data.productName,
+      			    		    "imgPath": data.imgPath,
+      			    		    "price": data.price,
+      			    		    "num": data.num,
+      			    		    "amount": amount,
+      			    	       },
+      			    	 success: function(result){
+      			    		 if(result.code == 0){//成功
+                            	   layer.msg(result.msg, {icon: 1, time: 2000}); 
+                            	   renderTable();
+                               }else{//失败
+                            	   layer.msg(result.msg, {icon: 2, time: 2000}); 
+                               }
+      			    	 }
+      			    });
+  			    	layer.close(index);
+  			    });
+            } else if (obj.event === 'delete') {
+                layer.confirm('真的删除行么', function (index) {
+                  //向服务端发送删除指令
+    		        $.ajax({
+    		        	url: getRootPath + '/cart/deleteCartitem',
+    		        	type: 'POST',
+    		        	data: {"cartitem_id":data.cartitem_id},
+    		        	dataType: 'json',
+    		        	success: function(result){
+    		        		    if(result.code==0){
+    		        		    	obj.del();
+	    		        			layer.msg(result.msg, {icon: 1, time: 2000});
+	    		        			//this.location.reload();
+	    		        			renderTable();
+    		        		    }else{
+    		        		    	layer.msg(result.msg, {icon: 2, time: 2000});
+    		        		    }
+    		        	}
+    		        });
+                    layer.close(index);
+                });
+            }else if (obj.event === 'detail') {
+            	 window.open(getRootPath + '/templates/layuimini/page/productDetail.html?product_id='+data.product_id);
+              }
+        });
+
+    });
+</script>
+<script>
+
+</script>
+
+</body>
+</html>

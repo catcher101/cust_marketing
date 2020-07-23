@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.dao.AccountBalanceMapper">
+
+
+
+    <sql id="selectFields">
+        ﻿zoneno,actbrno,phybrno,accno,accnoseq,currtype,subcode,loanno,loansqno,nousef,
+        accatrbt,status,depquota,osaf,holdceil,dbalance,cbalance,dracm,cracm,odlmt,lsttrand,
+        accname,lncode,acctype,procflag,drintacm,crintacm,protseno,subserno,pt_dt
+    </sql>
+
+    <select id="selectByProtseno" resultType="AccountBalance">
+        select <include refid="selectFields"></include>
+        from account_balance
+        where protseno = #{protseno}
+    </select>
+
+
+</mapper>

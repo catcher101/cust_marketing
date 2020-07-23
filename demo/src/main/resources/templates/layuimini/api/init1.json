@@ -1,0 +1,110 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/welcome-1.html?t=1"
+  },
+  "logoInfo": {
+    "title": "Xian Yu",
+    "image": "/UsedProduct/templates/layuimini/images/usedProductIcon.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "用户管理",
+          "href": "page/user-table.html",
+          "icon": "fa fa-address-book",
+          "target": "_self"
+        },
+        {
+          "title": "商品管理",
+          "href": "page/product-table.html",
+          "icon": "fa fa-shopping-bag",
+          "target": "_self"
+        },
+        {
+          "title": "购物车",
+          "href": "page/cart-table.html",
+          "icon": "fa fa-shopping-cart",
+          "target": "_self"
+        },
+        {
+          "title": "订单管理",
+          "href": "page/order-table.html",
+          "icon": "fa fa-reorder",
+          "target": "_self"
+        }
+      ]
+    },
+     {
+           "title": "前台页面",
+           "href": "",
+           "icon": "fa fa-desktop",
+           "target": "_self",
+           "child": [
+              {
+                 "title": "商城首页",
+                 "href": "mallIndex.html",
+                 "icon": "fa fa-laptop",
+                 "target": "_blank"
+                 
+              }
+        ]
+    },
+    {
+      "title": "组件管理",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "图标列表",
+          "href": "page/icon.html",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "图标选择",
+          "href": "page/icon-picker.html",
+          "icon": "fa fa-adn",
+          "target": "_self"
+        },
+        {
+          "title": "颜色选择",
+          "href": "page/color-select.html",
+          "icon": "fa fa-dashboard",
+          "target": "_self"
+        },
+        {
+          "title": "下拉选择",
+          "href": "page/table-select.html",
+          "icon": "fa fa-angle-double-down",
+          "target": "_self"
+        },
+        {
+          "title": "文件上传",
+          "href": "page/upload.html",
+          "icon": "fa fa-arrow-up",
+          "target": "_self"
+        },
+        {
+          "title": "富文本编辑器",
+          "href": "page/editor.html",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        },
+        {
+          "title": "省市县区选择器",
+          "href": "page/area.html",
+          "icon": "fa fa-rocket",
+          "target": "_self"
+        }
+      ]
+    }
+  ]
+}

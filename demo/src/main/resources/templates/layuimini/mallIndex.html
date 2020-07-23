@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商城首页</title>
+    <meta name="keywords" content="layuimini,layui,layui模板,layui后台,后台模板,admin,admin模板,layui mini">
+    <meta name="description" content="layuimini基于layui的轻量级前端后台管理框架，最简洁、易用的后台框架模板，面向所有层次的前后端程序,只需提供一个接口就直接初始化整个框架，无需复杂操作。">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="images/xianyu.png">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/layuimini.css?v=2.0.0" media="all">
+    <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <style id="layuimini-bg-color">
+    </style>
+    <style type="text/css">
+         label{
+           font-weight:bold;
+         }
+    </style>
+</head>
+<body class="layui-layout-body layuimini-all">
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header header">
+        <div class="layui-logo layuimini-logo"></div>
+
+        <div class="layuimini-header-content">
+
+
+            <ul class="layui-nav layui-layout-right">
+
+                <li class="layui-nav-item" lay-unselect>
+                    <!-- <a id="manager" href="/UsedProduct/templates/layuimini/index.html" target="_blank"><i class="fa fa-cog"></i>后台管理</a> -->
+                    <a id="manager" href="" target="_blank"></a>
+                </li>
+                <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
+                </li>
+                <li class="layui-nav-item layuimini-setting">
+                    <a href="javascript:;" id="loginUser">未登录</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a id="login" href="" data-title="登录" data-icon="fa fa-gears">登录<span class="layui-badge-dot"></span></a>
+                           <!--  <a id="login" href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="登录" data-icon="fa fa-gears">登录<span class="layui-badge-dot"></span></a> -->
+                        </dd>
+                        <dd>
+                            <a id="regist" href="" data-title="注册" data-icon="fa fa-gears">注册</a>
+                            <!-- <a id="regist" href="javascript:;" layuimini-content-href="page/user-password.html" data-title="注册" data-icon="fa fa-gears">注册</a> -->
+                        </dd>
+                        <dd>
+                            <hr>
+                        </dd>
+                        <dd>
+                            <a id="logout" href="" class="login-out">退出登录</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layuimini-select-bgcolor mobile layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body">
+		   
+		   
+		   <div style="margin-top:70px;" id="product" ></div>
+		   <div style="margin-top:640px;margin-left:200px;">
+		       <div  id="layuipage" ></div>
+		   </div>
+   </div>
+
+</div>
+<script src="lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script>
+    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji', 'laypage'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniAdmin = layui.miniAdmin,
+            miniTongji = layui.miniTongji,
+            laypage = layui.laypage;
+        
+        var page = 1;//当前页
+        var limit = 16;//每页显示的数目
+        var resCount, resData ;
+        var rp = renderProduct(page, limit);
+        //var resPage = renderPage1();
+        var user;
+        
+        	
+        //渲染展示商品的html页面
+        function renderProductHtml(data){
+        	var str = "";//用来存储html内容
+        	if(data.length > 0){
+	        	$.each(data, function(v, o){
+	        		str += "<a onclick='to("+o.product_id+")'>";
+	        		str += "<div style='margin:auto; margin-bottom:130px;  width:150px; height:150px; float:left; text-align:center'>";
+	        		str += "<div><img alt='' src='"+o.imgPath+"' width='150px' height='150px'/></div>";
+	        		str += "<div style='text-align:left'><div><label>商品名称:</label><span>"+o.productName+"</span></div>";
+	        		str += "<div><label>价格:</label><span style='color:#FF3030;'>￥"+o.price+"</span></div>";
+	        		str += "<div><label>新旧程度:</label><span>"+o.degree+"</span></div>";
+	        		str += "<div><label>销量:</label><span style='color:#CDC9C9;'>"+o.sales+"</span>";
+	        		str += "<label>库存:</label><span style='color:#CDC9C9;'>"+o.stock+"</span></div>";
+	        		str += "<div style='display:none;'><label>商品ID:</label><span>"+o.product_id+"</span></div></div>";
+	        		str +="</div>";
+	        		str +="</a>";
+	        	});
+	        	$("#product").html(str);
+        	}
+        }
+        
+           //a标签的onclick函数
+	       window.to =  function (product_id){
+	        	//top.location.href = "/UsedProduct/templates/layuimini/page/productDetail.html?product_id="+product_id;
+        	    window.open(getRootPath + '/templates/layuimini/page/productDetail.html?product_id='+product_id);
+	        }
+       
+        
+        
+        //同步加载商品数据
+        function renderProduct(page, limit){
+        	$.ajax({
+        		async: true,
+        		url: getRootPath + '/product/getProductPage',
+        		data: {"page": page, "limit": limit},
+        		dataType: 'json',
+        		success: function(result){
+        			console.info(result);
+        			resCount = result.count;
+        			resData = result.data;
+        			renderPage1();
+        			renderProductHtml(resData);
+        		}
+        	});
+        }
+        
+        
+        //分页的完整功能
+        function renderPage1(){
+             //renderProduct(page, limit);
+        	 laypage.render({
+                 elem: 'layuipage'
+                 ,count: resCount
+                 ,limit: limit
+                 ,limits: [limit]
+                 ,curr: page
+                 ,theme: '#FFB800'
+                 ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                 ,jump: function(obj, first){
+                   console.info(obj);
+                	   page = obj.curr;
+                   if(!first){
+                	   renderProduct(page, limit);
+                   }
+                 }
+               });
+        }
+        
+        
+      //给导航栏的“登录”绑定触发事件
+      $("#login").on('click', function(){
+    	     $("#login").attr("href", getRootPath+"/templates/layuimini/page/login.html");
+      });
+      
+        
+      //给导航栏的“注册”绑定触发事件
+      $("#regist").on('click', function(){
+    	     $("#regist").attr("href", getRootPath+"/templates/layuimini/page/regist.html");
+      });
+      
+        
+      //给导航栏的“退出登录”绑定触发事件
+      $("#logout").on('click', function(){
+    	     $("#logout").attr("href", getRootPath+"/user/logout");
+      });
+      
+        
+        
+        
+      //a标签后台管理的点击触发事件
+      $("#manager").on('click', function(){
+    	  console.info(user);
+    	  if(user.manager == "yes"){//管理员后台页面跳转
+    	     $("#manager").attr("href", getRootPath+"/templates/layuimini/index.html");
+    	  }else{//普通用户后台页面跳转
+    	     $("#manager").attr("href", getRootPath+"/templates/layuimini/index2.html");
+    	  }
+      });
+        
+      //动态获取当前的用户是否已登录，已登录则将username显示在右上角,并显示出‘后台管理’入口
+        $(function(){
+        	$.ajax({
+        		url: getRootPath + '/user/checkUser',
+        		dataType: 'json',
+        		success: function(result){
+        			if(result.data!=null){
+        				user = result.data;
+        				$("#loginUser").text(result.data.username);//将username显示在右上角
+        				$("#manager").html('<i class="fa fa-cog"></i>后台管理');//显示出‘后台管理’入口
+        			}
+        		}
+        	});
+        });
+        
+        var options = {
+            iniUrl: "api/init.json",    // 初始化接口
+            clearUrl: "api/clear.json", // 缓存清理接口
+            urlHashLocation: true,      // 是否打开hash定位
+            bgColorDefault: 0,          // 主题默认配置
+            multiModule: true,          // 是否开启多模块
+            menuChildOpen: false,       // 是否默认展开菜单
+            loadingTime: 0,             // 初始化加载时间
+            pageAnim: true,             // iframe窗口动画
+            maxTabNum: 20,              // 最大的tab打开数量
+        };
+        miniAdmin.render(options);
+
+        // 百度统计代码，只统计指定域名
+        miniTongji.render({
+            specific: true,
+            domains: [
+                '99php.cn',
+                'layuimini.99php.cn',
+                'layuimini-onepage.99php.cn',
+            ],
+        });
+
+        $('.login-out').on("click", function () {
+            layer.msg('退出登录成功', function () {
+                window.location = 'page/user/login-1.html';
+            });
+        });
+    });
+</script>
+</body>
+</html>

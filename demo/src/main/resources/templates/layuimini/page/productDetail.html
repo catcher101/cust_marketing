@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商品详情页</title>
+    <meta name="keywords" content="layuimini,layui,layui模板,layui后台,后台模板,admin,admin模板,layui mini">
+    <meta name="description" content="layuimini基于layui的轻量级前端后台管理框架，最简洁、易用的后台框架模板，面向所有层次的前后端程序,只需提供一个接口就直接初始化整个框架，无需复杂操作。">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="../images/xianyu.png">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/layuimini.css?v=2.0.0" media="all">
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <style id="layuimini-bg-color">
+    </style>
+    <style type="text/css">
+         label{
+           font-weight:bold;
+           font-size:20px;
+         }
+         span{
+           font-size:20px;
+         }
+         #cutBtn, #addBtn{
+           float: left;display: inline-block; padding:0 6px; border:1px solid #dddddd; background: #f8f8f8; width: 20px; text-align: center; font-size: 26px; cursor: pointer;
+         }
+         .content, .item{
+           margin-top: 27px;
+           margin-left: 20px;
+         }
+         .param{
+           background: #FFDEAD;
+         }
+    </style>
+</head>
+<body class="layui-layout-body layuimini-all">
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header header">
+        <div class="layui-logo layuimini-logo"></div>
+
+        <div class="layuimini-header-content">
+
+
+            <ul class="layui-nav layui-layout-right">
+
+                <li class="layui-nav-item" lay-unselect>
+                    <a id="manager" href="" target="_blank"></a>
+                </li>
+                <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
+                </li>
+                <li class="layui-nav-item layuimini-setting">
+                    <a href="javascript:;" id="loginUser">未登录</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                        <a id="login" href="" data-title="登录" data-icon="fa fa-gears">登录<span class="layui-badge-dot"></span></a>
+                           <!--  <a id="login" href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="登录" data-icon="fa fa-gears">登录<span class="layui-badge-dot"></span></a> -->
+                        </dd>
+                        <dd>
+                        <a id="regist" href="" data-title="注册" data-icon="fa fa-gears">注册</a>
+                        </dd>
+                        <dd>
+                            <hr>
+                        </dd>
+                        <dd>
+                            <a id="logout" href="" class="login-out">退出登录</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layuimini-select-bgcolor mobile layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body">
+		   
+		   
+		<div class="content">
+		   <div id="img" style="width:400px;float:left;">
+		         <img id="product_img" width="400px" height="400px" alt=""/>
+		   </div>
+		   
+		   <div id="info" style="margin-left:30px;height:400px;width:630px;float:left;">
+		        <div class="item">
+			         <label>商品名称：</label>
+			         <span id="productName"></span>
+		        </div>
+		        <div class="param">
+				        <div class="item">
+				         	 <label>新旧程度：</label>
+				         	 <span id="degree"></span>
+				        </div>
+				        <div class="item">
+				             <label>价格：</label>
+				             <span id="price" style="color:red;font-weight:bold;"></span>
+				        </div>
+				        <div class="item">
+				             <label>销量：</label>
+				             <span id="sales"></span>
+				        </div>
+		        </div>
+		        <div class="item">
+		             <label style="float:left;">数量：</label>
+		             <span id="cutBtn" class="cut btn">-</span><input name="num" type="" value="1" maxlength="4" style="float: left;width: 35px; height: 28px; text-align: center; margin:0 5px;"/><span id="addBtn" class="add btn">+</span>
+		             <span id="stock" style="color:#515151;font-size:13px;"></span>
+		        </div>
+		        <div class="item" >
+		              <label>商品描述：</label>
+		              <textarea id="description" readonly="readonly" style="vertical-align:text-top;width:500px;height:100px;"></textarea>
+		        </div>
+		        <div class="item">
+		              <button class="layui-btn layui-btn-primary" id="buyBtn">立即购买</button>
+		              <button class="layui-btn layui-btn-danger" id="saveBtn"><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;加入购物车</button>
+		        </div>
+		   </div>
+		</div>
+		
+		
+   </div>
+
+</div>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script>
+
+   
+
+
+    layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji', 'laypage'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            miniAdmin = layui.miniAdmin,
+            miniTongji = layui.miniTongji,
+            laypage = layui.laypage;
+        
+        var product_id = getProduct_id();
+        var product;
+        var product1 = getProduct();
+        var user;
+       
+        
+        //给立即购买按钮绑定点击事件
+        $("#buyBtn").on("click", function(){
+        	//先判断用户是否已经登录了
+        	$.ajax({
+        		url: getRootPath + '/user/checkUser',
+        		dataType: 'json',
+        		success: function(result){
+        			if(result.data == null){//未登录则先登录
+        				layer.msg('未登录');
+        			    window.location.href = getRootPath + '/templates/layuimini/page/login.html';
+        			}else{//已登录则提交订单
+        			    user = result.data;//将当前登录的用户信息赋给user
+        			    var num = $("input[name=num]").val();//获取商品的数量
+        			    var amount = num * product.price;//计算该购物项的总金额
+        			    layer.confirm('确定购买吗?', function(index){
+	        			    $.ajax({
+	        			    	url: getRootPath + '/order/submitOrder',
+	        			    	type: 'POST',
+	        			    	data: {
+	        			    		    "product_id": product_id,
+	        			    		    "productName": product.productName,
+	        			    		    "imgPath": product.imgPath,
+	        			    		    "price": product.price,
+	        			    		    "num": num,
+	        			    		    "amount": amount,
+	        			    	       },
+	        			    	 success: function(result){
+	        			    		 if(result.code == 0){//成功
+	                              	   layer.msg(result.msg, {icon: 1, time: 2000}); 
+	                                 }else{//失败
+	                              	   layer.msg(result.msg, {icon: 2, time: 2000}); 
+	                                 }
+	        			    	 }
+	        			    });
+        			    	layer.close(index);
+        			    });
+        			    
+        			}
+        		}
+        	});
+        });
+        
+        //给加入购物车按钮绑定点击事件
+        $("#saveBtn").on("click", function(){
+           $.ajax({
+       		url: getRootPath + '/user/checkUser',
+       		dataType: 'json',
+       		success: function(result){
+       			if(result.data==null){//未登录则先登录
+       				layer.msg('未登录');
+       				window.location.href = getRootPath + '/templates/layuimini/page/login.html';
+       			}else{//已登录则加入购物车
+       			    user = result.data;//将当前登录的用户赋给user
+       			    var num = $("input[name=num]").val();//获取商品数量
+       			    $.ajax({
+       			    	url: getRootPath + '/cart/addToCart',
+       			    	type: 'POST',
+       			    	data: {
+       			    		   "product_id": product_id,
+       			    		   "productName": product.productName,
+       			    		   "price": product.price,
+       			    		   "imgPath": product.imgPath,
+       			    		   "description": product.description,
+       			    		   "num": num},
+       			        success: function(result){
+                               if(result.code == 0){//成功
+                            	   layer.msg(result.msg, {icon: 1, time: 2000}); 
+                               }else{//失败
+                            	   layer.msg(result.msg, {icon: 2, time: 2000}); 
+                               }
+       			        }
+       			    });
+       			}
+       		}
+       	   });
+        });
+        
+        
+        //给数量的增减按钮添加点击事件
+        $(".btn").on("click", function(){
+        	var curr = $("input[name=num]").val();
+        	if($(this).hasClass("add")){
+        		//console.info(product.stock-curr);
+        		if((product.stock-curr)>0){//库存足够才增加数量
+        		    curr++;
+        		}
+        	}else{
+        		if(curr > 1){
+        			curr--;
+        		}
+        	}
+        	$("input[name=num]").val(curr);
+        });
+        
+        
+        
+        //渲染数据到页面
+        function renderData(data){
+        	$("#product_img").attr("src", data.imgPath);
+        	$("#productName").text(data.productName);
+        	$("#degree").text(data.degree);
+        	$("#price").text('￥'+data.price);
+        	$("#sales").text(data.sales);
+        	$("#stock").text("库存" + data.stock + "件");
+        	$("#description").text(data.description);
+        }
+        
+        //加载商品数据并渲染数据
+        function getProduct(){
+        	$.ajax({
+        		url: getRootPath + '/product/getProduct',
+        		data: {"product_id": product_id},
+        		dataType: 'json',
+        		success: function(result){
+        			product = result.data;
+        			console.info(product);
+        			renderData(product);
+        		}
+        	});
+        }
+        
+      //接收上一个页面传来的product_id(接收单个值)
+        function getProduct_id(){
+	        var result;
+	        var url = window.location.search; //获取url中"?"符后的字串  
+	        if(url.indexOf("?")!=-1){
+	        result = url.substr(url.indexOf("=")+1);
+	        console.info("result:" + result);
+	        }
+	        return result;
+        }
+      
+      
+      //给导航栏的“登录”绑定触发事件
+        $("#login").on('click', function(){
+      	     $("#login").attr("href", getRootPath+"/templates/layuimini/page/login.html");
+        });
+        
+          
+        //给导航栏的“注册”绑定触发事件
+        $("#regist").on('click', function(){
+      	     $("#regist").attr("href", getRootPath+"/templates/layuimini/page/regist.html");
+        });
+        
+          
+        //给导航栏的“退出登录”绑定触发事件
+        $("#logout").on('click', function(){
+      	     $("#logout").attr("href", getRootPath+"/user/logout");
+        });
+        
+      
+        //a标签后台管理的点击触发事件
+        $("#manager").on('click', function(){
+	      	  console.info(user);
+	      	  if(user.manager == "yes"){//管理员后台页面跳转
+	   	              $("#manager").attr("href", getRootPath+"/templates/layuimini/index.html");
+	   	      }else{//普通用户后台页面跳转
+	   	              $("#manager").attr("href", getRootPath+"/templates/layuimini/index2.html");
+	   	      }
+        });
+      
+        //动态获取当前的用户是否已登录，已登录则将username显示在右上角
+        $(function(){
+        	$.ajax({
+        		url: getRootPath + '/user/checkUser',
+        		dataType: 'json',
+        		success: function(result){
+        			if(result.data!=null){
+        				user = result.data;
+        				$("#loginUser").text(result.data.username);
+        				$("#manager").html('<i class="fa fa-cog"></i>后台管理');//显示出‘后台管理’入口
+        			}
+        		}
+        	});
+        });
+        
+        var options = {
+            iniUrl: "../api/init.json",    // 初始化接口
+            clearUrl: "../api/clear.json", // 缓存清理接口
+            urlHashLocation: true,      // 是否打开hash定位
+            bgColorDefault: 0,          // 主题默认配置
+            multiModule: true,          // 是否开启多模块
+            menuChildOpen: false,       // 是否默认展开菜单
+            loadingTime: 0,             // 初始化加载时间
+            pageAnim: true,             // iframe窗口动画
+            maxTabNum: 20,              // 最大的tab打开数量
+        };
+        miniAdmin.render(options);
+
+        $('.login-out').on("click", function () {
+            layer.msg('退出登录成功', function () {
+                window.location = '/page/login-1.html';
+            });
+        });
+    });
+</script>
+</body>
+</html>
