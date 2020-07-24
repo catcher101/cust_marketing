@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>后台管理</title>
@@ -64,7 +64,8 @@
                     <a href="javascript:;" id="loginUser">未登录</a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
+                            <a href="javascript:;"
+                               layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
                         </dd>
                         <dd>
                             <a href="javascript:;" layuimini-content-href="page/user-password.html" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
@@ -139,14 +140,14 @@
             miniTongji = layui.miniTongji;
 
         
-      //动态获取当前的用户是否已登录，已登录则将username显示在右上角
+      //动态设置右上角的用户名
         $(function(){
         	$.ajax({
-        		url: getRootPath + '/user/checkUser',
+        		url: getRootPath + '/user/username',
         		dataType: 'json',
         		success: function(result){
-        			if(result.data!=null){
-        				$("#loginUser").text(result.data.username);
+        			if(result.loginUser!=null){
+        				$("#loginUser").text(result.loginUser.username);
         			}
         		}
         	});
@@ -177,7 +178,7 @@
 
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                window.location = 'page/user/login-1.html';
+                window.location = 'page/user/login.html';
             });
         });
     });

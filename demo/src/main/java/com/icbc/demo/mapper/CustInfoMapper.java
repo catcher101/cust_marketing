@@ -1,4 +1,4 @@
-package com.icbc.demo.dao;
+package com.icbc.demo.mapper;
 import com.icbc.demo.entity.CustInfo;
 import org.apache.ibatis.annotations.Mapper;
 

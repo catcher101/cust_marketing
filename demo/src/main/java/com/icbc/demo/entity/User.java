@@ -1,14 +1,16 @@
 package com.icbc.demo.entity;
 
 public class User {
-    private String username;
-    private String password;
-    private boolean isManager;//是否为管理员
+    private int id;//用户id
+    private String username;//用户名
+    private String password;//密码
+    private String isManager;//是否为管理员
 
     public User() {
     }
 
-    public User(String username, String password, boolean isManager) {
+    public User(int id, String username, String password, String isManager) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.isManager = isManager;
@@ -30,18 +32,27 @@ public class User {
         this.password = password;
     }
 
-    public boolean isManager() {
+    public String isManager() {
         return isManager;
     }
 
-    public void setManager(boolean manager) {
+    public void setManager(String manager) {
         isManager = manager;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", isManager=" + isManager +
                 '}';

@@ -1,6 +1,6 @@
 package com.icbc.demo;
 
-import com.icbc.demo.dao.AlphaDao;
+import com.icbc.demo.mapper.AlphaDao;
 
 import com.icbc.demo.service.AlphaService;
 import org.junit.jupiter.api.Test;

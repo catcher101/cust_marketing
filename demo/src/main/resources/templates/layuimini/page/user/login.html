@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>后台管理-登陆</title>
@@ -35,30 +35,38 @@
 <div class="layui-container">
     <div class="admin-login-background">
         <div class="layui-form login-form">
-            <form class="layui-form" action="">
+            <form class="layui-form" action="" th:action="@{/user/login}" method="post">
                 <div class="layui-form-item logo-title">
-                    <h1>LayuiMini后台登录</h1>
+                    <h1>后台登录</h1>
+                </div>
+                <div class="layui-form-item" th:if="${msg!=null}" style="text-align:left;">
+                    <span th:text="${msg}" style="color:red;"></span>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username" for="username"></label>
-                    <input type="text" name="username" lay-verify="required|account" placeholder="用户名或者邮箱" autocomplete="off" class="layui-input" value="admin">
+                    <input type="text" name="username" lay-verify="required|account"
+                           placeholder="用户名或者邮箱" autocomplete="off" class="layui-input"
+                           value="admin">
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password" for="password"></label>
-                    <input type="password" name="password" lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input" value="123456">
+                    <input type="password" name="password" lay-verify="required|password"
+                           placeholder="密码" autocomplete="off" class="layui-input" value="123456">
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-icon layui-icon-vercode" for="captcha"></label>
-                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">
-                    <div class="captcha-img">
-                        <img id="captchaPic" src="../../images/captcha.jpg">
-                    </div>
-                </div>
+<!--                <div class="layui-form-item">-->
+<!--                    <label class="layui-icon layui-icon-vercode" for="captcha"></label>-->
+<!--                    <input type="text" name="captcha" lay-verify="required|captcha" placeholder="图形验证码" autocomplete="off" class="layui-input verification captcha" value="xszg">-->
+<!--                    <div class="captcha-img">-->
+<!--                        <img id="captchaPic" src="../../images/captcha.jpg">-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="layui-form-item">
                     <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" title="记住密码">
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登 入</button>
+                    <button class="submit layui-btn layui-btn-fluid" lay-submit=""
+                            lay-filter="login"
+                    >登 入</button>
                 </div>
             </form>
         </div>
@@ -98,10 +106,10 @@
                 layer.msg('验证码不能为空');
                 return false;
             }
-            layer.msg('登录成功', function () {
-                window.location = '/index.html';
-            });
-            return false;
+            layer.msg('正在登录');
+            // layer.msg('登录成功', function () {
+            //     window.location = '/index.html';
+            // });
         });
     });
 </script>

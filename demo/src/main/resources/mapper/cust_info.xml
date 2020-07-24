@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.icbc.demo.dao.CustInfoMapper">
+<mapper namespace="com.icbc.demo.mapper.CustInfoMapper">
 
     <sql id="insertFields">
         created_zoneno,created_brno,individualid,seq_no,dapcode,individual_stat,reg_type,reg_no,name,en_name,last_name,mid_name,first_name,

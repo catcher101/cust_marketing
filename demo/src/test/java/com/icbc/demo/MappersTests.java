@@ -1,7 +1,7 @@
 package com.icbc.demo;
 
-import com.icbc.demo.dao.AccountBalanceMapper;
-import com.icbc.demo.dao.CustInfoMapper;
+import com.icbc.demo.mapper.AccountBalanceMapper;
+import com.icbc.demo.mapper.CustInfoMapper;
 
 import com.icbc.demo.entity.AccountBalance;
 import com.icbc.demo.entity.CustInfo;
