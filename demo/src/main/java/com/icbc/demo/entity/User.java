@@ -16,6 +16,14 @@ public class User {
         this.isManager = isManager;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -32,20 +40,12 @@ public class User {
         this.password = password;
     }
 
-    public String isManager() {
+    public String getIsManager() {
         return isManager;
     }
 
-    public void setManager(String manager) {
-        isManager = manager;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIsManager(String isManager) {
+        this.isManager = isManager;
     }
 
     @Override

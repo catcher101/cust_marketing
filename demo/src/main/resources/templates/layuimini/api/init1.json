@@ -17,7 +17,7 @@
       "child": [
         {
           "title": "用户管理",
-          "href": "page/user-table.html",
+          "href": "page/user/user-table1.html",
           "icon": "fa fa-address-book",
           "target": "_self"
         },
@@ -41,20 +41,20 @@
         }
       ]
     },
-     {
-           "title": "前台页面",
-           "href": "",
-           "icon": "fa fa-desktop",
-           "target": "_self",
-           "child": [
-              {
-                 "title": "商城首页",
-                 "href": "mallIndex.html",
-                 "icon": "fa fa-laptop",
-                 "target": "_blank"
-                 
-              }
-        ]
+    {
+      "title": "前台页面",
+      "href": "",
+      "icon": "fa fa-desktop",
+      "target": "_self",
+      "child": [
+        {
+          "title": "商城首页",
+          "href": "mallIndex.html",
+          "icon": "fa fa-laptop",
+          "target": "_blank"
+
+        }
+      ]
     },
     {
       "title": "组件管理",

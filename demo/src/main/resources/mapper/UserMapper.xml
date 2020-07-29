@@ -8,6 +8,75 @@
         id, username, password, isManager
     </sql>
 
+
+    <sql id="insertFields">
+            username, password, isManager
+    </sql>
+
+     <sql id="updateFields">
+            username, password, isManager
+    </sql>
+
+
+
+<!--    User selectUser(Integer id);-->
+    <select id="selectUser" resultType="User">
+        select <include refid="selectFields"/>
+        from user
+        where id = #{id}
+    </select>
+
+<!--    List<User> selectUsersByParam(@Param("map")Map<String, Object> map);-->
+    <select id="selectUsersByParam" resultType="User">
+        select <include refid="selectFields"/>
+        from user
+
+        <trim prefix="where" suffixOverrides="and">
+            <if test="map.id!=null and map.id.trim()!=''">id = #{map.id} and</if>
+            <if test="map.username!=null and map.username.trim()!=''">username = #{map.username}
+                and</if>
+        </trim>
+    </select>
+
+
+<!--    Integer deleteUsers(List<String> idsList);-->
+    <delete id="deleteUsers"
+            parameterType="list">/*如果入参中不加@Param("idsList")，必须声明paramType以及collection*/
+        delete from user where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+<!--    Integer deleteUser(Integer id);-->
+    <delete id="deleteUser">
+        delete from user where id = #{id}
+    </delete>
+
+<!--    Integer updateUser(User user);-->
+    <update id="updateUser">
+        update user
+        <trim prefix="set" suffixOverrides=",">/*prefix增加一个前缀，suffixOverrides去掉一个后缀*/
+            <if test="username!=null and username.trim()!=''">username = #{username},</if>
+            <if test="password!=null and password.trim()!=''">password = #{password},</if>
+            <if test="isManager!=null and isManager.trim()!=''">isManager = #{isManager},</if>
+        </trim>
+        <where>/*加上where关键字，可以去掉第一个条件前面的and或者or*/
+            <if test="id!=null">id = #{id}</if>
+        </where>
+    </update>
+
+<!--    Integer insertUser(User user);-->
+    <insert id="insertUser">
+        insert into user (<include refid="insertFields"/>)
+        values (#{username}, #{password}, #{isManager})
+    </insert>
+
+<!--    List<User> selectUsers();-->
+    <select id="selectUsers" resultType="User">
+        select <include refid="selectFields"/> from user
+    </select>
+
 <!--    User selectUserByNameAndPwd(User user);-->
     <select id="selectUserByNameAndPwd" resultType="User">
         select <include refid="selectFields"/>

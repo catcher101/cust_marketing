@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>layui</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="../css/public.css" media="all">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
     <style>
         body {
             background-color: #ffffff;
@@ -19,32 +19,38 @@
     <div class="layui-form-item">
         <label class="layui-form-label">I D</label>
         <div class="layui-input-block">
-            <input type="text" name="user_id" value="" readonly="readonly" class="layui-input">
+            <input type="text" name="id" value="" th:value="${user.id}" readonly="readonly"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="username" value="" class="layui-input">
+            <input type="text" name="username" value="" th:value="${user.username}"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="text" name="password" value="" class="layui-input">
-        </div>
-    </div>
-     <div class="layui-form-item">
-        <label class="layui-form-label">邮箱</label>
-        <div class="layui-input-block">
-            <input type="email" name="mail" value="" class="layui-input">
+            <input type="text" name="password" value="" th:value="${user.password}"
+                   class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">是否为管理员</label>
         <div class="layui-input-block">
-            <input type="radio" name="manager" value="yes" title="是" id="yes">
-            <input type="radio" name="manager" value="no" title="否" id="no">
+<!--            <input type="radio" name="manager" value="yes" title="是" id="yes">-->
+<!--            <input type="radio" name="manager" value="no" title="否" id="no">-->
+            <!--根据isManager是1还是来决定显示哪个input-->
+            <input  th:if="${user.isManager=='1'}" checked="" type="checkbox" name="isManager"
+                    lay-skin="switch"
+                    lay-filter="switchTest"
+                    lay-text="是|否">
+            <input th:if="${user.isManager=='0'}" type="checkbox" name="isManager"
+                   lay-skin="switch"
+                   lay-filter="switchTest"
+                   lay-text="是|否">
         </div>
     </div>
     <div class="layui-form-item">
@@ -53,8 +59,8 @@
         </div>
     </div>
 </form>
-<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['form'], function () {
         var form = layui.form,
@@ -67,16 +73,15 @@
                 title: '提示'
             }, function () {
             	$.ajax({
-    		        url: getRootPath + '/user/updateUser',
-    		        data: {"user_id":arg.field.user_id, 
+    		        url: '/user/updateUser',
+    		        data: {"id":arg.field.id,
     		               "username":arg.field.username, 
     		               "password":arg.field.password,
-    		               "mail":arg.field.mail,
-    		               "manager":arg.field.manager},
+    		               "isManager":arg.field.isManager!=null?'1':'0'},
     		        dataType: 'json',
     		        type: 'POST',
     		       success:function(result){
-    	             if(result == null){
+    	             if(result.code == 1){
     	                   layer.msg("更新失败！");
     	             }else{
     		                 layer.msg('更新成功');
