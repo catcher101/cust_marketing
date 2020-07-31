@@ -1,5 +1,6 @@
-package com.icbc.demo.component;
+package com.icbc.demo.config;
 
+import com.icbc.demo.component.LoginHandlerInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -28,6 +29,6 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 //        registry.addInterceptor(new LoginHandlerInterceptor())
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/asserts/**", "/webjars/**", "/lib/**",
-//                       "/", "/login", "/user/**");
+//                       "/", "/login", "/user/**", "/cust/**");
     }
 }

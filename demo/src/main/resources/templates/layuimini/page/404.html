@@ -90,7 +90,7 @@
     loop2 = setInterval(function () {
         if (i > 80) {
             clearInterval(loop2);
-            document.querySelector('.secondDigit').textContent = 0;
+            document.querySelector('.secondDigit').textContent = 'x';
         } else {
             document.querySelector('.secondDigit').textContent = randomNum();
             i++;
@@ -99,7 +99,7 @@
     loop1 = setInterval(function () {
         if (i > 100) {
             clearInterval(loop1);
-            document.querySelector('.firstDigit').textContent = 4;
+            document.querySelector('.firstDigit').textContent = 'x';
         } else {
             document.querySelector('.firstDigit').textContent = randomNum();
             i++;
