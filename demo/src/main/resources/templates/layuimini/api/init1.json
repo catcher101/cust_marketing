@@ -4,8 +4,8 @@
     "href": "page/welcome-1.html?t=1"
   },
   "logoInfo": {
-    "title": "Xian Yu",
-    "image": "images/usedProductIcon.png",
+    "title": "marketing",
+    "image": "/images/icbc_icon.jpg",
     "href": ""
   },
   "menuInfo": [
@@ -22,39 +22,27 @@
           "target": "_self"
         },
         {
-          "title": "商品管理",
+          "title": "客户营销",
           "href": "page/product-table.html",
           "icon": "fa fa-shopping-bag",
-          "target": "_self"
-        },
-        {
-          "title": "购物车",
-          "href": "page/cart-table.html",
-          "icon": "fa fa-shopping-cart",
-          "target": "_self"
-        },
-        {
-          "title": "订单管理",
-          "href": "page/order-table.html",
-          "icon": "fa fa-reorder",
           "target": "_self"
         }
       ]
     },
-    {
-      "title": "前台页面",
-      "href": "",
-      "icon": "fa fa-desktop",
-      "target": "_self",
-      "child": [
-        {
-          "title": "商城首页",
-          "href": "mallIndex.html",
-          "icon": "fa fa-laptop",
-          "target": "_blank"
-
-        }
-      ]
+     {
+           "title": "前台页面",
+           "href": "",
+           "icon": "fa fa-desktop",
+           "target": "_self",
+           "child": [
+              {
+                 "title": "商城首页",
+                 "href": "mallIndex.html",
+                 "icon": "fa fa-laptop",
+                 "target": "_blank"
+                 
+              }
+        ]
     },
     {
       "title": "组件管理",

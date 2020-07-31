@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.MarketingRecordMapper">
+
+    <sql id="insertFields">
+        cust_id,market_time,market_effect,remark
+    </sql>
+
+    <sql id="selectFields">
+        marketing_id,cust_id,market_time,market_effect,remark
+    </sql>
+
+
+    <insert id="insertMarketingRecord" parameterType="MarketingRecord" keyProperty="marketingId">
+        insert into marketing_record(<include refid="insertFields"></include>)
+        values(#{custId},#{marketTime},#{marketEffect},#{remark})
+    </insert>
+
+    <select id="selectRecords" resultType="MarketingRecord">
+        select <include refid="selectFields"></include>
+        from marketing_record
+        where cust_id = #{custId}
+    </select>
+
+
+
+</mapper>
