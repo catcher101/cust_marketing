@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.CustInfo1Mapper">
+
+
+    <sql id="selectFields">
+        id,recommend,name,en_name,prim_nat,gender,birthdate,phone1
+    </sql>
+
+    <select id="selectCustInfo1" resultType="CustInfo1">
+        select id,recommend,ifnull(en_name,`name`) as en_name,prim_nat,gender,birthdate,phone1
+        from cust_info1
+    </select>
+
+
+</mapper>
