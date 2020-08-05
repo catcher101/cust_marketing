@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layui-v2.5.5/css/layui.css}" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
     <style>
         .error .clip .shadow {height:180px;}
         .error .clip:nth-of-type(2) .shadow {width:130px;}
@@ -72,6 +72,7 @@
             <h2 class="h1">很抱歉，你访问的页面找不到了</h2>
             <span class="errorMsg" >Timestamp:[[${timestamp}]]</span><br/>
             <span class="errorMsg">StatusCode:[[${statusCode}]]</span><br/>
+            <input id="statusCodeMsg" type="hidden" th:value="${statusCode}">
             <span class="errorMsg">Error:[[${error}]]</span><br/>
             <span class="errorMsg">Message:[[${message}]]</span><br/>
             <span class="errorMsg">Path:[[${path}]]</span><br/>
@@ -79,11 +80,11 @@
         </div>
     </div>
 </div>
-<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui-v2.5.5/layui.js}" src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script th:src="@{/lib/jquery-3.4.1/jquery-3.4.1.min.js}" src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script>
 
-    var statusCode = $("title").text();
+    var statusCode = $("#statusCodeMsg").val();
 
     function randomNum() {
         return Math.floor(Math.random() * 9) + 1;

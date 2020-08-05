@@ -1,4 +1,4 @@
-package com.icbc.demo.component;
+package com.icbc.demo.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.Map;
  * 定制ErrorController，目的是能使SpringBoot找到自己定制的错误页面
  * 大部分的代码BasicController一致，关键点是修改错误页面的路径
  */
-//@Controller
+@Controller
 @RequestMapping(value = "/error")
 public class MyBasicErrorController implements ErrorController {
 
