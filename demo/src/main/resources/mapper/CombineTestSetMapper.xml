@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.icbc.demo.mapper.CombineTestSetMapper">
+
+  <sql id="selectBasicField">
+    individualid, name, age, balance, housing, loan,  pdays, poutcome
+  </sql>
+
+
+  <!--List<CombineTestSet> selectBasicInfo();-->
+  <select id="selectBasicInfo" resultType="CombineTestSet">
+    select <include refid="selectBasicField"/> from combine_test_set
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--以下均为mybatis逆向工程自动生成的-->
+
   <resultMap id="BaseResultMap" type="com.icbc.demo.entity.CombineTestSet">
     <id column="individualid" jdbcType="VARCHAR" property="individualid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
