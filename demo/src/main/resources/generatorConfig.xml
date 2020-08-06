@@ -21,7 +21,8 @@
         <!--数据库连接，如果没有配置数据源，则可以直接填上driverClass、url这些信息-->
         <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.userId}" password="${jdbc.pwd}"></jdbcConnection>
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
-        <javaTypeResolver>
+        <!-- 将数据库的int映射到实体类时为int，默认是映射成Integer，因此自定义类去修改它-->
+        <javaTypeResolver type="com.icbc.demo.config.MyJavaTypeResolverDefaultImpl">
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--targetPackage目标包，生成实体类的位置-->
@@ -45,9 +46,10 @@
         <!--如果要生成多个数据表对应的多个实体类，则可以创建多个<table>-->
         <!--domainObjectName是生成实体类的类名-->
         <!--enableSelectByExample是否生成动态查询语句-->
-        <table tableName="combine_test_set"  domainObjectName="CombineTestSet"
+        <table tableName="user2"  domainObjectName="User2"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
+               selectByExampleQueryId="false">
+        </table>
     </context>
 </generatorConfiguration>
