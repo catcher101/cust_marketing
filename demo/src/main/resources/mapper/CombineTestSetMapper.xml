@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.CombineTestSetMapper">
+  <resultMap id="BaseResultMap" type="com.icbc.demo.entity.CombineTestSet">
+    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="delt_greet" jdbcType="VARCHAR" property="deltGreet" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="nationality" jdbcType="VARCHAR" property="nationality" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="marital" jdbcType="VARCHAR" property="marital" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="isViolateRule" jdbcType="VARCHAR" property="isviolaterule" />
+    <result column="balance" jdbcType="VARCHAR" property="balance" />
+    <result column="housing" jdbcType="VARCHAR" property="housing" />
+    <result column="loan" jdbcType="VARCHAR" property="loan" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="day" jdbcType="VARCHAR" property="day" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="duration" jdbcType="VARCHAR" property="duration" />
+    <result column="campaign" jdbcType="VARCHAR" property="campaign" />
+    <result column="pdays" jdbcType="VARCHAR" property="pdays" />
+    <result column="previous" jdbcType="VARCHAR" property="previous" />
+    <result column="poutcome" jdbcType="VARCHAR" property="poutcome" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    individualid, name, delt_greet, gender, nationality, age, job, marital, education, 
+    isViolateRule, balance, housing, loan, contact, day, month, duration, campaign, pdays, 
+    previous, poutcome
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from combine_test_set
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from combine_test_set
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.icbc.demo.entity.CombineTestSet">
+    insert into combine_test_set (individualid, name, delt_greet, 
+      gender, nationality, age, 
+      job, marital, education, 
+      isViolateRule, balance, housing, 
+      loan, contact, day, 
+      month, duration, campaign, 
+      pdays, previous, poutcome
+      )
+    values (#{individualid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{deltGreet,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{job,jdbcType=VARCHAR}, #{marital,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{isviolaterule,jdbcType=VARCHAR}, #{balance,jdbcType=VARCHAR}, #{housing,jdbcType=VARCHAR}, 
+      #{loan,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR}, #{campaign,jdbcType=VARCHAR}, 
+      #{pdays,jdbcType=VARCHAR}, #{previous,jdbcType=VARCHAR}, #{poutcome,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.icbc.demo.entity.CombineTestSet">
+    insert into combine_test_set
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        individualid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="deltGreet != null">
+        delt_greet,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="nationality != null">
+        nationality,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="marital != null">
+        marital,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="isviolaterule != null">
+        isViolateRule,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="housing != null">
+        housing,
+      </if>
+      <if test="loan != null">
+        loan,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="campaign != null">
+        campaign,
+      </if>
+      <if test="pdays != null">
+        pdays,
+      </if>
+      <if test="previous != null">
+        previous,
+      </if>
+      <if test="poutcome != null">
+        poutcome,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        #{individualid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deltGreet != null">
+        #{deltGreet,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="marital != null">
+        #{marital,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="isviolaterule != null">
+        #{isviolaterule,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="housing != null">
+        #{housing,jdbcType=VARCHAR},
+      </if>
+      <if test="loan != null">
+        #{loan,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="campaign != null">
+        #{campaign,jdbcType=VARCHAR},
+      </if>
+      <if test="pdays != null">
+        #{pdays,jdbcType=VARCHAR},
+      </if>
+      <if test="previous != null">
+        #{previous,jdbcType=VARCHAR},
+      </if>
+      <if test="poutcome != null">
+        #{poutcome,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icbc.demo.entity.CombineTestSet">
+    update combine_test_set
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deltGreet != null">
+        delt_greet = #{deltGreet,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="marital != null">
+        marital = #{marital,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="isviolaterule != null">
+        isViolateRule = #{isviolaterule,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="housing != null">
+        housing = #{housing,jdbcType=VARCHAR},
+      </if>
+      <if test="loan != null">
+        loan = #{loan,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="campaign != null">
+        campaign = #{campaign,jdbcType=VARCHAR},
+      </if>
+      <if test="pdays != null">
+        pdays = #{pdays,jdbcType=VARCHAR},
+      </if>
+      <if test="previous != null">
+        previous = #{previous,jdbcType=VARCHAR},
+      </if>
+      <if test="poutcome != null">
+        poutcome = #{poutcome,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icbc.demo.entity.CombineTestSet">
+    update combine_test_set
+    set name = #{name,jdbcType=VARCHAR},
+      delt_greet = #{deltGreet,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      marital = #{marital,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      isViolateRule = #{isviolaterule,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=VARCHAR},
+      housing = #{housing,jdbcType=VARCHAR},
+      loan = #{loan,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      day = #{day,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      campaign = #{campaign,jdbcType=VARCHAR},
+      pdays = #{pdays,jdbcType=VARCHAR},
+      previous = #{previous,jdbcType=VARCHAR},
+      poutcome = #{poutcome,jdbcType=VARCHAR}
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+</mapper>
