@@ -56,6 +56,7 @@
             </div>
         </fieldset> -->
 
+
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-sm data-add-btn" lay-event="add"> 添加客户 </button>
@@ -63,6 +64,7 @@
                 <button class="layui-btn layui-btn-sm data-delete-btn" lay-event="refresh"> 刷新 </button>
             </div>
         </script>
+
 
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
@@ -73,7 +75,7 @@
         </script>
 
         <script type="text/html" id="currentTableBar2">
-            <a class="layui-btn layui-btn-xs data-count-detail" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs data-count-detail" lay-event="cust_detail">查看</a>
             <!-- <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a> -->
             <!-- <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a> -->
         </script>
@@ -97,24 +99,24 @@
 		   table.render({
 	           elem: '#currentTableId',
 	           url: '/cust/getCustPage',
-	           toolbar: '#toolbarDemo',
-	           defaultToolbar: ['filter', 'exports', 'print', {
-	               title: '提示',
-	               layEvent: 'LAYTABLE_TIPS',
-	               icon: 'layui-icon-tips'
-	           }],
+	           //toolbar: '#toolbarDemo',
+	           //defaultToolbar: ['filter', 'exports', 'print', {
+	           //    title: '提示',
+	           //    layEvent: 'LAYTABLE_TIPS',
+	           //    icon: 'layui-icon-tips'
+	           //}],
 	           cols: [[
-	               {type: "checkbox"},
+	               //{type: "checkbox"},
 	               {field: 'id', width:'10%',  title: 'ID', sort: true, align: "center"},
 	               {field: 'recommend', title: '是否推荐', align: "center"},
 
 	               {title: '营销记录', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"},
 
-                   {field: 'enName', title: '客户名', align: "center"},
+                   {field: 'enName',width:'15%', title: '客户名', align: "center"},
 	               //{field: 'imgPath', title: '客户名', templet:'#imgTpl', align: "center"},
 	               {field: 'primNat', width:'10%', title: '国籍', align: "center"},
 	               {field: 'gender', width:'10%', title: '性别', align: "center"},
-	               {field: 'birthdate', width:'10%', title: '生日', align: "center"},
+	               {field: 'birthdate', width:'10%', title: '年龄', align: "center"},
 	               {field: 'phone1', width:'15%', title: '联系方式', align: "center"},
 
 	               //{field: 'description', title: '联系方式', align: "center"},
@@ -237,24 +239,40 @@
                     layer.full(index);
                 });
                 return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
+            } else if (obj.event === 'cust_detail') {
+                //layer.confirm('真的删除行么', function (index) {
                   //向服务端发送删除指令
-    		        $.ajax({
-    		        	url: getRootPath + '/product/deleteProduct',
-    		        	type: 'POST',
-    		        	data: {"product_id":data.product_id},
-    		        	dataType: 'json',
-    		        	success: function(result){
-    		        		    if(result.code==0){
-    		        		    	obj.del();
-	    		        			layer.msg(result.msg);
-	    		        			this.location.reload();
-    		        		    }
-    		        	}
-    		        });
-                    layer.close(index);
-                });
+    		        //$.ajax({
+    		        	//url: getRootPath + '/product/deleteProduct',
+    		        	//type: 'POST',
+    		        	//data: {"product_id":data.product_id},
+    		        	//dataType: 'json',
+    		        	//success: function(result){
+    		        		    //if(result.code==0){
+    		        		    	//obj.del();
+	    		        			//layer.msg(result.msg);
+	    		        			//this.location.reload();
+    		        		    //}
+    		        	//}
+    		        //});
+                    //layer.close(index);
+
+                    var index = layer.open({
+             		title: '查看特征得分',
+             		type: 2,
+             		shade: 0.2,
+             		shadeClose: true,
+             		maxmin: true,
+             		area: ['100%', '100%'],
+
+             		content: '/cust/getFeature?id='+data.id,
+
+             		success: function(layero, index){
+
+             		}
+             	});
+
+
             }else if (obj.event === 'marketing_detail') {
             	 var index = layer.open({
              		title: '查看营销记录',

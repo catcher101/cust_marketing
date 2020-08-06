@@ -2,9 +2,12 @@ package com.icbc.demo.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.icbc.demo.entity.CustInfo;
 import com.icbc.demo.entity.CustInfo1;
+import com.icbc.demo.entity.FeatureScore;
 import com.icbc.demo.entity.MarketingRecord;
 import com.icbc.demo.service.CustInfo1Service;
+import com.icbc.demo.service.FeatureScoreService;
 import com.icbc.demo.service.MarketingRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,9 @@ public class CustController {
 
     @Autowired
     private MarketingRecordService marketingRecordService;
+
+    @Autowired
+    private FeatureScoreService featureScoreService;
 
 //    @RequestMapping(path = "/getCustPage",method = RequestMethod.GET)
     @GetMapping(value="/getCustPage")
@@ -100,6 +106,30 @@ public class CustController {
 
 
         return map;
+    }
+
+    @RequestMapping(path="/getFeature",method = RequestMethod.GET)
+    public String getFeature(Integer id,Model model){
+        CustInfo1 custInfo1 = custInfo1Service.findCustInfo1ById(id);
+        FeatureScore featureScore = featureScoreService.findFeatureScore(id);
+
+        model.addAttribute("recommend",custInfo1.getRecommend());
+        model.addAttribute("en_name",custInfo1.getEnName());
+        model.addAttribute("prim_nat",custInfo1.getPrimNat());
+        model.addAttribute("gender",custInfo1.getGender());
+        model.addAttribute("birthdate",custInfo1.getBirthdate());
+        model.addAttribute("phone1",custInfo1.getPhone1());
+
+        model.addAttribute("cust_id",featureScore.getCustId());
+        model.addAttribute("age",featureScore.getAge());
+        model.addAttribute("age_score",featureScore.getAgeScore());
+        model.addAttribute("profession",featureScore.getProfession());
+        model.addAttribute("profession_score",featureScore.getProfessionScore());
+        model.addAttribute("education",featureScore.getEducation());
+        model.addAttribute("education_score",featureScore.getEducationScore());
+        model.addAttribute("marital_status",featureScore.getMaritalStatus());
+        model.addAttribute("marital_status_score",featureScore.getMaritalStatusScore());
+        return "layuimini/page/cust/feature-detail";
     }
 
 }

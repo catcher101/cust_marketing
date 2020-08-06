@@ -14,5 +14,11 @@
         from cust_info1
     </select>
 
+    <select id="selectCustInfo1ById" resultType="CustInfo1">
+        select id,recommend,ifnull(en_name,`name`) as en_name,prim_nat,gender,birthdate,phone1
+        from cust_info1
+        where id=#{id}
+    </select>
+
 
 </mapper>

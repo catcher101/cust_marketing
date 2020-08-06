@@ -9,4 +9,6 @@ import java.util.List;
 public interface CustInfo1Mapper {
 //    CustInfo selectByIndividualid(String individualid);
     List<CustInfo1> selectCustInfo1();
+
+    CustInfo1 selectCustInfo1ById(Integer id);
 }

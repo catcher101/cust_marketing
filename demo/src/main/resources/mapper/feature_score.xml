@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.FeatureScoreMapper">
+
+
+
+    <sql id="selectFields">
+        cust_id,age,age_score,profession,profession_score,education,education_score,marital_status,marital_status_score
+    </sql>
+
+
+
+    <select id="selectFeatureScorebyCustId" resultType="FeatureScore">
+        select <include refid="selectFields"></include>
+        from feature_score
+        where cust_id = #{custId}
+    </select>
+
+
+
+</mapper>

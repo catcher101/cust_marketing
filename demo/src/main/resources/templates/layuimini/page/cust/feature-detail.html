@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+<!--    <style type="text/css">-->
+<!--            .layui-table-cell{-->
+<!--                height: auto!important;-->
+<!--                white-space: normal;-->
+<!--            }-->
+<!--    </style>-->
+    <style type="text/css">
+        table{
+        border-collapse:collapse;
+        border:2px solid green;
+        }
+        th,td
+        {
+        width:100px;
+        height:40px;
+        border:2px solid green;
+        font-size:12px;
+        text-align:center;
+        }
+
+        th
+        {
+        background-color:green;
+        color:white;
+        }
+
+    </style>
+
+    <script src="../js/echarts.min.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+<input type="hidden" th:value="${recommend}" id="recommend">
+<input type="hidden" th:value="${en_name}" id="en_name">
+<input type="hidden" th:value="${prim_nat}" id="prim_nat">
+<input type="hidden" th:value="${gender}" id="gender">
+<input type="hidden" th:value="${birthdate}" id="birthdate">
+<input type="hidden" th:value="${phone1}" id="phone1">
+
+<input type="hidden" th:value="${cust_id}" id="cust_id">
+<input type="hidden" th:value="${age}" id="age">
+<input type="hidden" th:value="${age_score}" id="age_score">
+<input type="hidden" th:value="${profession}" id="profession">
+<input type="hidden" th:value="${profession_score}" id="profession_score">
+<input type="hidden" th:value="${education}" id="education">
+<input type="hidden" th:value="${education_score}" id="education_score">
+<input type="hidden" th:value="${marital_status}" id="marital_status">
+<input type="hidden" th:value="${marital_status_score}" id="marital_status_score">
+
+<div id="chart0" style="width:300px;height:550px;display:inline-block;margin-left:100px;margin-top:50px">
+    <table>
+        <!--        <p style="text-align:center">功课表</p>-->
+        <tr>
+            <th>客户id</th>
+            <td th:text="${cust_id}">1</td>
+
+        </tr>
+
+        <tr>
+            <th>是否推荐</th>
+            <td th:text="${recommend}">是</td>
+
+        </tr>
+
+        <tr>
+            <th>名字</th>
+            <td th:text="${en_name}">7:00-7:40</td>
+
+        </tr>
+
+        <tr>
+            <th>国籍</th>
+            <td th:text="${prim_nat}">7:00-7:40</td>
+
+        </tr>
+
+        <tr>
+            <th>性别</th>
+            <td th:text="${gender}">7:00-7:40</td>
+
+        </tr>
+
+        <tr>
+            <th>年龄</th>
+            <td th:text="${birthdate}">7:00-7:40</td>
+        </tr>
+
+        <tr>
+            <th>职业</th>
+            <td th:text="${profession}" >7:00-7:40</td>
+        </tr>
+
+        <tr>
+            <th>教育</th>
+            <td th:text="${education}">7:00-7:40</td>
+        </tr>
+
+        <tr>
+            <th>婚姻状态</th>
+            <td th:text="${marital_status}">7:00-7:40</td>
+        </tr>
+
+
+        <tr>
+            <th>联系方式</th>
+            <td th:text="${phone1}">7:00-7:40</td>
+        </tr>
+    </table>
+</div>
+
+<div id="chart" style="width:600px;height:600px;display:inline-block"></div>
+
+
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+
+    var custId = [[${cust_id}]];
+    var age = [[${age}]];
+    var ageScore = [[${age_score}]];
+    var profession = '[[${profession}]]';
+    var professionScore = [[${profession_score}]];
+    var education = '[[${education}]]';
+    var educationScore = [[${education_score}]];
+    var maritalStatus = '[[${marital_status}]]';
+    var maritalStatusScore = [[${marital_status_score}]];
+
+
+
+
+    //layui.use(['form'], function () {
+        //var form = layui.form,
+            //layer = layui.layer,
+            //$ = layui.$;
+
+        //监听提交
+        //form.on('submit(saveBtn)', function (arg) {
+        	//var iframeIndex = parent.layer.getFrameIndex(window.name);
+            //parent.layer.close(iframeIndex);
+            //return false;
+        //});
+
+    //});
+
+    //圆饼图，基于准备好的dom，初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById('chart'));
+    //指定图表的配置项和数据
+    option2 = {
+        //title:{
+        //    text:'特征得分',
+        //    x:'left'
+        //},
+        //tooltip:{
+        //    trigger:'item'
+        //    formatter:“{a} <br/> {b}:{c}分"
+        //},
+        color:['#CD5C5C','#00CED1','#9ACD32','#FFC0CB'],
+        stillShowZeroSum:false,
+        series:[
+            {
+                name:'特征得分',
+                type:'pie',
+                radius:'50%',
+                center:['50%','50%'],
+                data:[
+                    {value: ageScore ,name:'年龄特征得分:'+ ageScore},
+                    {value: professionScore ,name:'职业特征得分:'+professionScore },
+                    {value: educationScore ,name:'教育特征得分:'+educationScore },
+                    {value: maritalStatusScore ,name:'婚姻特征得分:'+maritalStatusScore },
+                ],
+                itemStyle:{
+                    emphasis:{
+                        shadowBlur:10,
+                        shadowOffsetX:0,
+                        shadowColor:'rgba(128,128,128,0.5)'
+                     }
+                }
+            }
+        ]
+    };
+    myChart2.setOption(option2);
+
+
+</script>
+</body>
+</html>
