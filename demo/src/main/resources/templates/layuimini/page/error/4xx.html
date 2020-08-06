@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>404</title>
+    <title th:text="${statusCode}">4xx</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layui-v2.5.5/css/layui.css}" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
     <style>
         .error .clip .shadow {height:180px;}
         .error .clip:nth-of-type(2) .shadow {width:130px;}
@@ -41,12 +41,14 @@
             .error span.triangle {top:70%;right:-3%;border-left:10px solid #535353;border-top:8px solid transparent;border-bottom:8px solid transparent;}
             .error .container-error-404 {height:150px;}
         }
+        .errorMsg {color:grey;font-weight: bold;font-size:20px;}
     </style>
 </head>
 <body>
 <div class="error">
     <div class="container-floud">
         <div style="text-align: center">
+
             <div class="container-error-404">
                 <div class="clip">
                     <div class="shadow">
@@ -68,20 +70,32 @@
                 </div>
             </div>
             <h2 class="h1">很抱歉，你访问的页面找不到了</h2>
+            <span class="errorMsg" >Timestamp:[[${timestamp}]]</span><br/>
+            <span class="errorMsg">StatusCode:[[${statusCode}]]</span><br/>
+            <input id="statusCodeMsg" type="hidden" th:value="${statusCode}">
+            <span class="errorMsg">Error:[[${error}]]</span><br/>
+            <span class="errorMsg">Message:[[${message}]]</span><br/>
+            <span class="errorMsg">Path:[[${path}]]</span><br/>
+
         </div>
     </div>
 </div>
-<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script th:src="@{/lib/layui-v2.5.5/layui.js}" src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script th:src="@{/lib/jquery-3.4.1/jquery-3.4.1.min.js}" src="../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script>
+
+    var statusCode = $("#statusCodeMsg").val();
+
     function randomNum() {
         return Math.floor(Math.random() * 9) + 1;
     }
 
     var loop1, loop2, loop3, time = 30, i = 0, number;
     loop3 = setInterval(function () {
+        console.info('statudCode:' + $("title").text());
         if (i > 40) {
             clearInterval(loop3);
-            document.querySelector('.thirdDigit').textContent = 4;
+            document.querySelector('.thirdDigit').textContent = statusCode.charAt(0);
         } else {
             document.querySelector('.thirdDigit').textContent = randomNum();
             i++;
@@ -90,7 +104,7 @@
     loop2 = setInterval(function () {
         if (i > 80) {
             clearInterval(loop2);
-            document.querySelector('.secondDigit').textContent = 'x';
+            document.querySelector('.secondDigit').textContent = statusCode.charAt(1);
         } else {
             document.querySelector('.secondDigit').textContent = randomNum();
             i++;
@@ -99,7 +113,7 @@
     loop1 = setInterval(function () {
         if (i > 100) {
             clearInterval(loop1);
-            document.querySelector('.firstDigit').textContent = 'x';
+            document.querySelector('.firstDigit').textContent = statusCode.charAt(2);
         } else {
             document.querySelector('.firstDigit').textContent = randomNum();
             i++;

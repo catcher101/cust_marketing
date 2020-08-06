@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--加载数据库数据源的资源文件-->
+    <properties resource="generator.properties"></properties>
+
+    <!--配置生成环境-->
+    <context id="testTables" targetRuntime="MyBatis3">
+
+        <!--实体类生成toString()-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <!--实体类实现序列化-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <!--加载自定义注释的类,必须是全类名-->
+        <commentGenerator type="com.icbc.demo.config.MyCommentGenerator">
+            <!--是否去除自动生成的注释 true是：false 否-->
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+        <!--数据库连接，如果没有配置数据源，则可以直接填上driverClass、url这些信息-->
+        <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.userId}" password="${jdbc.pwd}"></jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--targetPackage目标包，生成实体类的位置-->
+        <javaModelGenerator targetPackage="com.icbc.demo.entity" targetProject="src/main/java">
+            <!--enableSubPackages,是否让schema作为包的后缀-->
+            <property name="enableSubPackages" value="false"/>
+            <!--从数据库返回的值被清除前后空格-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--targetProject:mapper映射文件生成的位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="false"></property>
+
+        </sqlMapGenerator>
+        <!--targetPackage:mapper接口生成的位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.icbc.demo.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--指定数据库表，要和数据库中进行对应，否则将会出错；-->
+        <!--如果要生成多个数据表对应的多个实体类，则可以创建多个<table>-->
+        <!--domainObjectName是生成实体类的类名-->
+        <!--enableSelectByExample是否生成动态查询语句-->
+        <table tableName="combine_test_set"  domainObjectName="CombineTestSet"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>
