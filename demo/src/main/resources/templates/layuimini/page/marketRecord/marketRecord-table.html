@@ -24,13 +24,13 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">ID</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="id" autocomplete="off" class="layui-input">
+                            <input type="text" name="individualid" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">用户姓名</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="username" autocomplete="off" class="layui-input">
+                            <input type="text" name="name" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -72,6 +72,11 @@
            lay-filter="switchTest"
            lay-text="是|否">
 </script>-->
+
+<script type="text/html" id="barDemo2">
+
+</script>
+
 <!-- 操作列 -->
 <script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
@@ -94,7 +99,7 @@
             table.render({
                 elem: '#demo'
                 ,id: 'demoId'
-                ,url: '/cust2/getCustPage' //数据接口
+                ,url: '/marketrecord/getMarketRecord' //数据接口
                 ,type: 'GET'
                 ,page: true //开启分页
                 ,limit: 10
@@ -102,20 +107,24 @@
                 ,height: 'full-100' //高度最大适应
                 ,skin: 'row'
                 ,even:true
-                ,toolbar: 'default' //开启头部工具栏，并为其绑定左侧模板
+                ,toolbar: 'barDemo2'
+                //,toolbar: 'default' //开启头部工具栏，并为其绑定左侧模板
                 ,cellMinWidth: 80//全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 ,cols: [[ //表头
                   {type:'checkbox'}
                   ,{field: 'individualid', title: 'ID', sort: true, align: 'center',
                         style:'background-color: #009688; color: #fff;'}
                   ,{field: 'name', title: '姓名', align: 'center'}
-                  ,{field: 'age', title: '年龄', align: 'center', width: '5%'}
-                  ,{field: 'balance', title: '每年平均余额', align: 'center', width: '11%'}
-                  ,{field: 'housing', title: '是否有住房贷款', align: 'center', width: '11%'}
-                  ,{field: 'loan', title: '是否有个人贷款', align: 'center', width: '11%'}
-                  ,{field: 'pdays', title: '距上次联系已过', align: 'center'}
-                  ,{field: 'poutcome', title: '上次活动结果', align: 'center'}
-                  // ,{field: 'isManager', title: '是否为管理员', align: 'center', templet: '#switchOnOff'}
+                  ,{field: 'contact', title: '联系方式', align: 'center'}
+                  //,{field: 'day', title: '最后联系日', align: 'center', width: '11%'}
+                  ,{field: 'day', title: '最后联系日', align: 'center'}
+                  ,{field: 'month', title: '最后联系月', align: 'center'}
+                  ,{field: 'duration', title: '最后联系交流时长', align: 'center'}
+                  //,{field: 'campaign', title: '本次活动交流次数', align: 'center'}
+                  //,{field: 'pdays', title: '距离上次活动多久', align: 'center'}
+                  //,{field: 'previous', title: '本次活动前交流次数', align: 'center'}
+                  //,{field: 'poutcome', title: '上次活动结果', align: 'center'}
+
                   ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
                 ]]
                 ,done: function(res, curr, count){
@@ -223,24 +232,25 @@
     		    
     		    if(layEvent === 'detail'){
     		      layer.open({
-    		    	  title: '查看用户',
+    		    	  title: '详细营销记录',
     		    	  type: 2,
     		    	  shade: 0.2,
     		    	  maxmin: true,
     		    	  shadeClose: true,
     		    	  area: ['100%', '100%'],
-    		    	  content: '/page/user/user-detail.html',
+    		    	  //content: '/page/market/market-detail.html',
+    		    	  content: '/marketrecord/marketDetail?individualid='+data.individualid,
     		    	  success: function(layero, index){
     		    		  //找到它的子窗口的body
-    		    		  var body = layer.getChildFrame('body', index);
-    		    		  body.find("input[name=id]").val(data.id);
-			                 body.find("input[name=username]").val(data.username);
-			                 body.find("input[name=password]").val(data.password);
-                             if(data.isManager == 1){
-                                 body.find('input[name=isManager]').prop("checked", "checked");
-                             }else{
-                                 body.find('input[name=isManager]').prop("checked", "");
-                             }
+    		    		  //var body = layer.getChildFrame('body', index);
+    		    		  //body.find("input[name=id]").val(data.id);
+			                 //body.find("input[name=username]").val(data.username);
+			                 //body.find("input[name=password]").val(data.password);
+                             //if(data.isManager == 1){
+                                 //body.find('input[name=isManager]').prop("checked", "checked");
+                             //}else{
+                                 //body.find('input[name=isManager]').prop("checked", "");
+                             //}
     		    	  }
     		      });
     		    } else if(layEvent === 'del'){
@@ -273,19 +283,20 @@
     	                 maxmin: true,
     	                 shadeClose: true,
     	                 area: ['100%', '100%'],
-    		             content: '/page/user/user-edit.html',
+    		             //content: '/page/user/user-edit.html',
+    		             content: '/marketrecord/editRecord?individualid='+data.individualid,
     		             success: function(layero, index){
     			            	//找到它的子窗口的body
-    			                 var body = layer.getChildFrame('body', index); //巧妙的地方在这里哦
+    			                 //var body = layer.getChildFrame('body', index); //巧妙的地方在这里哦
     			                 //为子窗口元素赋值
-    			                 body.find("input[name=id]").val(data.id);
-    			                 body.find("input[name=username]").val(data.username);
-    			                 body.find("input[name=password]").val(data.password);
-                                 if(data.isManager == 1){
-                                     body.find('input[name=isManager]').prop("checked", "checked");
-                                 }else{
-                                     body.find('input[name=isManager]').prop("checked", "");
-                                 }
+    			                 //body.find("input[name=id]").val(data.id);
+    			                 //body.find("input[name=username]").val(data.username);
+    			                 //body.find("input[name=password]").val(data.password);
+                                 //if(data.isManager == 1){
+                                     //body.find('input[name=isManager]').prop("checked", "checked");
+                                 //}else{
+                                     //body.find('input[name=isManager]').prop("checked", "");
+                                 //}
     			             }
     				   });
     		    }
@@ -325,10 +336,11 @@
             var data = obj.field;
             //执行重载
             table.reload('demoId', {
-                url: '/user/getPageByParam',
+                //url: '/user/getPageByParam',
+                url: '/marketrecord/getRecordByParam',
                 where: {
-                    id: data.id,
-                    username: data.username,
+                    individualid: data.individualid,
+                    name: data.name,
                 },
                 page: {
                     curr: 1,//重新从第一页开始

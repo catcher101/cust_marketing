@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">I D</label>
+        <div class="layui-input-block">
+            <input type="text" name="individualid"  readonly="readonly" value="" th:value="${individualid}"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name"  readonly="readonly" value=""
+                   th:value="${name}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input type="text" name="contact"  readonly="readonly" value=""
+                   th:value="${contact}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后联系日</label>
+        <div class="layui-input-block">
+            <input type="text" name="day"  readonly="readonly" value=""
+                   th:value="${day}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后联系月</label>
+        <div class="layui-input-block">
+            <input type="text" name="month"  readonly="readonly" value=""
+                   th:value="${month}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后联系交流时长（秒）</label>
+        <div class="layui-input-block">
+            <input type="text" name="duration"  readonly="readonly" value=""
+                   th:value="${duration}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">本次活动交流次数</label>
+        <div class="layui-input-block">
+            <input type="text" name="campaign"  readonly="readonly" value=""
+                   th:value="${campaign}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">距离上次活动联系多少天</label>
+        <div class="layui-input-block">
+            <input type="text" name="pdays"  readonly="readonly" value=""
+                   th:value="${pdays}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">本次活动前交流次数</label>
+        <div class="layui-input-block">
+            <input type="text" name="previous"  readonly="readonly" value=""
+                   th:value="${previous}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">上次活动结果</label>
+        <div class="layui-input-block">
+            <input type="text" name="poutcome"  readonly="readonly" value=""
+                   th:value="${poutcome}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认</button>
+        </div>
+    </div>
+</form>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (arg) {
+        	var iframeIndex = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(iframeIndex);
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>
