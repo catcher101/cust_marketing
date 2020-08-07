@@ -17,18 +17,18 @@
       "child": [
         {
           "title": "用户管理",
-          "href": "page/user/user-table1.html",
+          "href": "page/user/user-table.html",
           "icon": "fa fa-address-book",
           "target": "_self"
         },
         {
-          "title": "客户营销",
+          "title": "客户清单",
           "href": "page/product-table.html",
           "icon": "fa fa-shopping-bag",
           "target": "_self"
         },
         {
-          "title": "客户营销2",
+          "title": "客户清单2",
           "href": "page/cust2/cust-table.html",
           "icon": "fa fa-shopping-bag",
           "target": "_self"
@@ -36,7 +36,7 @@
         {
           "title": "营销记录",
           "href": "page/marketRecord/marketRecord-table.html",
-          "icon": "fa fa-shopping-bag",
+          "icon": "fa fa-bars",
           "target": "_self"
         }
       ]

@@ -6,28 +6,36 @@
     individualid, name, age, balance, housing, loan,  pdays, poutcome
   </sql>
 
+  <sql id="selectField">
+    individualid, name, delt_greet, gender, nationality, age, job, marital, education,
+    isViolateRule, balance, housing, loan, contact, day, month, duration, campaign, pdays,
+    previous, poutcome
+  </sql>
+
+  <!--CombineTestSet selectCustById(String individualid);-->
+  <select id="selectCustById" resultType="CombineTestSet">
+    select <include refid="selectField"/> from combine_test_set
+    where individualid = #{individualid}
+  </select>
+
+  <!--List<CombineTestSet> selectUsersByParam(@Param("map") Map<String, Object> map);-->
+  <select id="selectUsersByParam" resultType="CombineTestSet">
+     select <include refid="selectBasicField"/> from combine_test_set
+     <trim prefix="where" suffixOverrides="and">
+       <if test="map.individualid!=null and map.individualid.trim()!=''">
+        individualid = #{map.individualid} and
+       </if>
+       <if test="map.name!=null and map.name.trim()!=''">
+        name = #{map.name} and
+       </if>
+     </trim>
+  </select>
+
 
   <!--List<CombineTestSet> selectBasicInfo();-->
   <select id="selectBasicInfo" resultType="CombineTestSet">
     select <include refid="selectBasicField"/> from combine_test_set
   </select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

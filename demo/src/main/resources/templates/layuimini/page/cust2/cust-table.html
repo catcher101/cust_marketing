@@ -24,13 +24,14 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">ID</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="id" autocomplete="off" class="layui-input">
+                            <input type="text" name="individualid" autocomplete="off"
+                                   class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">用户姓名</label>
+                        <label class="layui-form-label">客户姓名</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="username" autocomplete="off" class="layui-input">
+                            <input type="text" name="name" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -64,14 +65,23 @@
 
 
 
-<!--isManager字段的开关按钮-->
-<!--<script type="text/html" id="switchOnOff">
-    &lt;!&ndash;定义一个mid属性，提供给update操作使用&ndash;&gt;
-    <input type="checkbox" mid={{d.id}} {{d.isManager=="1"?"checked":""}} name="isManager"
-           lay-skin="switch"
-           lay-filter="switchTest"
-           lay-text="是|否">
-</script>-->
+<!--balance字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
+<script type="text/html" id="balanceTpl">
+        ￥{{d.balance}}
+</script>
+<!--balance字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
+<script type="text/html" id="pdaysTpl">
+    {{d.pdays=="-1"?"联系不上":d.pdays+"天"}}
+</script>
+<!--housing字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
+<script type="text/html" id="housingTpl">
+    <span {{d.housing=="yes"?"style='color:green;font-weight:bold;'":""}}>{{d.housing}}</span>
+</script>
+<!--loan字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
+<script type="text/html" id="loanTpl">
+    <span {{d.loan=="yes"?"style='color:green;font-weight:bold;'":""}}>{{d.loan}}</span>
+</script>
+
 <!-- 头部工具栏 -->
 <script type="text/html" id="barDemo2">
 </script>
@@ -113,10 +123,13 @@
                         style:'background-color: #009688; color: #fff;'}
                   ,{field: 'name', title: '姓名', align: 'center'}
                   ,{field: 'age', title: '年龄', align: 'center', width: '5%'}
-                  ,{field: 'balance', title: '每年平均余额', align: 'center', width: '11%'}
-                  ,{field: 'housing', title: '是否有住房贷款', align: 'center', width: '11%'}
-                  ,{field: 'loan', title: '是否有个人贷款', align: 'center', width: '11%'}
-                  ,{field: 'pdays', title: '距上次联系已过', align: 'center'}
+                  ,{field: 'balance', title: '每年平均余额', templet: '#balanceTpl', align: 'center',
+                        width: '11%'}
+                  ,{field: 'housing', title: '是否有住房贷款', templet: '#housingTpl', align: 'center',
+                        width: '11%'}
+                  ,{field: 'loan', title: '是否有个人贷款', templet: '#loanTpl', align: 'center',
+                        width: '11%'}
+                  ,{field: 'pdays', title: '距上次联系已过', templet: '#pdaysTpl', align: 'center'}
                   ,{field: 'poutcome', title: '上次活动结果', align: 'center'}
                   // ,{field: 'isManager', title: '是否为管理员', align: 'center', templet: '#switchOnOff'}
                   ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
@@ -226,24 +239,15 @@
     		    
     		    if(layEvent === 'detail'){
     		      layer.open({
-    		    	  title: '查看用户',
+    		    	  title: '查看客户',
     		    	  type: 2,
     		    	  shade: 0.2,
     		    	  maxmin: true,
     		    	  shadeClose: true,
     		    	  area: ['100%', '100%'],
-    		    	  content: '/page/user/user-detail.html',
+    		    	  content: '/cust2/getCustForDetail?individualid='+data.individualid,
     		    	  success: function(layero, index){
-    		    		  //找到它的子窗口的body
-    		    		  var body = layer.getChildFrame('body', index);
-    		    		  body.find("input[name=id]").val(data.id);
-			                 body.find("input[name=username]").val(data.username);
-			                 body.find("input[name=password]").val(data.password);
-                             if(data.isManager == 1){
-                                 body.find('input[name=isManager]').prop("checked", "checked");
-                             }else{
-                                 body.find('input[name=isManager]').prop("checked", "");
-                             }
+
     		    	  }
     		      });
     		    } else if(layEvent === 'del'){
@@ -297,58 +301,32 @@
     	  });
 
 
-        //监听isManager开关按钮,更新isManager
-        form.on('switch(switchTest)', function(obj){
-            var id = $(this).attr('mid');
-            console.info('id:' + id);
-            var isManager = obj.elem.checked?"1":"0";
-            console.info('isManager:' + isManager);
-            $.ajax({
-                url: '/user/updateUser',
-                data: {
-                    id: id,
-                    isManager: isManager,
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: function (result) {
-                    if(result.code == 0){
-                        layer.msg("操作成功", {icon: 6})
-                    }else{
-                        layer.msg("操作失败", {icon: 5})
-                    }
-                }
-            });
-        });
-
-
       
          //监听“搜索”按钮
         form.on('submit(data-search-btn)', function (obj) {
             var data = obj.field;
             //执行重载
             table.reload('demoId', {
-                url: '/user/getPageByParam',
+                url: '/cust2/getPageByParam',
                 where: {
-                    id: data.id,
-                    username: data.username,
+                    individualid: data.individualid,
+                    name: data.name,
                 },
                 page: {
                     curr: 1,//重新从第一页开始
                 }
             });
             return false;
-        })
+        });
 
         //监听“刷新”按钮
         $("#refresh").on('click', function(){
             table.reload('demoId', {
-                url: '/user/getPage'
+                url: '/cust2/getCustPage'
                 ,page: {
                     curr: currPage,
                 }//只重载数据
             });
-            // renderTable();
         });
 
         
