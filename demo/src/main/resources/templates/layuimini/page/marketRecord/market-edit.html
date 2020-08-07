@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">I D</label>
+        <div class="layui-input-block">
+            <input type="text" name="individualid" value="" th:value="${custRecord.individualid}" readonly="readonly"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" value="" th:value="${custRecord.name}"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input type="text" name="contact"  value=""
+                   th:value="${custRecord.contact}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后联系日</label>
+        <div class="layui-input-block">
+            <input type="text" name="day"  value=""
+                   th:value="${custRecord.day}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后联系月</label>
+        <div class="layui-input-block">
+            <input type="text" name="month"  value=""
+                   th:value="${custRecord.month}" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最后联系交流时长（秒）</label>
+        <div class="layui-input-block">
+            <input type="text" name="duration"  value=""
+                   th:value="${custRecord.duration}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">本次活动交流次数</label>
+        <div class="layui-input-block">
+            <input type="text" name="campaign" value=""
+                   th:value="${custRecord.campaign}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">距离上次活动联系多少天</label>
+        <div class="layui-input-block">
+            <input type="text" name="pdays" value=""
+                   th:value="${custRecord.pdays}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">本次活动前交流次数</label>
+        <div class="layui-input-block">
+            <input type="text" name="previous" value=""
+                   th:value="${custRecord.previous}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">上次活动结果</label>
+        <div class="layui-input-block">
+            <input type="text" name="poutcome"  value=""
+                   th:value="${custRecord.poutcome}" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</form>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.$;
+
+        //监听提交
+        form.on('submit(saveBtn)', function (arg) {
+          var index = layer.confirm('确定保存吗？', {
+                title: '提示'
+            }, function () {
+            	$.ajax({
+    		        //url: '/user/updateUser',
+    		        url: '/marketrecord/saveRecord',
+    		        data: {"individualid":arg.field.individualid,
+    		               "name":arg.field.name,
+    		               "contact":arg.field.contact,
+    		               "day":arg.field.day,
+    		               "month":arg.field.month,
+    		               "duration":arg.field.duration,
+    		               "campaign":arg.field.campaign,
+    		               "pdays":arg.field.pdays,
+    		               "previous":arg.field.previous,
+    		               "poutcome":arg.field.poutcome,
+    		               },
+    		        dataType: 'json',
+    		        type: 'POST',
+    		       success:function(result){
+    	             if(result.code == 1){
+    	                   layer.msg("更新失败！");
+    	             }else{
+    		                 layer.msg('更新成功');
+    		                /*  layer.close(index); // 关闭提示框弹出层 */
+    		                 var iframeIndex = parent.layer.getFrameIndex(window.name);
+    		                 parent.layer.close(iframeIndex);
+    		                 parent.location.reload(); //刷新父页面 
+    	             }
+    	          }
+    		     });  
+            });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.MarketRecordMapper">
+
+  <sql id="selectBasicField">
+    individualid, name, contact, day, month, duration, campaign, pdays, previous, poutcome
+  </sql>
+
+
+  <select id="selectBasicRecord" resultType="MarketRecord">
+    select <include refid="selectBasicField"/> from market_record
+  </select>
+
+
+  <select id="selectRecordsByParam" resultType="MarketRecord">
+    select <include refid="selectBasicField"/>
+    from market_record
+
+    <trim prefix="where" suffixOverrides="and">
+      <if test="map.individualid!=null and map.individualid.trim()!=''">individualid = #{map.individualid} and</if>
+      <if test="map.name!=null and map.name.trim()!=''">name = #{map.name}
+        and</if>
+    </trim>
+  </select>
+
+  <resultMap id="BaseResultMap" type="com.icbc.demo.entity.MarketRecord">
+    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="day" jdbcType="VARCHAR" property="day" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="duration" jdbcType="VARCHAR" property="duration" />
+    <result column="campaign" jdbcType="VARCHAR" property="campaign" />
+    <result column="pdays" jdbcType="VARCHAR" property="pdays" />
+    <result column="previous" jdbcType="VARCHAR" property="previous" />
+    <result column="poutcome" jdbcType="VARCHAR" property="poutcome" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    individualid, name, contact, day, month, duration, campaign, pdays, previous, poutcome
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from market_record
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from market_record
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.icbc.demo.entity.MarketRecord">
+    insert into market_record (individualid, name, contact, 
+      day, month, duration, 
+      campaign, pdays, previous, 
+      poutcome)
+    values (#{individualid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{day,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR}, 
+      #{campaign,jdbcType=VARCHAR}, #{pdays,jdbcType=VARCHAR}, #{previous,jdbcType=VARCHAR}, 
+      #{poutcome,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icbc.demo.entity.MarketRecord">
+    insert into market_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        individualid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="day != null">
+        day,
+      </if>
+      <if test="month != null">
+        month,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="campaign != null">
+        campaign,
+      </if>
+      <if test="pdays != null">
+        pdays,
+      </if>
+      <if test="previous != null">
+        previous,
+      </if>
+      <if test="poutcome != null">
+        poutcome,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        #{individualid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="campaign != null">
+        #{campaign,jdbcType=VARCHAR},
+      </if>
+      <if test="pdays != null">
+        #{pdays,jdbcType=VARCHAR},
+      </if>
+      <if test="previous != null">
+        #{previous,jdbcType=VARCHAR},
+      </if>
+      <if test="poutcome != null">
+        #{poutcome,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icbc.demo.entity.MarketRecord">
+    update market_record
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        day = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="campaign != null">
+        campaign = #{campaign,jdbcType=VARCHAR},
+      </if>
+      <if test="pdays != null">
+        pdays = #{pdays,jdbcType=VARCHAR},
+      </if>
+      <if test="previous != null">
+        previous = #{previous,jdbcType=VARCHAR},
+      </if>
+      <if test="poutcome != null">
+        poutcome = #{poutcome,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icbc.demo.entity.MarketRecord">
+    update market_record
+    set name = #{name,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      day = #{day,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      campaign = #{campaign,jdbcType=VARCHAR},
+      pdays = #{pdays,jdbcType=VARCHAR},
+      previous = #{previous,jdbcType=VARCHAR},
+      poutcome = #{poutcome,jdbcType=VARCHAR}
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+</mapper>
