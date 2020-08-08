@@ -14,9 +14,12 @@
             border: 1px solid #eceff9;
             border-radius: 5px;
             text-align: center;
+<!--            height: 200px;-->
+<!--            width:400px;-->
         }
         .top-panel > .layui-card-body{
-            height: 60px;
+            height: 200px;
+<!--            width:400px;-->
         }
         .top-panel-number{
             line-height:60px;
@@ -37,95 +40,127 @@
         <div class="layui-col-xs12 layui-col-md3">
 
             <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
+
+                <div class="layui-card-header">数据概况</div>
                 <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
-                        </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
-                        </div>
-                    </div>
+<!--                    <div class="layui-row layui-col-space5">-->
+                        训练集共包含25317名客户，记录来自2019年4月1日至9月30日，其中有1481名客户购买过存款产品。从训练集中随机抽取百分之二十（即5064名客户）作为测试集。验证集为2020年1月14日当天的数据。
+                        <!-- <div class="layui-col-xs9 layui-col-md9 top-panel-number">
+                             9,054,056
+                         </div> -->
+                        <!-- <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                             比昨天 <a style="color: #1aa094">▲0.12</a><br>
+                             比七日 <a style="color: #bd3004">▼0.06</a>
+                         </div> -->
+<!--                    </div>-->
                 </div>
-            </div>
 
+           </div>
+
+
+       </div>
+       <div class="layui-col-xs12 layui-col-md3">
+
+           <div class="layui-card top-panel">
+               <div class="layui-card-header">存款产品购买率</div>
+               <div class="layui-card-body">
+<!--                   <div class="layui-row layui-col-space5">-->
+
+                       <img src="/images/purchaseRate.png" height="160" width="250" />
+<!--                   <img src="/images/modelPerformance.png" />-->
+
+
+<!--                       <div class="layui-col-xs9 layui-col-md9 top-panel-number">-->
+<!--                           9,054,056-->
+<!--                       </div>-->
+<!--                       <div class="layui-col-xs3 layui-col-md3 top-panel-tips">-->
+<!--                           比昨天 <a style="color: #1aa094">▲0.12</a><br>-->
+<!--                           比七日 <a style="color: #bd3004">▼0.06</a>-->
+<!--                       </div>-->
+<!--                   </div>-->
+               </div>
+           </div>
+
+       </div>
+
+<!--        <div class="layui-card top-panel">-->
+<!--            <div class="layui-card-header">各模型预测表现</div>-->
+<!--            <div class="layui-card-body">-->
+<!--                <img src="/images/modelperformance.png" height="160" width="500"/>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="layui-col-xs12 layui-col-md6" style="background:#ffffff;border: 1px solid #eceff9;">
+            <!--           <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>-->
+            <div style="background:#ffffff;width:580px; height:50px;text-align:center;line-height:50px;" >各模型预测表现</div>
+            <img src="/images/modelperformance.png" height="210" width="580"/>
         </div>
-        <div class="layui-col-xs12 layui-col-md3">
 
-            <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
-                <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
-                        </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--       <div class="layui-col-xs12 layui-col-md3">-->
 
-        </div>
-        <div class="layui-col-xs12 layui-col-md3">
+<!--           <div class="layui-card top-panel">-->
+<!--               <div class="layui-card-header">要展示的指标名称</div>-->
+<!--               <div class="layui-card-body">-->
+<!--                   <div class="layui-row layui-col-space5">-->
+<!--                       <div class="layui-col-xs9 layui-col-md9 top-panel-number">-->
+<!--                           9,054,056-->
+<!--                       </div>-->
+<!--                       <div class="layui-col-xs3 layui-col-md3 top-panel-tips">-->
+<!--                           比昨天 <a style="color: #1aa094">▲0.12</a><br>-->
+<!--                           比七日 <a style="color: #bd3004">▼0.06</a>-->
+<!--                       </div>-->
+<!--                   </div>-->
+<!--               </div>-->
+<!--           </div>-->
 
-            <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
-                <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
-                        </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--       </div>-->
+<!--       <div class="layui-col-xs12 layui-col-md3">-->
 
-        </div>
-        <div class="layui-col-xs12 layui-col-md3">
+<!--           <div class="layui-card top-panel">-->
+<!--               <div class="layui-card-header">要展示的指标名称</div>-->
+<!--               <div class="layui-card-body">-->
+<!--                   <div class="layui-row layui-col-space5">-->
+<!--                       <div class="layui-col-xs9 layui-col-md9 top-panel-number">-->
+<!--                           9,054,056-->
+<!--                       </div>-->
+<!--                       <div class="layui-col-xs3 layui-col-md3 top-panel-tips">-->
+<!--                           比昨天 <a style="color: #1aa094">▲0.12</a><br>-->
+<!--                           比七日 <a style="color: #bd3004">▼0.06</a>-->
+<!--                       </div>-->
+<!--                   </div>-->
+<!--               </div>-->
+<!--           </div>-->
 
-            <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
-                <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
-                        </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--       </div>-->
+   </div>
 
-        </div>
-    </div>
-
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-xs12 layui-col-md9">
-            <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
-        </div>
-        <div class="layui-col-xs12 layui-col-md3">
-            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
-        </div>
-    </div>
+   <div class="layui-row layui-col-space15" >
+       <div class="layui-col-xs12 layui-col-md6" style="background:#ffffff;border: 1px solid #eceff9;">
+<!--           <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>-->
+           <div style="background:#ffffff;width:592px; height:136px;text-align:center;line-height:140px;" >特征重要度排序</div>
+           <img src="/images/featuresImportance.png" height="400"/>
+       </div>
+       <div class="layui-col-xs12 layui-col-md6" style="background:#ffffff;border: 1px solid #eceff9;">
+<!--           <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>-->
+           <div style="background:#ffffff;width:505px; height:30px;text-align:center;line-height:30px;" >工作特征与购买率的关系</div>
+           <img src="/images/jobFeature.png"  />
+       </div>
+   </div>
 
 
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-xs12 layui-col-md6">
-            <div id="echarts-dataset" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
-        </div>
-        <div class="layui-col-xs12 layui-col-md6">
-            <div id="echarts-map" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
-        </div>
-    </div>
+   <div class="layui-row layui-col-space15">
+       <div class="layui-col-xs12 layui-col-md6" >
+           <div style="background:#ffffff;width:603px; height:71px;text-align:center;line-height:71px;" >年龄特征与购买率的关系</div>
+           <img src="/images/ageFeature.png" height="400" />
+
+<!--           <div id="echarts-dataset" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>-->
+       </div>
+       <div class="layui-col-xs12 layui-col-md6">
+           <div style="background:#ffffff;width:603px; height:30px;text-align:center;line-height:40px;" >账户余额特征与购买率的关系</div>
+           <img src="/images/balanceFeature.png"  />
+<!--           <div id="echarts-map" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>-->
+       </div>
+   </div>
 
 
 </div>
