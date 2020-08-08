@@ -2,22 +2,19 @@ package com.icbc.demo;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.icbc.demo.entity.CustInfo1;
-import com.icbc.demo.entity.FeatureScore;
-import com.icbc.demo.mapper.AccountBalanceMapper;
-import com.icbc.demo.mapper.CustInfo1Mapper;
-import com.icbc.demo.mapper.CustInfoMapper;
+import com.icbc.demo.entity.*;
+import com.icbc.demo.mapper.*;
 
-import com.icbc.demo.entity.AccountBalance;
-import com.icbc.demo.entity.CustInfo;
-import com.icbc.demo.mapper.FeatureScoreMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @ContextConfiguration(classes = DemoApplication.class)
@@ -33,6 +30,9 @@ public class MappersTests {
 
     @Autowired
     private FeatureScoreMapper featureScoreMapper;
+
+    @Autowired
+    private MarketRecordMapper marketRecordMapper;
 
     @Test
     public void testSelectCustInfo(){
@@ -94,6 +94,16 @@ public class MappersTests {
         FeatureScore featureScore = featureScoreMapper.selectFeatureScorebyCustId(1);
         System.out.println(featureScore);
 
+    }
+
+    @Test
+    public void testselectMarketRecord(){
+        Map<String, Object> map = new HashMap<>();
+        map.put("individualid","11900020833560");
+        PageHelper.startPage(1, 10);
+        List<MarketRecord> list = marketRecordMapper.selectRecordsByParam(map);
+        PageInfo<MarketRecord> pageInfo = new PageInfo<>(list);
+        System.out.println(pageInfo);
     }
 
 }
