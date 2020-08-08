@@ -27,7 +27,6 @@ public class CustController2 {
 
 
 
-
     //获取指定的用户
     @GetMapping(value="/getCustForDetail")
     public String getUserForDetail(String individualid, Model model){
@@ -80,24 +79,7 @@ public class CustController2 {
           return map;
     }
 
-    @GetMapping(value="/getMarketRecord")
-    @ResponseBody
-    public Map<String, Object> getMarketRecord(@RequestParam("page")Integer page,
-                                           @RequestParam("limit")Integer limit){
-        Map<String,Object> map = new HashMap<String, Object>();
 
-        PageInfo<MarketRecord> pageInfo = marketRecordService.getMarketRecord(page,limit);
-        if(pageInfo == null){
-            map.put("code", 1);//layui要求必须返回一个code，值为0表示操作成功，1表示失败
-            map.put("msg", "操作失败");//返回的信息
-        }else{
-            map.put("code", 0);//layui要求必须返回一个code，值为0表示操作成功，1表示失败
-            map.put("msg", "操作成功");//返回的信息
-            map.put("count", pageInfo.getTotal());//总共有多少条真正的数据
-            map.put("data", pageInfo.getList());//封装真正的数据
-        }
-        return map;
-    }
 
 
 
