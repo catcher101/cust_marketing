@@ -167,7 +167,7 @@ layui.define(['laypage', 'form'], function (exports) {
                 var d = data,
                     l = d.length,
                     pageHtml = '',
-                    listHtml = $('<div class="layui-iconpicker-list">')//'<div class="layui-iconpicker-list">';
+                    listHtml = $('<div class="layui-iconpicker-list">');//'<div class="layui-iconpicker-list">';
 
                 // 计算分页数据
                 var _limit = limit, // 每页显示数量
@@ -324,7 +324,7 @@ layui.define(['laypage', 'form'], function (exports) {
                 var el = $(elem);
                 a.event('change', elem, function () {
                     var value = el.val();
-                })
+                });
                 // el.change(function(){
 
                 // });

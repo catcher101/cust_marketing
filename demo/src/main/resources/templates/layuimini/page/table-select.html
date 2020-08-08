@@ -117,13 +117,13 @@
                 ]]
             },
             done: function (elem, data) {
-                var NEWJSON = []
+                var NEWJSON = [];
                 layui.each(data.data, function (index, item) {
                     NEWJSON.push(item.username)
-                })
+                });
                 elem.val(NEWJSON.join(","))
             }
-        })
+        });
 
 
         tableSelect.render({
@@ -139,13 +139,13 @@
                 ]]
             },
             done: function (elem, data) {
-                var NEWJSON = []
+                var NEWJSON = [];
                 layui.each(data.data, function (index, item) {
                     NEWJSON.push(item.username)
-                })
+                });
                 elem.val(NEWJSON.join(","))
             }
-        })
+        });
 
 
         tableSelect.render({
@@ -168,10 +168,10 @@
                 ]]
             },
             done: function (elem, data) {
-                var NEWJSON = []
+                var NEWJSON = [];
                 layui.each(data.data, function (index, item) {
                     NEWJSON.push(item.username)
-                })
+                });
                 elem.val(NEWJSON.join(","))
             }
         })

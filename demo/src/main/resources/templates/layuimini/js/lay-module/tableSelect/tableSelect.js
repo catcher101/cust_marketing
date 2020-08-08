@@ -81,7 +81,7 @@ layui.define(['table', 'jquery', 'form'], function (exports) {
                     checkedData = table.checkStatus(tableName).data
                 }
                 updataButton(table.checkStatus(tableName).data.length)
-            })
+            });
             table.on('checkbox('+tableName+')', function(obj){
                 if(opt.checkedKey){
                     if(obj.checked){
@@ -196,7 +196,7 @@ layui.define(['table', 'jquery', 'form'], function (exports) {
             var overHeight = (elem.offset().top + elem.outerHeight() + tableBox.outerHeight() - $(window).scrollTop()) > $(window).height();
             var overWidth = (elem.offset().left + tableBox.outerWidth()) > $(window).width();
             overHeight && tableBox.css({'top':'auto','bottom':'0px'});
-            overWidth && tableBox.css({'left':'auto','right':'5px'})
+            overWidth && tableBox.css({'left':'auto','right':'5px'});
 
             //关键词搜索
             form.on('submit(tableSelect_btn_search)', function(data){
@@ -213,7 +213,7 @@ layui.define(['table', 'jquery', 'form'], function (exports) {
             table.on('rowDouble('+tableName+')', function(obj){
                 var checkStatus = {data:[obj.data]};
                 selectDone(checkStatus);
-            })
+            });
 
             //按钮选中
             tableBox.find('.tableSelect_btn_select').on('click', function() {
@@ -222,7 +222,7 @@ layui.define(['table', 'jquery', 'form'], function (exports) {
                     checkStatus.data = checkedData;
                 }
                 selectDone(checkStatus);
-            })
+            });
 
             //写值回调和关闭
             function selectDone (checkStatus){
@@ -249,14 +249,14 @@ layui.define(['table', 'jquery', 'form'], function (exports) {
                 }
             });
         })
-    }
+    };
 
     /**
      * 隐藏选择器
      */
     tableSelect.prototype.hide = function (opt) {
         $('.tableSelect').remove();
-    }
+    };
 
     //自动完成渲染
     var tableSelect = new tableSelect();
@@ -269,4 +269,4 @@ layui.define(['table', 'jquery', 'form'], function (exports) {
     }
 
     exports(MOD_NAME, tableSelect);
-})
+});

@@ -5,6 +5,7 @@ import com.icbc.demo.entity.CombineTestSet;
 import com.icbc.demo.entity.CustInfo1;
 import com.icbc.demo.entity.MarketRecord;
 import com.icbc.demo.entity.MarketingRecord;
+import com.icbc.demo.entity.User;
 import com.icbc.demo.service.CustInfo1Service;
 import com.icbc.demo.service.CustService;
 import com.icbc.demo.service.MarketRecordService;
@@ -24,8 +25,41 @@ public class CustController2 {
     @Autowired
     CustService custService;
 
-    @Autowired
-    MarketRecordService marketRecordService;
+
+
+
+    //获取指定的用户
+    @GetMapping(value="/getCustForDetail")
+    public String getUserForDetail(String individualid, Model model){
+        System.out.println("individualid:" + individualid);
+        CombineTestSet cust = custService.getCustById(individualid);
+        if(cust != null){
+            System.out.println(cust);
+            model.addAttribute("cust", cust);
+        }
+        return "layuimini/page/cust2/cust-detail.html";
+    }
+
+
+    @GetMapping(value="/getPageByParam")
+    @ResponseBody
+    public Map<String, Object> getPageByParam(Integer page,
+                                              Integer limit,
+                                              @RequestParam Map map){
+        Map<String, Object> map1 = new HashMap<>();
+        PageInfo<User> pageInfo = custService.getCustPageByParam(page, limit, map);
+        if(pageInfo == null){
+            map1.put("code", 1);
+            map1.put("msg", "操作失败");
+            return map1;
+        }
+        map1.put("code", 0);
+        map1.put("msg", "操作成功");
+        map1.put("count", pageInfo.getTotal());
+        map1.put("data", pageInfo.getList());
+        return map1;
+    }
+
 
     @GetMapping(value="/getCustPage")
     @ResponseBody
