@@ -111,7 +111,30 @@ public class CombineTestSet implements Serializable {
      */
     private String poutcome;
 
+    /**
+     * 是否推荐
+     */
+    private String isRecommend;
+
+    private Result result;
+
     private static final long serialVersionUID = 1L;
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
+    public String getIsRecommend() {
+        return isRecommend;
+    }
+
+    public void setIsRecommend(String isRecommend) {
+        this.isRecommend = isRecommend;
+    }
 
     public String getIndividualid() {
         return individualid;
@@ -308,7 +331,9 @@ public class CombineTestSet implements Serializable {
         sb.append(", pdays=").append(pdays);
         sb.append(", previous=").append(previous);
         sb.append(", poutcome=").append(poutcome);
-        sb.append("]");
+        sb.append(", isRecommend=").append(isRecommend);
+        sb.append(", result=").append(result);
+        sb.append(" ]");
         return sb.toString();
     }
 }

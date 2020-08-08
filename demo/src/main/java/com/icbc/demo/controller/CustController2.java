@@ -2,12 +2,9 @@ package com.icbc.demo.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.icbc.demo.entity.CombineTestSet;
-import com.icbc.demo.entity.CustInfo1;
-import com.icbc.demo.entity.MarketingRecord;
+import com.icbc.demo.entity.MarketRecord;
 import com.icbc.demo.entity.User;
-import com.icbc.demo.service.CustInfo1Service;
 import com.icbc.demo.service.CustService;
-import com.icbc.demo.service.MarketingRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +17,35 @@ import java.util.Map;
 @RequestMapping(value="/cust2")
 public class CustController2 {
 
+
     @Autowired
     CustService custService;
 
 
+    @PostMapping(value="/saveCust")
+    @ResponseBody
+    public Map<String, Object> saveCust(CombineTestSet cust){
+        Map<String, Object> map = new HashMap<>();
+        Integer count = custService.updateCustById(cust);
+        if(count <= 0){
+            map.put("code", 1);
+            return map;
+        }
+        map.put("code", 0);
+        return map;
+    }
+
+    //获取指定的用户
+    @GetMapping(value="/getCustForEdit")
+    public String getCustForEdit(String individualid, Model model){
+        System.out.println("individualid:" + individualid);
+        CombineTestSet cust = custService.getCustById(individualid);
+        if(cust != null){
+            System.out.println(cust);
+            model.addAttribute("cust", cust);
+        }
+        return "layuimini/page/cust2/cust-edit.html";
+    }
 
     //获取指定的用户
     @GetMapping(value="/getCustForDetail")
@@ -63,7 +85,8 @@ public class CustController2 {
                                            @RequestParam("limit")Integer limit){
         Map<String,Object> map = new HashMap<String, Object>();
 
-        PageInfo<CombineTestSet> pageInfo = custService.getCustPage(page,limit);
+
+        PageInfo<CombineTestSet> pageInfo = custService.getCustPage(page, limit);
         if(pageInfo == null){
             map.put("code", 1);//layui要求必须返回一个code，值为0表示操作成功，1表示失败
             map.put("msg", "操作失败");//返回的信息

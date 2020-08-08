@@ -65,6 +65,12 @@
 
 
 
+<!--isRecommend字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
+<script type="text/html" id="isRecommendTpl">
+    <span {{d.result.lgbModelPred=="1"?"style='color:orange;font-weight:bold;'":""}}>
+        {{d.result.lgbModelPred=="1"?"yes":"no"}}
+    </span>
+</script>
 <!--balance字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
 <script type="text/html" id="balanceTpl">
         ￥{{d.balance}}
@@ -75,11 +81,11 @@
 </script>
 <!--housing字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
 <script type="text/html" id="housingTpl">
-    <span {{d.housing=="yes"?"style='color:green;font-weight:bold;'":""}}>{{d.housing}}</span>
+    <span {{d.housing=="yes"?"style='color:orange;font-weight:bold;'":""}}>{{d.housing}}</span>
 </script>
 <!--loan字段的模板：比如{{d.isManager=="1"?"checked":""}}-->
 <script type="text/html" id="loanTpl">
-    <span {{d.loan=="yes"?"style='color:green;font-weight:bold;'":""}}>{{d.loan}}</span>
+    <span {{d.loan=="yes"?"style='color:orange;font-weight:bold;'":""}}>{{d.loan}}</span>
 </script>
 
 <!-- 头部工具栏 -->
@@ -122,7 +128,7 @@
                   ,{field: 'individualid', title: 'ID', sort: true, align: 'center',
                         style:'background-color: #009688; color: #fff;'}
                   ,{field: 'name', title: '姓名', align: 'center'}
-                  ,{field: 'age', title: '年龄', align: 'center', width: '5%'}
+                  ,{field: 'isRecommend', title: '是否推荐', templet: '#isRecommendTpl', align: 'center'}
                   ,{field: 'balance', title: '每年平均余额', templet: '#balanceTpl', align: 'center',
                         width: '11%'}
                   ,{field: 'housing', title: '是否有住房贷款', templet: '#housingTpl', align: 'center',
@@ -274,26 +280,16 @@
     		      });
     		    } else if(layEvent === 'edit'){
     			   layer.open({
-    	                 title: '编辑用户',
+    	                 title: '编辑客户',
     	                 type: 2,
     	                 shade: 0.2,
     	                 maxmin: true,
     	                 shadeClose: true,
     	                 area: ['100%', '100%'],
-    		             content: '/page/user/user-edit.html',
+    		             content: '/cust2/getCustForEdit?individualid='+data.individualid,
     		             success: function(layero, index){
-    			            	//找到它的子窗口的body
-    			                 var body = layer.getChildFrame('body', index); //巧妙的地方在这里哦
-    			                 //为子窗口元素赋值
-    			                 body.find("input[name=id]").val(data.id);
-    			                 body.find("input[name=username]").val(data.username);
-    			                 body.find("input[name=password]").val(data.password);
-                                 if(data.isManager == 1){
-                                     body.find('input[name=isManager]').prop("checked", "checked");
-                                 }else{
-                                     body.find('input[name=isManager]').prop("checked", "");
-                                 }
-    			             }
+
+                         }
     				   });
     		    }
 

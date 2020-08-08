@@ -19,6 +19,11 @@ public class CustServiceImpl implements CustService {
     CombineTestSetMapper combineTestSetMapper;
 
     @Override
+    public int updateCustById(CombineTestSet cust) {
+        return combineTestSetMapper.updateCustById(cust);
+    }
+
+    @Override
     public CombineTestSet getCustById(String individualid) {
         CombineTestSet cust = combineTestSetMapper.selectCustById(individualid);
         return cust;

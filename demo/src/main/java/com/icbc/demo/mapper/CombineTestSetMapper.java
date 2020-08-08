@@ -10,6 +10,8 @@ import java.util.Map;
 @Mapper
 public interface CombineTestSetMapper {
 
+    //更新指定客户的信息
+    int updateCustById(CombineTestSet cust);
 
     //通过id查询客户
     CombineTestSet selectCustById(String individualid);

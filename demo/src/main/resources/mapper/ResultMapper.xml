@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.ResultMapper">
+  <resultMap id="BaseResultMap" type="com.icbc.demo.entity.Result">
+    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <result column="xgb_model_pred" jdbcType="INTEGER" property="xgbModelPred" />
+    <result column="rfc_model_pred" jdbcType="INTEGER" property="rfcModelPred" />
+    <result column="lgb_model_pred" jdbcType="INTEGER" property="lgbModelPred" />
+    <result column="ada_model_pred" jdbcType="INTEGER" property="adaModelPred" />
+    <result column="mlp_model_pred" jdbcType="INTEGER" property="mlpModelPred" />
+    <result column="svm_model_pred" jdbcType="INTEGER" property="svmModelPred" />
+    <result column="knn_model_pred" jdbcType="INTEGER" property="knnModelPred" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    individualid, xgb_model_pred, rfc_model_pred, lgb_model_pred, ada_model_pred, mlp_model_pred, 
+    svm_model_pred, knn_model_pred
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from result
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from result
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.icbc.demo.entity.Result">
+    insert into result (individualid, xgb_model_pred, rfc_model_pred, 
+      lgb_model_pred, ada_model_pred, mlp_model_pred, 
+      svm_model_pred, knn_model_pred)
+    values (#{individualid,jdbcType=VARCHAR}, #{xgbModelPred,jdbcType=INTEGER}, #{rfcModelPred,jdbcType=INTEGER}, 
+      #{lgbModelPred,jdbcType=INTEGER}, #{adaModelPred,jdbcType=INTEGER}, #{mlpModelPred,jdbcType=INTEGER}, 
+      #{svmModelPred,jdbcType=INTEGER}, #{knnModelPred,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icbc.demo.entity.Result">
+    insert into result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        individualid,
+      </if>
+      xgb_model_pred,
+      rfc_model_pred,
+      lgb_model_pred,
+      ada_model_pred,
+      mlp_model_pred,
+      svm_model_pred,
+      knn_model_pred,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        #{individualid,jdbcType=VARCHAR},
+      </if>
+      #{xgbModelPred,jdbcType=INTEGER},
+      #{rfcModelPred,jdbcType=INTEGER},
+      #{lgbModelPred,jdbcType=INTEGER},
+      #{adaModelPred,jdbcType=INTEGER},
+      #{mlpModelPred,jdbcType=INTEGER},
+      #{svmModelPred,jdbcType=INTEGER},
+      #{knnModelPred,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icbc.demo.entity.Result">
+    update result
+    <set>
+      <if test="xgbModelPred != null">
+        xgb_model_pred = #{xgbModelPred,jdbcType=INTEGER},
+      </if>
+      <if test="rfcModelPred != null">
+        rfc_model_pred = #{rfcModelPred,jdbcType=INTEGER},
+      </if>
+      <if test="lgbModelPred != null">
+        lgb_model_pred = #{lgbModelPred,jdbcType=INTEGER},
+      </if>
+      <if test="adaModelPred != null">
+        ada_model_pred = #{adaModelPred,jdbcType=INTEGER},
+      </if>
+      <if test="mlpModelPred != null">
+        mlp_model_pred = #{mlpModelPred,jdbcType=INTEGER},
+      </if>
+      <if test="svmModelPred != null">
+        svm_model_pred = #{svmModelPred,jdbcType=INTEGER},
+      </if>
+      <if test="knnModelPred != null">
+        knn_model_pred = #{knnModelPred,jdbcType=INTEGER},
+      </if>
+    </set>
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icbc.demo.entity.Result">
+    update result
+    set xgb_model_pred = #{xgbModelPred,jdbcType=INTEGER},
+      rfc_model_pred = #{rfcModelPred,jdbcType=INTEGER},
+      lgb_model_pred = #{lgbModelPred,jdbcType=INTEGER},
+      ada_model_pred = #{adaModelPred,jdbcType=INTEGER},
+      mlp_model_pred = #{mlpModelPred,jdbcType=INTEGER},
+      svm_model_pred = #{svmModelPred,jdbcType=INTEGER},
+      knn_model_pred = #{knnModelPred,jdbcType=INTEGER}
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+</mapper>
