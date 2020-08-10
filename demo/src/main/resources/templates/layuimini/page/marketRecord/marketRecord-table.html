@@ -16,51 +16,41 @@
 <body>
 <div class="layuimini-container">
 
-    <fieldset class="table-search-fieldset">
-        <legend>搜索信息</legend>
-        <div style="margin: 10px 10px 10px 10px">
-            <form class="layui-form layui-form-pane" action="">
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">ID</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="id" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">用户姓名</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="username" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </fieldset>
-
     <div class="layuimini-main">
 
-<!--        <blockquote class="layui-elem-quote">-->
-<!--            Layui的树形表格treeTable，支持异步加载(懒加载)、复选框联动、折叠状态记忆。<br>-->
-<!--            <a href="https://gitee.com/whvse/treetable-lay" target="_blank" class="layui-btn layui-btn-danger">treetable-lay</a>-->
-<!--        </blockquote>-->
-
-        <div>
-            <div class="layui-btn-group">
-                <button class="layui-btn" id="refresh">刷新</button>
-                <!-- <button class="layui-btn" id="btn-expand">全部展开</button>
-                <button class="layui-btn" id="btn-fold">全部折叠</button> -->
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">ID</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="id" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">用户姓名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-<!--            <table id="munu-table" class="layui-table" lay-filter="munu-table"></table>-->
+        </fieldset>
+
+        <div style="margin-top:10px;" class="layui-btn-group">
+            <button class="layui-btn" id="refresh">刷新当前表格</button>
         </div>
+
         <table id="demo" lay-filter="test" ></table>
     </div>
 
 </div>
-<!--<table id="demo" lay-filter="test" ></table>-->
 
 
 

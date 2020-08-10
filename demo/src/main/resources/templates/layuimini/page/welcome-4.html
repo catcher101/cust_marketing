@@ -70,7 +70,7 @@
             <div class="layui-card top-panel">
                 <div class="layui-card-header">存款产品购买率</div>
                 <div class="layui-card-body">
-                    <img src="/images/purchaseRate.png" height="160" width="250"/>
+                    <img src="/images/purchaseRate.png" height="100%" width="100%"/>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="layui-card top-panel">
                 <div class="layui-card-header">各模型预测表现</div>
                 <div class="layui-card-body">
-                    <img src="/images/modelperformance.png" height="210" width="580"/>
+                    <img src="/images/modelperformance.png" height="100%" width="100%"/>
                 </div>
             </div>
         </div>
@@ -89,27 +89,17 @@
             <div class="layui-card top-panel">
                 <div class="layui-card-header">特征重要度排序</div>
                 <div style="height:530px;" class="layui-card-body">
-                    <img src="/images/featuresImportance.png" height="400"/>
+                    <img src="/images/featuresImportance.png" height="100%" width="100%"/>
                 </div>
             </div>
-            <!-- &lt;!&ndash;           <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>&ndash;&gt;
-             <div style="background:#ffffff;width:592px; height:136px;text-align:center;line-height:140px;">
-                 特征重要度排序
-             </div>
-             <img src="/images/featuresImportance.png" height="400"/>-->
         </div>
         <div class="layui-col-xs12 layui-col-md6">
             <div class="layui-card top-panel">
                 <div class="layui-card-header">工作特征与购买率的关系</div>
                 <div style="height:530px;" class="layui-card-body">
-                    <img src="/images/jobFeature.png"/>
+                    <img src="/images/jobFeature.png" height="100%" width="100%"/>
                 </div>
             </div>
-            <!--           <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>-->
-            <!--<div style="background:#ffffff;width:505px; height:30px;text-align:center;line-height:30px;">
-                工作特征与购买率的关系
-            </div>
-            <img src="/images/jobFeature.png"/>-->
         </div>
     </div>
 
@@ -119,13 +109,9 @@
             <div class="layui-card top-panel">
                 <div class="layui-card-header">年龄特征与购买率的关系</div>
                 <div style="height:410px;" class="layui-card-body" >
-                    <img src="/images/ageFeature.png" width="390" height="300"/>
+                    <img src="/images/ageFeature.png" height="100%" width="100%"/>
                 </div>
             </div>
-            <!-- <div style="background:#ffffff;width:603px; height:71px;text-align:center;line-height:71px;">
-                 年龄特征与购买率的关系
-             </div>
-             <img src="/images/ageFeature.png" height="400"/>-->
 
             <!--           <div id="echarts-dataset" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>-->
         </div>
@@ -136,10 +122,6 @@
                     <img src="/images/balanceFeature.png" width="550" height="400"/>
                 </div>
             </div>
-            <!--<div style="background:#ffffff;width:603px; height:30px;text-align:center;line-height:40px;">
-                账户余额特征与购买率的关系
-            </div>
-            <img src="/images/balanceFeature.png"/>-->
             <!--           <div id="echarts-map" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>-->
         </div>
     </div>
@@ -150,10 +132,22 @@
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
-    layui.use(['layer', 'echarts'], function () {
+    layui.use(['jquery', 'layer', 'echarts'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             echarts = layui.echarts;
+
+
+        //实现点击图片可以放大
+        $(function () {
+            $(".layui-card-body img").on("click", function () {
+                layer.photos({
+                    photos: '.layui-card-body',
+                    shadeClose: true,
+                    anim: 0, //动画效果
+                });
+            })
+        })
 
         /**
          * 报表功能

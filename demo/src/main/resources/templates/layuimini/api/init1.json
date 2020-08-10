@@ -39,6 +39,133 @@
           "href": "page/marketRecord/marketRecord-table.html",
           "icon": "fa fa-bars",
           "target": "_self"
+        },
+        {
+          "title": "营销情况分析",
+          "href": "",
+          "icon": "fa fa-bar-chart",
+          "target": "_self",
+          "child": [
+            {
+              "title": "总体购买率分析",
+              "href": "page/marketAnalysis/generalPurchaseAnalysis.html",
+              "icon": "fa fa-pie-chart",
+              "target": "_self"
+            },
+            {
+              "title": "客户个人特征分析",
+              "href": "page/marketAnalysis/generalPurchaseAnalysis.html",
+              "icon": "fa fa-bar-chart",
+              "target": "_self",
+              "child": [
+                {
+                  "title": "性别",
+                  "href": "page/marketAnalysis/genderFeature.html",
+                  "icon": "fa fa-genderless",
+                  "target": "_self"
+                },{
+                  "title": "国籍",
+                  "href": "page/marketAnalysis/nationalityFeature.html",
+                  "icon": "fa fa-globe",
+                  "target": "_self"
+                },{
+                  "title": "年龄",
+                  "href": "page/marketAnalysis/ageFeature.html",
+                  "icon": "fa fa-male",
+                  "target": "_self"
+                },{
+                  "title": "工作",
+                  "href": "page/marketAnalysis/jobFeature.html",
+                  "icon": "fa fa-male",
+                  "target": "_self"
+                },{
+                  "title": "教育水平",
+                  "href": "page/marketAnalysis/educationFeature.html",
+                  "icon": "fa fa-male",
+                  "target": "_self"
+                },{
+                  "title": "工作-教育水平",
+                  "href": "page/marketAnalysis/jobEduFeature.html",
+                  "icon": "fa fa-male",
+                  "target": "_self"
+                },{
+                  "title": "婚姻状况",
+                  "href": "page/marketAnalysis/maritalFeature.html",
+                  "icon": "fa fa-transgender",
+                  "target": "_self"
+                }
+              ]
+            },
+            {
+              "title": "客户财务特征分析",
+              "href": "page/marketAnalysis/generalPurchaseAnalysis.html",
+              "icon": "fa fa-credit-card-alt",
+              "target": "_self",
+              "child": [
+                {
+                  "title": "个人存款",
+                  "href": "page/marketAnalysis/balanceFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "违约/房贷/贷款",
+                  "href": "page/marketAnalysis/violateHousingLoan.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                }
+              ]
+            },
+            {
+              "title": "营销分析",
+              "href": "page/marketAnalysis/generalPurchaseAnalysis.html",
+              "icon": "fa fa-bar-chart",
+              "target": "_self",
+              "child": [
+                {
+                  "title": "联系方式",
+                  "href": "page/marketAnalysis/contactFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "几月联系客户",
+                  "href": "page/marketAnalysis/monthFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "几号联系客户",
+                  "href": "page/marketAnalysis/dayFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "交流过的次数",
+                  "href": "page/marketAnalysis/campaignFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "交流时长",
+                  "href": "page/marketAnalysis/durationFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "距上次活动已过",
+                  "href": "page/marketAnalysis/pdaysFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                },{
+                  "title": "上次营销结果",
+                  "href": "page/marketAnalysis/poutcomeFeature.html",
+                  "icon": "fa fa-university",
+                  "target": "_self"
+                }
+              ]
+            },
+            {
+              "title": "营销建议",
+              "href": "page/marketAnalysis/marketAdvice.html",
+              "icon": "fa fa-comment",
+              "target": "_self"
+            }
+          ]
         }
       ]
     }

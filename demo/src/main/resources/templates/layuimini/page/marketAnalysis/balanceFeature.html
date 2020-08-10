@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+
+    <div class="layuimini-main">
+
+        <div class="title">
+            <h1 style="font-weight:bold;">存款特征分析</h1>
+        </div>
+
+        <div style="text-align:center;" class="img">
+            <img src="/images/balance.png" height="40%"
+                 width="40%"/>
+        </div>
+
+        <div class="analysis" style="text-align:center;">
+            <span style="font-weight:bold;font-size:20px;">结论：</span>
+            <span style="font-size:20px;">
+                <span>极值分析：</span><br>
+                <span>购买了产品的最少存款：-1944</span><br>
+                <span>购买了产品的最多存款：81204</span><br>
+                <span>没购买产品的最少存款：-8019</span><br>
+                <span>没购买产品的最多存款：102127</span><br>
+                <span>
+                    观察极值点发现，最大值和最小值都是存在于未购买的客户群里。
+                    在存款0到50000的区间里，均是购买大于未够买，大于50000的客户均未购买。
+                    因此推测这款产品适合有中低等级的客户。负存款和较高存款的都不适用。
+                </span>
+            </span>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['layer', 'table', 'treetable', 'jquery', 'form'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var currPage = 1;
+        var layer = layui.layer;
+
+        //实现点击图片可以放大
+        $(function () {
+            $(".img img").on("click", function () {
+                layer.photos({
+                    photos: '.img', //必须绑定包裹住img的div控件
+                    shadeClose: true, //开启后，点击遮罩层可以关闭图片，无需点击右上角的X
+                    closeBtn: 2,
+                    anim: 0
+                });
+            })
+        })
+
+
+
+
+
+    });
+</script>
+</body>
+</html>
