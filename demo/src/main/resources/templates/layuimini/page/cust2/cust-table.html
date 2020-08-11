@@ -78,12 +78,16 @@
     <span {{d.loan=="yes"?"style='color:orange;font-weight:bold;'":""}}>{{d.loan}}</span>
 </script>
 
+<script type="text/html" id="phoneTpl">
+    {{d.phone.phoneNumber}}
+</script>
+
 <!-- 头部工具栏 -->
 <script type="text/html" id="barDemo2">
 </script>
 <!-- 操作列 -->
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看详情</a>
 <!--  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
   <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 </script>
@@ -123,8 +127,10 @@
                         width: '11%'}
                   ,{field: 'housing', title: '是否有住房贷款', templet: '#housingTpl', align: 'center',
                         width: '11%'}
-                  ,{field: 'loan', title: '是否有个人贷款', templet: '#loanTpl', align: 'center',
+                  ,{field: 'phoneshow', title: '电话号码', templet: '#phoneTpl', align: 'center',
                         width: '11%'}
+                  //,{field: 'loan', title: '是否有个人贷款', templet: '#loanTpl', align: 'center',
+                  //      width: '11%'}
                   ,{field: 'pdays', title: '距上次联系已过', templet: '#pdaysTpl', align: 'center'}
                   ,{field: 'poutcome', title: '上次活动结果', align: 'center'}
                   // ,{field: 'isManager', title: '是否为管理员', align: 'center', templet: '#switchOnOff'}

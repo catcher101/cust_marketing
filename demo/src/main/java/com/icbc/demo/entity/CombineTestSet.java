@@ -118,6 +118,26 @@ public class CombineTestSet implements Serializable {
 
     private Result result;
 
+    public String getPhoneshow() {
+        return phoneshow;
+    }
+
+    public void setPhoneshow(String phoneshow) {
+        this.phoneshow = phoneshow;
+    }
+
+    private String phoneshow;
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    private Phone phone;
+
     private static final long serialVersionUID = 1L;
 
     public Result getResult() {

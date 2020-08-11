@@ -26,9 +26,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //登录拦截
-//        registry.addInterceptor(new LoginHandlerInterceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/asserts/**", "/webjars/**", "/lib/**",
-//                       "/", "/login", "/user/**", "/cust/**");
+        registry.addInterceptor(new LoginHandlerInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/asserts/**", "/webjars/**", "/lib/**",
+                       "/", "/login", "/user/**", "/cust/**");
     }
 }

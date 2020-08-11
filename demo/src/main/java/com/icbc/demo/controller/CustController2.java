@@ -64,6 +64,7 @@ public class CustController2 {
         Map<String,Object> map = new HashMap<String, Object>();
 
         PageInfo<CombineTestSet> pageInfo = custService.getCustPage(page,limit);
+        System.out.println(pageInfo);
         if(pageInfo == null){
             map.put("code", 1);//layui要求必须返回一个code，值为0表示操作成功，1表示失败
             map.put("msg", "操作失败");//返回的信息

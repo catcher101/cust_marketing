@@ -21,6 +21,12 @@
       <result column="svm_model_pred" jdbcType="INTEGER" property="svmModelPred" />
       <result column="knn_model_pred" jdbcType="INTEGER" property="knnModelPred" />
     </association>
+
+    <association property="phone" javaType="com.icbc.demo.entity.Phone">
+      <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+      <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    </association>
+
   </resultMap>
 
 
@@ -47,7 +53,9 @@
     <result column="previous" jdbcType="VARCHAR" property="previous" />
     <result column="poutcome" jdbcType="VARCHAR" property="poutcome" />
     <result column="isRecommend" jdbcType="VARCHAR" property="isRecommend" />
+    <result column="phoneshow" jdbcType="VARCHAR" property="phoneshow" />
     <association property="result" javaType="com.icbc.demo.entity.Result">
+
       <id column="individualid" jdbcType="VARCHAR" property="individualid" />
       <result column="xgb_model_pred" jdbcType="INTEGER" property="xgbModelPred" />
       <result column="rfc_model_pred" jdbcType="INTEGER" property="rfcModelPred" />
@@ -57,19 +65,25 @@
       <result column="svm_model_pred" jdbcType="INTEGER" property="svmModelPred" />
       <result column="knn_model_pred" jdbcType="INTEGER" property="knnModelPred" />
     </association>
+
+    <association property="phone" javaType="com.icbc.demo.entity.Phone">
+      <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+      <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    </association>
+
   </resultMap>
 
   <sql id="selectBasicField">
     cts.individualid, name, balance, housing, loan,  pdays, poutcome,
     xgb_model_pred, rfc_model_pred, lgb_model_pred, ada_model_pred, mlp_model_pred,
-    svm_model_pred, knn_model_pred
+    svm_model_pred, knn_model_pred,phone_number
   </sql>
 
   <sql id="selectField">
     cts.individualid, name, delt_greet, gender, nationality, age, job, marital, education,
     isViolateRule, balance, housing, loan, contact, day, month, duration, campaign, pdays,
     previous, poutcome, xgb_model_pred, rfc_model_pred, lgb_model_pred, ada_model_pred, mlp_model_pred,
-    svm_model_pred, knn_model_pred
+    svm_model_pred, knn_model_pred,phone_number
   </sql>
 
 
@@ -141,6 +155,9 @@
       <if test="isRecommend != null">
         isRecommend = #{isRecommend},
       </if>
+      <if test="phoneshow != null">
+        phoneshow = #{phoneshow},
+      </if>
 
     </set>
     where individualid = #{individualid}
@@ -149,15 +166,16 @@
   <!--CombineTestSet selectCustById(String individualid);-->
   <select id="selectCustById" resultMap="allFieldResultMap">
     select <include refid="selectField"/>
-    from combine_test_set cts, result r
+    from combine_test_set cts, result r, phone p
     where cts.individualid = #{individualid} and cts.individualid = r.individualid
+    and cts.individualid = p.individualid
   </select>
 
   <!--List<CombineTestSet> selectUsersByParam(@Param("map") Map<String, Object> map);-->
   <select id="selectUsersByParam" resultMap="basicResultMap">
      select <include refid="selectBasicField"/>
-     from combine_test_set cts, result r
-     where cts.individualid = r.individualid
+     from combine_test_set cts, result r, phone p
+     where cts.individualid = r.individualid and cts.individualid = p.individualid
      <trim prefix="and" suffixOverrides="and">
        <if test="map.individualid!=null and map.individualid.trim()!=''">
          cts.individualid = #{map.individualid} and
@@ -172,8 +190,8 @@
   <!--List<CombineTestSet> selectBasicInfo();-->
   <select id="selectBasicInfo" resultMap="basicResultMap">
     select <include refid="selectBasicField"/>
-    from combine_test_set cts left join result r
-    on cts.individualid = r.individualid
+    from (combine_test_set cts inner join result r
+    on cts.individualid = r.individualid) inner join phone p on cts.individualid = p.individualid
   </select>
 
 
@@ -205,11 +223,12 @@
     <result column="previous" jdbcType="VARCHAR" property="previous" />
     <result column="poutcome" jdbcType="VARCHAR" property="poutcome" />
     <result column="isRecommend" jdbcType="VARCHAR" property="isRecommend" />
+    <result column="phoneshow" jdbcType="VARCHAR" property="phoneshow" />
   </resultMap>
   <sql id="Base_Column_List">
     individualid, name, delt_greet, gender, nationality, age, job, marital, education, 
     isViolateRule, balance, housing, loan, contact, day, month, duration, campaign, pdays, 
-    previous, poutcome, isRecommend
+    previous, poutcome, isRecommend,phoneshow
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -308,6 +327,9 @@
       <if test="isRecommend != null">
         isRecommend,
       </if>
+      <if test="phoneshow != null">
+        phoneshow,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="individualid != null">
@@ -375,6 +397,9 @@
       </if>
       <if test="isRecommend != null">
         #{isRecommend,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneshow != null">
+        #{phoneshow,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -444,6 +469,10 @@
       <if test="isRecommend != null">
         isRecommend = #{isRecommend,jdbcType=VARCHAR},
       </if>
+      <if test="phoneshow != null">
+        phoneshow = #{phoneshow,jdbcType=VARCHAR},
+      </if>
+
 
     </set>
     where individualid = #{individualid,jdbcType=VARCHAR}
@@ -471,6 +500,7 @@
       previous = #{previous,jdbcType=VARCHAR},
       poutcome = #{poutcome,jdbcType=VARCHAR},
       isRecommend = #{isRecommend,jdbcType=VARCHAR}
+      phoneshow = #{phoneshow,jdbcType=VARCHAR}
     where individualid = #{individualid,jdbcType=VARCHAR}
   </update>
 </mapper>
