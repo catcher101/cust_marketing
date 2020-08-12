@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.PhoneMapper">
+
+
+    <sql id="selectFields">
+        individualid,phone_number
+    </sql>
+
+    <select id="Phone" resultType="Phone">
+        phone_number
+    </select>
+
+    <select id="selectPhoneById" resultType="Phone">
+        select <include refid="selectFields"></include>
+        from phone
+        where individualid=#{individualid}
+    </select>
+
+
+</mapper>
