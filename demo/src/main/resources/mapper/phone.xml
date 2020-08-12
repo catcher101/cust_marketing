@@ -9,6 +9,10 @@
         individualid,phone_number
     </sql>
 
+    <sql id="insertFields">
+        phone_number
+    </sql>
+
     <select id="selectPhoneById" resultType="Phone">
         select <include refid="selectFields"></include>
         from phone
