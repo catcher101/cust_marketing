@@ -9,10 +9,6 @@
         individualid,phone_number
     </sql>
 
-    <select id="Phone" resultType="Phone">
-        phone_number
-    </select>
-
     <select id="selectPhoneById" resultType="Phone">
         select <include refid="selectFields"></include>
         from phone
