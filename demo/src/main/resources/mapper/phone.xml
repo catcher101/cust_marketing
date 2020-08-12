@@ -9,9 +9,9 @@
         individualid,phone_number
     </sql>
 
-    <select id="Phone" resultType="Phone">
+    <sql id="insertFields">
         phone_number
-    </select>
+    </sql>
 
     <select id="selectPhoneById" resultType="Phone">
         select <include refid="selectFields"></include>
