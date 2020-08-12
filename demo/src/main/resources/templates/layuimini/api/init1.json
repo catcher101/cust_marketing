@@ -22,14 +22,8 @@
           "target": "_self"
         },
         {
-          "title": "客户清单",
-          "href": "page/product-table.html",
-          "icon": "fa fa-shopping-bag",
-          "target": "_self"
-        },
-        {
 
-          "title": "客户清单2",
+          "title": "客户清单",
           "href": "page/cust2/cust-table.html",
           "icon": "fa fa-shopping-bag",
           "target": "_self"
