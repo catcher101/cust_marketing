@@ -186,6 +186,14 @@
      </trim>
   </select>
 
+  <select id="selectUsersByCommend" resultMap="basicResultMap">
+    select <include refid="selectBasicField"/>
+    from combine_test_set cts, result r, phone p
+    where r.lgb_model_pred = 1 and  cts.individualid = r.individualid and cts.individualid = p.individualid
+
+  </select>
+
+
 
   <!--List<CombineTestSet> selectBasicInfo();-->
   <select id="selectBasicInfo" resultMap="basicResultMap">

@@ -71,6 +71,24 @@ public class CustController2 {
         return map;
     }
 
+    @GetMapping(value="/getPageByCommend")
+    @ResponseBody
+    public Map<String, Object> getPageByCommend(Integer page,
+                                              Integer limit){
+        Map<String, Object> map1 = new HashMap<>();
+        PageInfo<CombineTestSet> pageInfo = custService.getCustPageByCommend(page, limit);
+        if(pageInfo == null){
+            map1.put("code", 1);
+            map1.put("msg", "操作失败");
+            return map1;
+        }
+        map1.put("code", 0);
+        map1.put("msg", "操作成功");
+        map1.put("count", pageInfo.getTotal());
+        map1.put("data", pageInfo.getList());
+        return map1;
+    }
+
 
     @GetMapping(value="/getPageByParam")
     @ResponseBody
@@ -78,7 +96,7 @@ public class CustController2 {
                                               Integer limit,
                                               @RequestParam Map map){
         Map<String, Object> map1 = new HashMap<>();
-        PageInfo<User> pageInfo = custService.getCustPageByParam(page, limit, map);
+        PageInfo<CombineTestSet> pageInfo = custService.getCustPageByParam(page, limit, map);
         if(pageInfo == null){
             map1.put("code", 1);
             map1.put("msg", "操作失败");

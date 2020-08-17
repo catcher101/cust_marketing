@@ -35,4 +35,6 @@ public interface CombineTestSetMapper {
     int updateByPrimaryKeySelective(CombineTestSet record);
 
     int updateByPrimaryKey(CombineTestSet record);
+
+    List<CombineTestSet> selectUsersByCommend();
 }

@@ -39,6 +39,15 @@ public class CustServiceImpl implements CustService {
     }
 
     @Override
+    public PageInfo<CombineTestSet> getCustPageByCommend(Integer page, Integer limit) {
+        PageHelper.startPage(page, limit);
+        List<CombineTestSet> list = combineTestSetMapper.selectUsersByCommend();
+        PageInfo<CombineTestSet> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
+
+
+    @Override
     public PageInfo<CombineTestSet> getCustPage(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         List<CombineTestSet> list =  combineTestSetMapper.selectBasicInfo();
