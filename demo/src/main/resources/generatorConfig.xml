@@ -46,7 +46,7 @@
         <!--如果要生成多个数据表对应的多个实体类，则可以创建多个<table>-->
         <!--domainObjectName是生成实体类的类名-->
         <!--enableSelectByExample是否生成动态查询语句-->
-        <table tableName="phone"  domainObjectName="Phone"
+        <table tableName="result_score"  domainObjectName="ResultScore"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

@@ -48,7 +48,7 @@
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
                         <input type="text" name="name" value="" th:value="${cust.name}"
-                               readonly="readonly" class="layui-input">
+                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -57,7 +57,7 @@
                         <input type="text" name="isRecommend" value=""
                                th:value="${cust.result.lgbModelPred}=='1'?'yes':'no'"
                                th:style="${cust.result.lgbModelPred}=='1'?'color:orange':''"
-                               readonly="readonly" class="layui-input">
+                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -141,7 +141,7 @@
                     <label class="layui-form-label">联系方式</label>
                     <div class="layui-input-block">
                         <input type="text" name="contact" value="" th:value="${cust.contact}"
-                               readonly="readonly" class="layui-input">
+                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -198,7 +198,7 @@
                     <label class="layui-form-label">客户是否有购买上次活动营销的产品</label>
                     <div style="padding-top:12px;" class="layui-input-block">
                         <input type="text" name="poutcome" value="" th:value="${cust.poutcome}"
-                               readonly="readonly" class="layui-input">
+                                class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">

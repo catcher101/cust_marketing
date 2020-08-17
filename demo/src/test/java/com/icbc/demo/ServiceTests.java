@@ -5,9 +5,13 @@ import com.github.pagehelper.PageInfo;
 import com.icbc.demo.entity.CustInfo1;
 import com.icbc.demo.entity.MarketRecord;
 import com.icbc.demo.entity.MarketingRecord;
+import com.icbc.demo.entity.ResultScore;
+
 import com.icbc.demo.service.CustInfo1Service;
 import com.icbc.demo.service.MarketRecordService;
 import com.icbc.demo.service.MarketingRecordService;
+import com.icbc.demo.service.ResultScoreService;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +32,9 @@ public class ServiceTests {
 
     @Autowired
     MarketRecordService marketRecordService;
+
+    @Autowired
+    private ResultScoreService resultScoreService;
 
 
     @Test
@@ -58,6 +65,12 @@ public class ServiceTests {
     public void testMarketService(){
         PageInfo<MarketRecord> pageInfo = marketRecordService.getMarketRecord(1,10);
         System.out.print(pageInfo);
+    }
+
+    @Test
+    public void testResultScoreService(){
+        ResultScore resultScore = resultScoreService.findResultScoreById("25318");
+        System.out.println(resultScore);
     }
 
 }

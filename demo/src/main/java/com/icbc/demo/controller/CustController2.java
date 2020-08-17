@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.icbc.demo.service.ResultScoreService;
+import com.icbc.demo.entity.ResultScore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +25,8 @@ public class CustController2 {
     @Autowired
     CustService custService;
 
+    @Autowired
+    ResultScoreService resultScoreService;
 
 
     //获取指定的用户
@@ -34,7 +38,37 @@ public class CustController2 {
             System.out.println(cust);
             model.addAttribute("cust", cust);
         }
+        ResultScore resultScore = resultScoreService.findResultScoreById(individualid);
+        model.addAttribute("scoreAge", resultScore.getScoreAge());
+        model.addAttribute("scoreBalance", resultScore.getScoreBalance());
+        model.addAttribute("scoreDuration", resultScore.getScoreDuration());
+        model.addAttribute("scoreCampaign", resultScore.getScoreCampaign());
+        model.addAttribute("scorePdays", resultScore.getScorePdays());
+        model.addAttribute("scorePrevious", resultScore.getScorePrevious());
+
         return "layuimini/page/cust2/cust-detail.html";
+    }
+
+    @GetMapping(value="/getCustForEdit")
+    public String getCustForEdit(String individualid, Model model){
+        CombineTestSet cust = custService.getCustById(individualid);
+        model.addAttribute("cust", cust);
+        return "layuimini/page/cust2/cust-edit";
+    }
+
+    //更新用户
+    @ResponseBody
+    @PostMapping(value="/saveCust")
+    public Map<String, Object> saveCust(CombineTestSet cust){
+        Map<String, Object> map = new HashMap<>();
+        System.out.println("Cust: " + cust);
+        Integer count = custService.updateCustById(cust);
+        if(count <= 0){
+            map.put("code", 1);
+            return map;
+        }
+        map.put("code", 0);
+        return map;
     }
 
 
@@ -64,7 +98,7 @@ public class CustController2 {
         Map<String,Object> map = new HashMap<String, Object>();
 
         PageInfo<CombineTestSet> pageInfo = custService.getCustPage(page,limit);
-        System.out.println(pageInfo);
+//        System.out.println(pageInfo);
         if(pageInfo == null){
             map.put("code", 1);//layui要求必须返回一个code，值为0表示操作成功，1表示失败
             map.put("msg", "操作失败");//返回的信息

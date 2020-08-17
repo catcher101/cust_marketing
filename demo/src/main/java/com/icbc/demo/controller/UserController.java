@@ -104,6 +104,7 @@ public class UserController {
         Integer count = userService.updateUser(user);
         if(count <= 0){
             map.put("code", 1);
+            return map;
         }
         map.put("code", 0);
         return map;
