@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.ResultScoreMapper">
+  <resultMap id="BaseResultMap" type="com.icbc.demo.entity.ResultScore">
+    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <result column="score_age" jdbcType="VARCHAR" property="scoreAge" />
+    <result column="score_balance" jdbcType="VARCHAR" property="scoreBalance" />
+    <result column="score_duration" jdbcType="VARCHAR" property="scoreDuration" />
+    <result column="score_campaign" jdbcType="VARCHAR" property="scoreCampaign" />
+    <result column="score_pdays" jdbcType="VARCHAR" property="scorePdays" />
+    <result column="score_previous" jdbcType="VARCHAR" property="scorePrevious" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    individualid, score_age, score_balance, score_duration, score_campaign, score_pdays, 
+    score_previous
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from result_score
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from result_score
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.icbc.demo.entity.ResultScore">
+    insert into result_score (individualid, score_age, score_balance, 
+      score_duration, score_campaign, score_pdays, 
+      score_previous)
+    values (#{individualid,jdbcType=VARCHAR}, #{scoreAge,jdbcType=VARCHAR}, #{scoreBalance,jdbcType=VARCHAR}, 
+      #{scoreDuration,jdbcType=VARCHAR}, #{scoreCampaign,jdbcType=VARCHAR}, #{scorePdays,jdbcType=VARCHAR}, 
+      #{scorePrevious,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icbc.demo.entity.ResultScore">
+    insert into result_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        individualid,
+      </if>
+      <if test="scoreAge != null">
+        score_age,
+      </if>
+      <if test="scoreBalance != null">
+        score_balance,
+      </if>
+      <if test="scoreDuration != null">
+        score_duration,
+      </if>
+      <if test="scoreCampaign != null">
+        score_campaign,
+      </if>
+      <if test="scorePdays != null">
+        score_pdays,
+      </if>
+      <if test="scorePrevious != null">
+        score_previous,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        #{individualid,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreAge != null">
+        #{scoreAge,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreBalance != null">
+        #{scoreBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreDuration != null">
+        #{scoreDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreCampaign != null">
+        #{scoreCampaign,jdbcType=VARCHAR},
+      </if>
+      <if test="scorePdays != null">
+        #{scorePdays,jdbcType=VARCHAR},
+      </if>
+      <if test="scorePrevious != null">
+        #{scorePrevious,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icbc.demo.entity.ResultScore">
+    update result_score
+    <set>
+      <if test="scoreAge != null">
+        score_age = #{scoreAge,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreBalance != null">
+        score_balance = #{scoreBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreDuration != null">
+        score_duration = #{scoreDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreCampaign != null">
+        score_campaign = #{scoreCampaign,jdbcType=VARCHAR},
+      </if>
+      <if test="scorePdays != null">
+        score_pdays = #{scorePdays,jdbcType=VARCHAR},
+      </if>
+      <if test="scorePrevious != null">
+        score_previous = #{scorePrevious,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icbc.demo.entity.ResultScore">
+    update result_score
+    set score_age = #{scoreAge,jdbcType=VARCHAR},
+      score_balance = #{scoreBalance,jdbcType=VARCHAR},
+      score_duration = #{scoreDuration,jdbcType=VARCHAR},
+      score_campaign = #{scoreCampaign,jdbcType=VARCHAR},
+      score_pdays = #{scorePdays,jdbcType=VARCHAR},
+      score_previous = #{scorePrevious,jdbcType=VARCHAR}
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+</mapper>
