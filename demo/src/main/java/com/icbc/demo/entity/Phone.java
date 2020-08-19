@@ -2,15 +2,15 @@ package com.icbc.demo.entity;
 
 public class Phone {
 
-    private String individualid;
+    private int individualid;
 
     private String phoneNumber;
 
-    public String getIndividualid() {
+    public int getIndividualid() {
         return individualid;
     }
 
-    public void setIndividualid(String individualid) {
+    public void setIndividualid(int individualid) {
         this.individualid = individualid;
     }
 

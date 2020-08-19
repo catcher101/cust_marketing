@@ -9,7 +9,7 @@ public class CombineTestSet implements Serializable {
     /**
      * id
      */
-    private String individualid;
+    private int individualid;
 
     /**
      * 姓名
@@ -34,7 +34,7 @@ public class CombineTestSet implements Serializable {
     /**
      * 客户年龄
      */
-    private String age;
+    private int age;
 
     /**
      * 客户的职业
@@ -59,7 +59,7 @@ public class CombineTestSet implements Serializable {
     /**
      * 每年账户的平均余额
      */
-    private String balance;
+    private int balance;
 
     /**
      * 是否有住房贷款
@@ -156,12 +156,12 @@ public class CombineTestSet implements Serializable {
         this.isRecommend = isRecommend;
     }
 
-    public String getIndividualid() {
+    public int getIndividualid() {
         return individualid;
     }
 
-    public void setIndividualid(String individualid) {
-        this.individualid = individualid == null ? null : individualid.trim();
+    public void setIndividualid(int individualid) {
+        this.individualid = individualid ;
     }
 
     public String getName() {
@@ -196,12 +196,12 @@ public class CombineTestSet implements Serializable {
         this.nationality = nationality == null ? null : nationality.trim();
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
-        this.age = age == null ? null : age.trim();
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getJob() {
@@ -236,12 +236,12 @@ public class CombineTestSet implements Serializable {
         this.isviolaterule = isviolaterule == null ? null : isviolaterule.trim();
     }
 
-    public String getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
-        this.balance = balance == null ? null : balance.trim();
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     public String getHousing() {

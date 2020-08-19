@@ -16,7 +16,7 @@ public interface CustService {
 
     //条件查询客户
     PageInfo<CombineTestSet> getCustPageByParam(Integer page, Integer limit,
-                                                Map<String, Object> map);
+                                                Map<String, String> map);
 
     //获取所有客户的信息
     PageInfo<CombineTestSet> getCustPage(Integer page, Integer limit);

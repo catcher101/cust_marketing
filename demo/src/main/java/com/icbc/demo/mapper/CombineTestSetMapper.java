@@ -17,7 +17,7 @@ public interface CombineTestSetMapper {
     CombineTestSet selectCustById(String individualid);
 
     //条件查询客户营销模块的基本信息
-    List<CombineTestSet> selectUsersByParam(@Param("map") Map<String, Object> map);
+    List<CombineTestSet> selectUsersByParam(@Param("map") Map<String, String> map);
 
     //查询客户营销模块的基本信息
     List<CombineTestSet> selectBasicInfo();

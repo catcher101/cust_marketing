@@ -6,7 +6,7 @@ public class ResultScore implements Serializable {
     /**
      * 
      */
-    private String individualid;
+    private int individualid;
 
     /**
      * 
@@ -40,12 +40,12 @@ public class ResultScore implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getIndividualid() {
+    public int getIndividualid() {
         return individualid;
     }
 
-    public void setIndividualid(String individualid) {
-        this.individualid = individualid == null ? null : individualid.trim();
+    public void setIndividualid(int individualid) {
+        this.individualid = individualid ;
     }
 
     public String getScoreAge() {

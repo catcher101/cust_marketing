@@ -31,7 +31,7 @@ public class CustServiceImpl implements CustService {
 
     @Override
     public PageInfo<CombineTestSet> getCustPageByParam(Integer page, Integer limit,
-                                                       Map<String, Object> map) {
+                                                       Map<String, String> map) {
         PageHelper.startPage(page, limit);
         List<CombineTestSet> list = combineTestSetMapper.selectUsersByParam(map);
         PageInfo<CombineTestSet> pageInfo = new PageInfo<>(list);

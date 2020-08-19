@@ -3,16 +3,16 @@
 <mapper namespace="com.icbc.demo.mapper.CombineTestSetMapper">
 
   <resultMap id="basicResultMap" type="com.icbc.demo.entity.CombineTestSet">
-    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <id column="individualid" jdbcType="INTEGER" property="individualid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="balance" jdbcType="VARCHAR" property="balance" />
+    <result column="balance" jdbcType="INTEGER" property="balance" />
     <result column="housing" jdbcType="VARCHAR" property="housing" />
     <result column="loan" jdbcType="VARCHAR" property="loan" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="pdays" jdbcType="VARCHAR" property="pdays" />
     <result column="poutcome" jdbcType="VARCHAR" property="poutcome" />
     <association property="result" javaType="com.icbc.demo.entity.Result">
-      <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+      <id column="individualid" jdbcType="INTEGER" property="individualid" />
       <result column="xgb_model_pred" jdbcType="INTEGER" property="xgbModelPred" />
       <result column="rfc_model_pred" jdbcType="INTEGER" property="rfcModelPred" />
       <result column="lgb_model_pred" jdbcType="INTEGER" property="lgbModelPred" />
@@ -23,7 +23,7 @@
     </association>
 
     <association property="phone" javaType="com.icbc.demo.entity.Phone">
-      <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+      <id column="individualid" jdbcType="INTEGER" property="individualid" />
       <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     </association>
 
@@ -31,18 +31,18 @@
 
 
   <resultMap id="allFieldResultMap" type="com.icbc.demo.entity.CombineTestSet">
-    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <id column="individualid" jdbcType="INTEGER" property="individualid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="delt_greet" jdbcType="VARCHAR" property="deltGreet" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="nationality" jdbcType="VARCHAR" property="nationality" />
-    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="age" jdbcType="INTEGER" property="age" />
     <result column="job" jdbcType="VARCHAR" property="job" />
     <result column="marital" jdbcType="VARCHAR" property="marital" />
     <result column="education" jdbcType="VARCHAR" property="education" />
     <result column="isViolateRule" jdbcType="VARCHAR" property="isviolaterule" />
     <result column="balance" jdbcType="VARCHAR" property="balance" />
-    <result column="housing" jdbcType="VARCHAR" property="housing" />
+    <result column="housing" jdbcType="INTEGER" property="housing" />
     <result column="loan" jdbcType="VARCHAR" property="loan" />
     <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="day" jdbcType="VARCHAR" property="day" />
@@ -56,7 +56,7 @@
     <result column="phoneshow" jdbcType="VARCHAR" property="phoneshow" />
     <association property="result" javaType="com.icbc.demo.entity.Result">
 
-      <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+      <id column="individualid" jdbcType="INTEGER" property="individualid" />
       <result column="xgb_model_pred" jdbcType="INTEGER" property="xgbModelPred" />
       <result column="rfc_model_pred" jdbcType="INTEGER" property="rfcModelPred" />
       <result column="lgb_model_pred" jdbcType="INTEGER" property="lgbModelPred" />
@@ -67,7 +67,7 @@
     </association>
 
     <association property="phone" javaType="com.icbc.demo.entity.Phone">
-      <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+      <id column="individualid" jdbcType="INTEGER" property="individualid" />
       <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     </association>
 
@@ -171,18 +171,42 @@
     and cts.individualid = p.individualid
   </select>
 
-  <!--List<CombineTestSet> selectUsersByParam(@Param("map") Map<String, Object> map);-->
+  <!--List<CombineTestSet> selectUsersByParam(@Param("map") Map<String, String> map);-->
   <select id="selectUsersByParam" resultMap="basicResultMap">
-     select <include refid="selectBasicField"/>
-     from combine_test_set cts, result r, phone p
-     where cts.individualid = r.individualid and cts.individualid = p.individualid
-     <trim prefix="and" suffixOverrides="and">
+    select <include refid="selectBasicField"/>
+    from combine_test_set cts inner join result r on cts.individualid = r.individualid
+    inner join phone p on cts.individualid = p.individualid
+     <trim prefix="where" suffixOverrides="and">
        <if test="map.individualid!=null and map.individualid.trim()!=''">
          cts.individualid = #{map.individualid} and
        </if>
        <if test="map.name!=null and map.name.trim()!=''">
         name = #{map.name} and
        </if>
+       <if test="map.lgbModelPred!=null and map.lgbModelPred.trim()!=''">
+         lgb_model_pred = #{map.lgbModelPred} and
+       </if>
+       <if test="map.housing!=null and map.housing.trim()!=''">
+         housing = #{map.housing} and
+       </if>
+       <if test="map.loan!=null and map.loan.trim()!=''">
+         loan = #{map.loan} and
+       </if>
+       <if test="map.minBalance!=null and map.minBalance.trim()!=''">
+         balance <![CDATA[>=]]> #{map.minBalance} and
+       </if>
+       <if test="map.maxBalance!=null and map.maxBalance.trim()!=''">
+         balance <![CDATA[<=]]> #{map.maxBalance} and
+       </if>
+       <if test="map.minAge!=null and map.minAge.trim()!=''">
+         age <![CDATA[>=]]> #{map.minAge} and
+       </if>
+       <if test="map.maxAge!=null and map.maxAge.trim()!=''">
+         age <![CDATA[<=]]> #{map.maxAge} and
+       </if>
+
+
+
      </trim>
   </select>
 
@@ -201,12 +225,12 @@
   <!--以下均为mybatis逆向工程自动生成的-->
 
   <resultMap id="BaseResultMap" type="com.icbc.demo.entity.CombineTestSet">
-    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <id column="individualid" jdbcType="INTEGER" property="individualid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="delt_greet" jdbcType="VARCHAR" property="deltGreet" />
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="nationality" jdbcType="VARCHAR" property="nationality" />
-    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="age" jdbcType="INTEGER" property="age" />
     <result column="job" jdbcType="VARCHAR" property="job" />
     <result column="marital" jdbcType="VARCHAR" property="marital" />
     <result column="education" jdbcType="VARCHAR" property="education" />
@@ -475,7 +499,7 @@
 
 
     </set>
-    where individualid = #{individualid,jdbcType=VARCHAR}
+    where individualid = #{individualid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.icbc.demo.entity.CombineTestSet">
     update combine_test_set
@@ -501,6 +525,6 @@
       poutcome = #{poutcome,jdbcType=VARCHAR},
       isRecommend = #{isRecommend,jdbcType=VARCHAR}
       phoneshow = #{phoneshow,jdbcType=VARCHAR}
-    where individualid = #{individualid,jdbcType=VARCHAR}
+    where individualid = #{individualid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -37,7 +37,63 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                            <label class="layui-form-label">是否推荐</label>
+                            <div class="layui-input-inline">
+                                <select name="lgbModelPred" lay-search="">
+                                    <option value="">请选择</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">是否有房贷</label>
+                            <div class="layui-input-inline">
+                                <select name="housing" lay-search="">
+                                    <option value="">请选择</option>
+                                    <option value="yes">是</option>
+                                    <option value="no">否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">是否有个贷</label>
+                            <div class="layui-input-inline">
+                                <select name="loan" lay-search="">
+                                    <option value="">请选择</option>
+                                    <option value="yes">是</option>
+                                    <option value="no">否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年龄</label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input type="text" name="minAge" placeholder="最小年龄"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input type="text" name="maxAge" placeholder="最大年龄"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">年均余额</label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input type="text" name="minBalance" placeholder="最小年均余额"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input type="text" name="maxBalance" placeholder="最大年均余额"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn " lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                            <button type="reset" class="layui-btn layui-btn-danger"><i
+                                    class="fa fa-refresh" aria-hidden="true"></i>重置</button>
                         </div>
                     </div>
                 </form>
@@ -301,8 +357,24 @@
             table.reload('demoId', {
                 url: '/cust2/getPageByParam',
                 where: {
-                    individualid: data.individualid,
-                    name: data.name,
+                    "individualid": data.individualid,
+                    "name": data.name,
+                    "lgbModelPred": data.lgbModelPred,
+                    "housing": data.housing,
+                    "loan": data.loan,
+                    "minAge": data.minAge,
+                    "maxAge": data.maxAge,
+                    "minBalance": data.minBalance,
+                    "maxBalance": data.maxBalance,
+                    // individualid: data.individualid,
+                    // name: data.name,
+                    // lgbModelPred: data.lgbModelPred,
+                    // housing: data.housing,
+                    // loan: data.loan,
+                    // minAge: data.minAge,
+                    // maxAge: data.maxAge,
+                    // minBalance: data.minBalance,
+                    // maxBalance: data.maxBalance,
                 },
                 page: {
                     curr: 1,//重新从第一页开始

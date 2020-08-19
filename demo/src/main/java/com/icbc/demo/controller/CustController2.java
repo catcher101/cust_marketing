@@ -76,9 +76,9 @@ public class CustController2 {
     @ResponseBody
     public Map<String, Object> getPageByParam(Integer page,
                                               Integer limit,
-                                              @RequestParam Map map){
+                                              @RequestParam Map<String, String> map){
         Map<String, Object> map1 = new HashMap<>();
-        PageInfo<User> pageInfo = custService.getCustPageByParam(page, limit, map);
+        PageInfo<CombineTestSet> pageInfo = custService.getCustPageByParam(page, limit, map);
         if(pageInfo == null){
             map1.put("code", 1);
             map1.put("msg", "操作失败");
@@ -98,7 +98,6 @@ public class CustController2 {
         Map<String,Object> map = new HashMap<String, Object>();
 
         PageInfo<CombineTestSet> pageInfo = custService.getCustPage(page,limit);
-//        System.out.println(pageInfo);
         if(pageInfo == null){
             map.put("code", 1);//layui要求必须返回一个code，值为0表示操作成功，1表示失败
             map.put("msg", "操作失败");//返回的信息

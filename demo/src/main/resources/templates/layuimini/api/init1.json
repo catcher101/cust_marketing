@@ -54,7 +54,7 @@
                 {
                   "title": "性别",
                   "href": "page/marketAnalysis/genderFeature.html",
-                  "icon": "fa fa-genderless",
+                  "icon": "fa fa-transgender",
                   "target": "_self"
                 },{
                   "title": "国籍",
@@ -64,17 +64,17 @@
                 },{
                   "title": "年龄",
                   "href": "page/marketAnalysis/ageFeature.html",
-                  "icon": "fa fa-male",
+                  "icon": "fa fa-sort-numeric-asc",
                   "target": "_self"
                 },{
                   "title": "工作",
                   "href": "page/marketAnalysis/jobFeature.html",
-                  "icon": "fa fa-male",
+                  "icon": "fa fa-wrench",
                   "target": "_self"
                 },{
                   "title": "教育水平",
                   "href": "page/marketAnalysis/educationFeature.html",
-                  "icon": "fa fa-male",
+                  "icon": "fa fa-graduation-cap",
                   "target": "_self"
                 },{
                   "title": "工作-教育水平",
@@ -84,7 +84,7 @@
                 },{
                   "title": "婚姻状况",
                   "href": "page/marketAnalysis/maritalFeature.html",
-                  "icon": "fa fa-transgender",
+                  "icon": "fa fa-venus-mars",
                   "target": "_self"
                 }
               ]
@@ -98,7 +98,7 @@
                 {
                   "title": "个人存款",
                   "href": "page/marketAnalysis/balanceFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-jpy",
                   "target": "_self"
                 },{
                   "title": "违约/房贷/贷款",
@@ -117,37 +117,37 @@
                 {
                   "title": "联系方式",
                   "href": "page/marketAnalysis/contactFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-phone",
                   "target": "_self"
                 },{
                   "title": "几月联系客户",
                   "href": "page/marketAnalysis/monthFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-calendar-check-o",
                   "target": "_self"
                 },{
                   "title": "几号联系客户",
                   "href": "page/marketAnalysis/dayFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-calendar",
                   "target": "_self"
                 },{
                   "title": "交流过的次数",
                   "href": "page/marketAnalysis/campaignFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-clock-o",
                   "target": "_self"
                 },{
                   "title": "交流时长",
                   "href": "page/marketAnalysis/durationFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-hourglass-start",
                   "target": "_self"
                 },{
                   "title": "距上次活动已过",
                   "href": "page/marketAnalysis/pdaysFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-calendar-minus-o",
                   "target": "_self"
                 },{
                   "title": "上次营销结果",
                   "href": "page/marketAnalysis/poutcomeFeature.html",
-                  "icon": "fa fa-university",
+                  "icon": "fa fa-envelope-o",
                   "target": "_self"
                 }
               ]
