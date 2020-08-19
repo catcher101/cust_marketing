@@ -20,9 +20,9 @@
 
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
-            <div style="margin: 10px 10px 10px 10px">
+            <div style="margin: 10px 10px 10px 10px;">
                 <form class="layui-form layui-form-pane" action="">
-                    <div class="layui-form-item">
+                    <div  class="layui-form-item">
                         <div class="layui-inline">
                             <label class="layui-form-label">ID</label>
                             <div class="layui-input-inline">
@@ -36,6 +36,7 @@
                                 <input type="text" name="name" autocomplete="off" class="layui-input">
                             </div>
                         </div>
+
                         <div class="layui-inline">
                             <label class="layui-form-label">是否推荐</label>
                             <div class="layui-input-inline">
@@ -96,12 +97,30 @@
                                     class="fa fa-refresh" aria-hidden="true"></i>重置</button>
                         </div>
                     </div>
+
+
+
                 </form>
+
             </div>
+
+
+
         </fieldset>
 
-        <div style="margin-top:10px;" class="layui-btn-group">
-            <button class="layui-btn" id="refresh">刷新表格</button>
+
+        <div style="margin: 10px 10px 10px 10px;">
+            <div style="margin-top:10px;display:inline-block;">
+                <button class="layui-btn" id="refresh">刷新表格</button>
+            </div>
+
+            <div style="margin-top:10px;display:inline-block;margin-left:800px;">
+                <button style="background-color:green;color:white" class="layui-btn" id="data-command-btn">只看推荐</button>
+            </div>
+
+<!--            <div style="display:inline-block;margin-top:10px；margin-left:900px;" class="layui-btn-group">-->
+<!--                <button  class="layui-btn" id="data-command-btn"> 只看推荐 </button>-->
+<!--            </div>-->
         </div>
 
         <table id="demo" lay-filter="test" ></table>
@@ -143,8 +162,8 @@
 </script>
 <!-- 操作列 -->
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看详情</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-xs" lay-event="detail">查看详情</a>
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">编辑</a>
   <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 </script>
 <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -376,6 +395,23 @@
                     // minBalance: data.minBalance,
                     // maxBalance: data.maxBalance,
                 },
+                page: {
+                    curr: 1,//重新从第一页开始
+                }
+            });
+            return false;
+        });
+
+         //监听“只看推荐”按钮
+        $("#data-command-btn").on('click', function(){
+            //var data = obj.field;
+            //执行重载
+            table.reload('demoId', {
+                url: '/cust2/getPageByCommend',
+                //where: {
+                //    individualid: data.individualid,
+                //    name: data.name,
+                //},
                 page: {
                     curr: 1,//重新从第一页开始
                 }

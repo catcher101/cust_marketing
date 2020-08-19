@@ -2,6 +2,7 @@ package com.icbc.demo.service;
 
 import com.github.pagehelper.PageInfo;
 import com.icbc.demo.entity.CombineTestSet;
+import com.icbc.demo.entity.User;
 
 import java.util.Map;
 
@@ -20,4 +21,6 @@ public interface CustService {
 
     //获取所有客户的信息
     PageInfo<CombineTestSet> getCustPage(Integer page, Integer limit);
+
+    PageInfo<CombineTestSet> getCustPageByCommend(Integer page, Integer limit);
 }
