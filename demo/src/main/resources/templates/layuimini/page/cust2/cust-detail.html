@@ -34,29 +34,45 @@
         border-collapse:collapse;
         border:2px solid green;
         }
-        th
-        {
-        width:155px;
-        height:50px;
-        border:2px solid green;
-        font-size:12px;
-        text-align:center;
-        }
+<!--        th-->
+<!--        {-->
+<!--        width:155px;-->
+<!--        height:50px;-->
+<!--        border:2px solid green;-->
+<!--        font-size:12px;-->
+<!--        text-align:center;-->
+<!--        }-->
 
-        td
+<!--        td-->
+<!--        {-->
+<!--        width:100px;-->
+<!--        height:50px;-->
+<!--        border:2px solid green;-->
+<!--        font-size:12px;-->
+<!--        text-align:center;-->
+<!--        }-->
+
+<!--        th-->
+<!--        {-->
+<!--        background-color:green;-->
+<!--        color:white;-->
+<!--        }-->
+
+        th,td
+
         {
+
         width:100px;
-        height:50px;
-        border:2px solid green;
-        font-size:12px;
-        text-align:center;
-        }
 
-        th
-        {
-        background-color:green;
-        color:white;
-        }
+        height:40px;
+
+        border :1px solid black;
+
+        font-size:12px;
+
+        text-align :center;
+
+        }     
 
     </style>
 
@@ -67,10 +83,95 @@
 <!--<div class="layuimini-container">-->
 <div class="layuimini-main">
 
-    <div class="layui-row layui-col-space15" style="background-color:#ffffff;">
-        <div class="layui-col-xs12 layui-col-md6" style="display:inline-block">
+    <div class="layui-row layui-col-space15" style="background-color:#ffffff;" th:if="${shapeScore!=null}">
+
+        <div id="echarts-histogram" style="background-color:#ffffff;min-height:300px;padding:
+            10px;">
+
+        </div>
+
+
+        <div id="chart2" style="background-color:#ffffff;min-height:300px;margin-top:50px;">
+
+            <table>
+
+                <tr>
+                    <th>栏目</th>
+                    <th>性别(gender)</th>
+                    <th>国籍(nationality)</th>
+                    <th>客户年龄(age)</th>
+                    <th>客户的职业(job)</th>
+                    <th>婚姻状况(marital)</th>
+                    <th>受教育水平(education)</th>
+                    <th>是没有违约(default)</th>
+                    <th>每年账户的平均余额(balance)</th>
+                    <th>是否有住房贷款(housing)</th>
+                    <th>是否有个人贷款(loan)</th>
+                    <th>联系方式(contact)</th>
+                    <th>最后联系日(day)</th>
+                    <th>最后联系月(month)</th>
+                    <th>最后联系交流时长(duration)</th>
+                    <th>本次活动交流次数(campaign)</th>
+                    <th>距离上次联系多少天(pdays)</th>
+                    <th>活动前交流次数(previous)</th>
+                    <th>上次活动结果(poutcome)</th>
+                </tr>
+
+                <tr>
+                    <th>特征</th>
+                    <td th:text="${cust.gender}=='1'?'男':'女'">1</td>
+                    <td th:text="${cust.nationality}">1</td>
+                    <td th:text="${cust.age}+'岁'">1</td>
+                    <td th:text="${cust.job}">1</td>
+                    <td th:text="${cust.marital}">1</td>
+                    <td th:text="${cust.education}">1</td>
+                    <td th:text="${cust.isviolaterule}">1</td>
+                    <td th:text="'￥'+${cust.balance}">1</td>
+                    <td th:text="${cust.housing}">1</td>
+
+                    <td th:text="${cust.loan}">1</td>
+                    <td th:text="${cust.contact}">1</td>
+                    <td th:text="${cust.day}">1</td>
+                    <td th:text="${cust.month}">1</td>
+                    <td th:text="${cust.duration}+'秒'">1</td>
+                    <td th:text="${cust.campaign}+'次'">1</td>
+                    <td th:text="${cust.pdays}=='-1'?'未联系上':${cust.pdays}+'天'">1</td>
+                    <td th:text="${cust.previous}+'次'">1</td>
+                    <td th:text="${cust.poutcome}">1</td>
+                </tr>
+                <tr>
+                    <th>影响度*10</th>
+                    <td th:text="${shapeScore.shapValueGender}">1</td>
+                    <td th:text="${shapeScore.shapValueNationality}">1</td>
+                    <td th:text="${shapeScore.shapValueAge}">1</td>
+                    <td th:text="${shapeScore.shapValueJob}">1</td>
+                    <td th:text="${shapeScore.shapValueMarital}">1</td>
+                    <td th:text="${shapeScore.shapValueEducation}">1</td>
+                    <td th:text="${shapeScore.shapValueDefault}">1</td>
+                    <td th:text="${shapeScore.shapValueBalance}">1</td>
+                    <td th:text="${shapeScore.shapValueHousing}">1</td>
+                    <td th:text="${shapeScore.shapValueLoan}">1</td>
+                    <td th:text="${shapeScore.shapValueContact}">1</td>
+                    <td th:text="${shapeScore.shapValueDay}">1</td>
+                    <td th:text="${shapeScore.shapValueMonth}">1</td>
+                    <td th:text="${shapeScore.shapValueDuration}">1</td>
+                    <td th:text="${shapeScore.shapValueCampaign}">1</td>
+                    <td th:text="${shapeScore.shapValuePdays}">1</td>
+                    <td th:text="${shapeScore.shapValuePrevious}">1</td>
+                    <td th:text="${shapeScore.shapValuePoutcome}">1</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="layui-row layui-col-space15" style="background-color:#ffffff;" th:if="${shapeScore==null}">
+
+        <div class="layui-col-xs12 layui-col-md6">
             <form class="layui-form layuimini-form "
-                  style="background-color:#ffffff;min-height:400px;padding:10px;">
+                  style="background-color:#ffffff;min-height:400px;padding:10px;" >
                 <div class="layui-form-item">
                     <label class="layui-form-label">I D</label>
                     <div class="layui-input-block">
@@ -94,6 +195,15 @@
                                readonly="readonly" class="layui-input">
                     </div>
                 </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电话号码</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="age" value="" th:value="${cust.phone.phoneNumber}"
+                               readonly="readonly" class="layui-input">
+                    </div>
+                </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">称呼</label>
                     <div class="layui-input-block">
@@ -101,10 +211,11 @@
                                readonly="readonly" class="layui-input">
                     </div>
                 </div>
+
                 <div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" value="" th:value="${cust.gender}"
+                        <input type="text" name="name" value="" th:value="${cust.gender}=='1'?'男':'女'"
                                readonly="readonly" class="layui-input">
                     </div>
                 </div>
@@ -123,13 +234,7 @@
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">电话号码</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="age" value="" th:value="${cust.phone.phoneNumber}"
-                               readonly="readonly" class="layui-input">
-                    </div>
-                </div>
+
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">职业</label>
@@ -243,239 +348,165 @@
                     </div>
                 </div>
             </form>
-
         </div>
-       <!-- <div class="layui-col-xs12 layui-col-md6">
-            <div id="echarts-dataset1" style="background-color:#ffffff;min-height:300px;padding:
-            10px"></div>
-        </div>-->
-       <!-- <div class="layui-col-xs12 layui-col-md3">
-
-            <div class="layui-card top-panel">
-                <div class="layui-card-header">要展示的指标名称</div>
-                <div class="layui-card-body">
-                    <div class="layui-row layui-col-space5">
-                        <span>hahahha</span>
-                        <span>hahahha</span>
-                        <span>hahahha</span>
-                        <span>hahahha</span>
-                        &lt;!&ndash;<div class="layui-col-xs9 layui-col-md9 top-panel-number">
-                            9,054,056
-                        </div>
-                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
-                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
-                            比七日 <a style="color: #bd3004">▼0.06</a>
-                        </div>&ndash;&gt;
-                    </div>
-                </div>
-            </div>
-
-        </div>-->
-
-        <div class="layui-col-xs12 layui-col-md6" style="display:inline-block">
-            <div id="echarts-feature" style="background-color:#ffffff;min-height:300px;padding:
-            10px;">
-
-            </div>
 
 
-            <div id="chart" style="background-color:#ffffff;min-height:300px;margin-left:30px;">
-
-                <table>
-
-                    <tr>
-                        <th>年龄</th>
-                        <td th:text="${cust.age}+'岁'">1</td>
-                        <th style="width:80px;height:50px;border:2px solid green;font-size:12px;text-align:center;">得分</th>
-                        <td th:text="${scoreAge}">1</td>
-                    </tr>
-<!--                    <tr>-->
-<!--                        <th>年龄特征得分</th>-->
-<!--                        <td th:text="${scoreAge}">1</td>-->
-<!--                    </tr>-->
-
-                    <tr>
-                        <th>账户余额</th>
-                        <td th:text="'￥'+${cust.balance}">1</td>
-                        <th style="width:80px;height:50px;border:2px solid green;font-size:12px;text-align:center;">得分</th>
-                        <td th:text="${scoreBalance}">1</td>
-                    </tr>
-<!--                    <tr>-->
-<!--                        <th>账户余额特征得分</th>-->
-<!--                        <td th:text="${scoreBalance}">1</td>-->
-<!--                    </tr>-->
-
-                    <tr>
-                        <th>最后一次联系交流时长</th>
-                        <td th:text="${cust.duration}+'秒'">1</td>
-                        <th style="width:80px;height:50px;border:2px solid green;font-size:12px;text-align:center;">得分</th>
-                        <td th:text="${scoreDuration}">1</td>
-                    </tr>
-
-<!--                    <tr>-->
-<!--                        <th>最后一次联系交流时长特征得分</th>-->
-<!--                        <td th:text="${scoreDuration}">1</td>-->
-<!--                    </tr>-->
-
-                    <tr>
-                        <th>本次活动与客户交流次数</th>
-                        <td th:text="${cust.campaign}+'次'">1</td>
-                        <th style="width:80px;height:50px;border:2px solid green;font-size:12px;text-align:center;">得分</th>
-                        <td th:text="${scoreCampaign}">1</td>
-                    </tr>
-
-<!--                    <tr>-->
-<!--                        <th>本次活动与客户交流次数特征得分</th>-->
-<!--                        <td th:text="${scoreCampaign}">1</td>-->
-<!--                    </tr>-->
-
-                    <tr>
-                        <th>距离上次活动最后一次联系客户多少天</th>
-                        <td th:text="${cust.pdays}=='-1'?'未联系上':${cust.pdays}+'天'">1</td>
-                        <th style="width:80px;height:50px;border:2px solid green;font-size:12px;text-align:center;">得分</th>
-                        <td th:text="${scorePdays}">1</td>
-                    </tr>
-
-<!--                    <tr>-->
-<!--                        <th>距离上次活动最后一次联系客户多少天特征得分</th>-->
-<!--                        <td th:text="${scorePdays}">1</td>-->
-<!--                    </tr>-->
-
-                    <tr>
-                        <th>本次活动前与客户交流次数</th>
-                        <td th:text="${cust.previous}+'次'">1</td>
-                        <th style="width:80px;height:50px;border:2px solid green;font-size:12px;text-align:center;">得分</th>
-                        <td th:text="${scorePrevious}">1</td>
-
-                    </tr>
-
-<!--                    <tr>-->
-<!--                        <th >本次活动前与客户交流次数特征得分</th>-->
-<!--                        <td th:text="${scorePrevious}">1</td>-->
-<!--                    </tr>-->
-
-
-
-<!--                    <tr>-->
-<!--                        <th>婚姻状态</th>-->
-<!--                        <td th:text="${marital_status}">7:00-7:40</td>-->
-<!--                    </tr>-->
-
-
-<!--                    <tr>-->
-<!--                        <th>联系方式</th>-->
-<!--                        <td th:text="${phone1}">7:00-7:40</td>-->
-<!--                    </tr>-->
-                </table>
-
-            </div>
-
+        <div class="layui-col-xs12 layui-col-md6">
+            <div style="margin-left:100px;margin-top:100px;color:red;">此客户暂时没有特征影响度数据</div>
+        </div>
     </div>
-
-<!--    <div class="layui-col-xs12 layui-col-md6">-->
-<!--        <div id="echarts-feature" style="background-color:#ffffff;min-height:300px;padding:-->
-<!--            10px;display:inline-block">-->
-
-<!--        </div>-->
-<!--    </div>-->
-
-
-    <!--<div class="layui-row layui-col-space15">
-        <div class="layui-col-xs12 layui-col-md9">
-            <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
-        </div>
-        <div class="layui-col-xs12 layui-col-md3">
-            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
-        </div>
-    </div>-->
-
-
-    <!--<div class="layui-row layui-col-space15">
-        <div class="layui-col-xs12 layui-col-md6">
-            <div id="echarts-dataset" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
-        </div>
-        <div class="layui-col-xs12 layui-col-md6">
-            <div id="echarts-map" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
-        </div>
-    </div>-->
 
 
 </div>
-<!--</div>-->
 <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 
 <script>
 
-    //var custId = [[${cust_id}]];
-    //var age = [[${age}]];
-    //var ageScore = [[${age_score}]];
-    //var profession = '[[${profession}]]';
-    //var professionScore = [[${profession_score}]];
-    //var education = '[[${education}]]';
-    //var educationScore = [[${education_score}]];
-    //var maritalStatus = '[[${marital_status}]]';
-    //var maritalStatusScore = [[${marital_status_score}]];
+    var shapGender = [[${shapeScore.shapValueGender}]];
+    var shapNationality = [[${shapeScore.shapValueNationality}]];
+    var shapAge = [[${shapeScore.shapValueAge}]];
+    var shapJob = [[${shapeScore.shapValueJob}]];
+    var shapMarital = [[${shapeScore.shapValueMarital}]];
+    var shapEducation = [[${shapeScore.shapValueEducation}]];
+    var shapDefault = [[${shapeScore.shapValueDefault}]];
+    var shapBalance = [[${shapeScore.shapValueBalance}]];
+    var shapHousing = [[${shapeScore.shapValueHousing}]];
+    var shapLoan = [[${shapeScore.shapValueLoan}]];
+    var shapContact = [[${shapeScore.shapValueContact}]];
+    var shapDay = [[${shapeScore.shapValueDay}]];
+    var shapMonth = [[${shapeScore.shapValueMonth}]];
+    var shapDuration = [[${shapeScore.shapValueDuration}]];
+    var shapCampaign = [[${shapeScore.shapValueCampaign}]];
+    var shapPdays = [[${shapeScore.shapValuePdays}]];
+    var shapPrevious = [[${shapeScore.shapValuePrevious}]];
+    var shapPoutcome = [[${shapeScore.shapValuePoutcome}]];
 
-    var scoreAge = [[${scoreAge}]];
-    var scoreBalance = [[${scoreBalance}]];
-    var scoreDuration = [[${scoreDuration}]];
-    var scoreCampaign = [[${scoreCampaign}]];
-    var scorePdays = [[${scorePdays}]];
-    var scorePrevious = [[${scorePrevious}]];
+    var gender = '[[${cust.gender}=='1'?'男':'女']]';
+    var nationality = '[[${cust.nationality}]]';
+    var age = '[[${cust.age}+'岁']]';
+    var job = '[[${cust.job}]]';
+    var marital = '[[${cust.marital}]]';
+    var education = '[[${cust.education}]]';
+    var isviolaterule = '[[${cust.isviolaterule}]]';
+    var balance = '[['￥'+${cust.balance}]]';
+    var housing = '[[${cust.housing}]]';
+    var loan = '[[${cust.loan}]]';
+    var contact = '[[${cust.contact}]]';
+    var day = '[[${cust.day}+'日']]';
+    var month = '[[${cust.month}]]';
+    var duration = '[[${cust.duration}+'秒']]';
+    var campaign = '[[${cust.campaign}+'次']]';
+    var pdays = '[[${cust.pdays}=='-1'?'未联系上':${cust.pdays}+'天']]';
+    var previous = '[[${cust.previous}+'次']]';
+    var poutcome = '[[${cust.poutcome}]]';
+
+    //var scoreAge = [[${scoreAge}]];
+    //var scoreBalance = [[${scoreBalance}]];
+    //var scoreDuration = [[${scoreDuration}]];
+    //var scoreCampaign = [[${scoreCampaign}]];
+    //var scorePdays = [[${scorePdays}]];
+    //var scorePrevious = [[${scorePrevious}]];
+
+    //var age = [[${cust.age}]];
+    //var balance= [[${cust.balance}]];
+    //var duration = [[${cust.duration}]];
+    //var campaign = [[${cust.campaign}]];
+    //var pdays = [[${cust.pdays}]];
+    //var previous = [[${cust.previous}]];
+
+    var individualid = [[${cust.individualid}]];
+    var name = '[[${cust.name}]]';
+    var result = '[[${cust.result.lgbModelPred}=='1'?'yes':'no']]';
+    var phone = [[${cust.phone.phoneNumber}]];
+    var deltGreet = '[[${cust.deltGreet}]]';
+    var gender = '[[${cust.gender}=='1'?'男':'女']]';
+
+    var Chart1 = echarts.init(document.getElementById('echarts-histogram'));
+    option = {
+        title:{
+            text:"用户ID:"+individualid+" / "+"是否推荐:"+result,
+            subtext: "用户名:"+name+" / "+"性别:"+gender+" / "+"称呼:"+deltGreet+" / "+"电话号码:"+phone
+        },
+        tooltip:{
+            trigger: 'axis',
+            formatter(params){
+                for(x in params){
+                    return params[x].name +"："+params[x].data.fact+' / '+"特征影响度*10="+params[x].data.value;
+                }
+
+            }
+        },
+        legend:{
+            data:['特征影响度*10'],
+            x: 'right', // 'center' | 'left' | {number}
+            y: 'top',
+        },
+        xAxis:[
+            {
+                type:'category',
+                data:['gender','nationality','age','job','marital','education','default','balance','housing','loan','contact','day','month','duration','campaign','pdays','previous']
+            }
+        ],
+        yAxis:[
+            {
+                type:'value'
+            }
+        ],
+        series:[
+            {
+                name:'特征影响度*10',
+                type:'bar',
+                data:[{'value':shapGender,'fact':gender},{'value':shapNationality,'fact':nationality},{'value':shapAge,'fact':age},{'value':shapJob,'fact':job},{'value':shapMarital,'fact':marital},{'value':shapEducation,'fact':education},{'value':shapDefault,'fact': isviolaterule},{'value':shapBalance,'fact':balance},{'value':shapHousing,'fact':housing},{'value':shapLoan ,'fact':loan},{'value':shapContact ,'fact': contact},{'value':shapDay ,'fact':day},{'value':shapMonth ,'fact':month},{'value':shapDuration ,'fact':duration},{'value':shapCampaign ,'fact':campaign},{'value':shapPdays ,'fact':pdays},{'value':shapPrevious ,'fact':previous},{'value':shapPoutcome ,'fact':poutcome}]
+            },
+        ]
+    };
+
+    Chart1.setOption(option);
+
 
 
     //圆饼图，基于准备好的dom，初始化echarts实例
-    var featureChart = echarts.init(document.getElementById('echarts-feature'));
+    //var featureChart = echarts.init(document.getElementById('echarts-feature'));
     //指定图表的配置项和数据
-    option2 = {
-        //title:{
-        //    text:'特征得分',
-        //    x:'left'
-        //},
-        //tooltip:{
-        //    trigger:'item'
-        //    formatter:“{a} <br/> {b}:{c}分"
-        //},
+    //option2 = {
+
         //color:['#CD5C5C','#00CED1','#9ACD32','#FFC0CB'],
         //color:['#00FFFF', '#00FF00', '#FFFF00', '#FF8C00', '#FF0000', '#FE8463'],
-        stillShowZeroSum:false,
-        series:[
-            {
-                name:'特征得分',
-                type:'pie',
-                radius:'50%',
-                center:['50%','50%'],
-                data:[
+        //stillShowZeroSum:false,
+        //series:[
+        //    {
+        //        name:'特征得分',
+        //        type:'pie',
+        //        radius:'50%',
+        //        center:['50%','50%'],
+        //        data:[
                     //{value: ageScore ,name:'年龄特征得分:'+ ageScore},
                     //{value: professionScore ,name:'职业特征得分:'+professionScore },
                     //{value: educationScore ,name:'教育特征得分:'+educationScore },
                     //{value: maritalStatusScore ,name:'婚姻特征得分:'+maritalStatusScore },
-                    {value: scoreAge ,name:'年龄特征'},
-                    {value: scoreBalance ,name:'账户余额特征' },
-                    {value: scoreDuration ,name:'交流时长特征' },
-                    {value: scoreCampaign ,name:'本次活动交流次数特征'},
-                    {value: scorePdays ,name:'距离上次联系客户天数特征'},
-                    {value: scorePrevious ,name:'本次活动前与客户交流次数特征得分' },
+        //            {value: scoreAge ,name:'年龄特征'},
+        //            {value: scoreBalance ,name:'账户余额特征' },
+        //            {value: scoreDuration ,name:'交流时长特征' },
+        //            {value: scoreCampaign ,name:'本次活动交流次数特征'},
+        //            {value: scorePdays ,name:'距离上次联系客户天数特征'},
+        //            {value: scorePrevious ,name:'本次活动前与客户交流次数特征得分' },
 
-                ],
-                itemStyle:{
-                    emphasis:{
-                        shadowBlur:10,
-                        shadowOffsetX:0,
-                        shadowColor:'rgba(128,128,128,0.5)'
-                     }
-                }
-            }
-        ]
-    };
-    featureChart.setOption(option2);
-
-
+        //        ],
+        //        itemStyle:{
+        //            emphasis:{
+        //                shadowBlur:10,
+        //                shadowOffsetX:0,
+        //                shadowColor:'rgba(128,128,128,0.5)'
+        //             }
+        //        }
+        //    }
+    //    ]
+    //};
+    //featureChart.setOption(option2);
 
 
 </script>
-
 
 
 <script>
