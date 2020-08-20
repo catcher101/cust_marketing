@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.ShapeScoreMapper">
+  <resultMap id="BaseResultMap" type="com.icbc.demo.entity.ShapeScore">
+    <id column="individualid" jdbcType="VARCHAR" property="individualid" />
+    <result column="shap_value_gender" jdbcType="VARCHAR" property="shapValueGender" />
+    <result column="shap_value_nationality" jdbcType="VARCHAR" property="shapValueNationality" />
+    <result column="shap_value_age" jdbcType="VARCHAR" property="shapValueAge" />
+    <result column="shap_value_job" jdbcType="VARCHAR" property="shapValueJob" />
+    <result column="shap_value_marital" jdbcType="VARCHAR" property="shapValueMarital" />
+    <result column="shap_value_education" jdbcType="VARCHAR" property="shapValueEducation" />
+    <result column="shap_value_default" jdbcType="VARCHAR" property="shapValueDefault" />
+    <result column="shap_value_balance" jdbcType="VARCHAR" property="shapValueBalance" />
+    <result column="shap_value_housing" jdbcType="VARCHAR" property="shapValueHousing" />
+    <result column="shap_value_loan" jdbcType="VARCHAR" property="shapValueLoan" />
+    <result column="shap_value_contact" jdbcType="VARCHAR" property="shapValueContact" />
+    <result column="shap_value_day" jdbcType="VARCHAR" property="shapValueDay" />
+    <result column="shap_value_month" jdbcType="VARCHAR" property="shapValueMonth" />
+    <result column="shap_value_duration" jdbcType="VARCHAR" property="shapValueDuration" />
+    <result column="shap_value_campaign" jdbcType="VARCHAR" property="shapValueCampaign" />
+    <result column="shap_value_pdays" jdbcType="VARCHAR" property="shapValuePdays" />
+    <result column="shap_value_previous" jdbcType="VARCHAR" property="shapValuePrevious" />
+    <result column="shap_value_poutcome" jdbcType="VARCHAR" property="shapValuePoutcome" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    individualid, shap_value_gender, shap_value_nationality, shap_value_age, shap_value_job, 
+    shap_value_marital, shap_value_education, shap_value_default, shap_value_balance, 
+    shap_value_housing, shap_value_loan, shap_value_contact, shap_value_day, shap_value_month, 
+    shap_value_duration, shap_value_campaign, shap_value_pdays, shap_value_previous, 
+    shap_value_poutcome
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cust1000_shape_score
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cust1000_shape_score
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.icbc.demo.entity.ShapeScore">
+    insert into cust1000_shape_score (individualid, shap_value_gender, shap_value_nationality, 
+      shap_value_age, shap_value_job, shap_value_marital, 
+      shap_value_education, shap_value_default, shap_value_balance, 
+      shap_value_housing, shap_value_loan, shap_value_contact, 
+      shap_value_day, shap_value_month, shap_value_duration, 
+      shap_value_campaign, shap_value_pdays, shap_value_previous, 
+      shap_value_poutcome)
+    values (#{individualid,jdbcType=VARCHAR}, #{shapValueGender,jdbcType=VARCHAR}, #{shapValueNationality,jdbcType=VARCHAR}, 
+      #{shapValueAge,jdbcType=VARCHAR}, #{shapValueJob,jdbcType=VARCHAR}, #{shapValueMarital,jdbcType=VARCHAR}, 
+      #{shapValueEducation,jdbcType=VARCHAR}, #{shapValueDefault,jdbcType=VARCHAR}, #{shapValueBalance,jdbcType=VARCHAR}, 
+      #{shapValueHousing,jdbcType=VARCHAR}, #{shapValueLoan,jdbcType=VARCHAR}, #{shapValueContact,jdbcType=VARCHAR}, 
+      #{shapValueDay,jdbcType=VARCHAR}, #{shapValueMonth,jdbcType=VARCHAR}, #{shapValueDuration,jdbcType=VARCHAR}, 
+      #{shapValueCampaign,jdbcType=VARCHAR}, #{shapValuePdays,jdbcType=VARCHAR}, #{shapValuePrevious,jdbcType=VARCHAR}, 
+      #{shapValuePoutcome,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icbc.demo.entity.ShapeScore">
+    insert into cust1000_shape_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        individualid,
+      </if>
+      <if test="shapValueGender != null">
+        shap_value_gender,
+      </if>
+      <if test="shapValueNationality != null">
+        shap_value_nationality,
+      </if>
+      <if test="shapValueAge != null">
+        shap_value_age,
+      </if>
+      <if test="shapValueJob != null">
+        shap_value_job,
+      </if>
+      <if test="shapValueMarital != null">
+        shap_value_marital,
+      </if>
+      <if test="shapValueEducation != null">
+        shap_value_education,
+      </if>
+      <if test="shapValueDefault != null">
+        shap_value_default,
+      </if>
+      <if test="shapValueBalance != null">
+        shap_value_balance,
+      </if>
+      <if test="shapValueHousing != null">
+        shap_value_housing,
+      </if>
+      <if test="shapValueLoan != null">
+        shap_value_loan,
+      </if>
+      <if test="shapValueContact != null">
+        shap_value_contact,
+      </if>
+      <if test="shapValueDay != null">
+        shap_value_day,
+      </if>
+      <if test="shapValueMonth != null">
+        shap_value_month,
+      </if>
+      <if test="shapValueDuration != null">
+        shap_value_duration,
+      </if>
+      <if test="shapValueCampaign != null">
+        shap_value_campaign,
+      </if>
+      <if test="shapValuePdays != null">
+        shap_value_pdays,
+      </if>
+      <if test="shapValuePrevious != null">
+        shap_value_previous,
+      </if>
+      <if test="shapValuePoutcome != null">
+        shap_value_poutcome,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="individualid != null">
+        #{individualid,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueGender != null">
+        #{shapValueGender,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueNationality != null">
+        #{shapValueNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueAge != null">
+        #{shapValueAge,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueJob != null">
+        #{shapValueJob,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueMarital != null">
+        #{shapValueMarital,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueEducation != null">
+        #{shapValueEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDefault != null">
+        #{shapValueDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueBalance != null">
+        #{shapValueBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueHousing != null">
+        #{shapValueHousing,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueLoan != null">
+        #{shapValueLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueContact != null">
+        #{shapValueContact,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDay != null">
+        #{shapValueDay,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueMonth != null">
+        #{shapValueMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDuration != null">
+        #{shapValueDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueCampaign != null">
+        #{shapValueCampaign,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePdays != null">
+        #{shapValuePdays,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePrevious != null">
+        #{shapValuePrevious,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePoutcome != null">
+        #{shapValuePoutcome,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.icbc.demo.entity.ShapeScore">
+    update cust1000_shape_score
+    <set>
+      <if test="shapValueGender != null">
+        shap_value_gender = #{shapValueGender,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueNationality != null">
+        shap_value_nationality = #{shapValueNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueAge != null">
+        shap_value_age = #{shapValueAge,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueJob != null">
+        shap_value_job = #{shapValueJob,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueMarital != null">
+        shap_value_marital = #{shapValueMarital,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueEducation != null">
+        shap_value_education = #{shapValueEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDefault != null">
+        shap_value_default = #{shapValueDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueBalance != null">
+        shap_value_balance = #{shapValueBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueHousing != null">
+        shap_value_housing = #{shapValueHousing,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueLoan != null">
+        shap_value_loan = #{shapValueLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueContact != null">
+        shap_value_contact = #{shapValueContact,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDay != null">
+        shap_value_day = #{shapValueDay,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueMonth != null">
+        shap_value_month = #{shapValueMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDuration != null">
+        shap_value_duration = #{shapValueDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueCampaign != null">
+        shap_value_campaign = #{shapValueCampaign,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePdays != null">
+        shap_value_pdays = #{shapValuePdays,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePrevious != null">
+        shap_value_previous = #{shapValuePrevious,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePoutcome != null">
+        shap_value_poutcome = #{shapValuePoutcome,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.icbc.demo.entity.ShapeScore">
+    update cust1000_shape_score
+    set shap_value_gender = #{shapValueGender,jdbcType=VARCHAR},
+      shap_value_nationality = #{shapValueNationality,jdbcType=VARCHAR},
+      shap_value_age = #{shapValueAge,jdbcType=VARCHAR},
+      shap_value_job = #{shapValueJob,jdbcType=VARCHAR},
+      shap_value_marital = #{shapValueMarital,jdbcType=VARCHAR},
+      shap_value_education = #{shapValueEducation,jdbcType=VARCHAR},
+      shap_value_default = #{shapValueDefault,jdbcType=VARCHAR},
+      shap_value_balance = #{shapValueBalance,jdbcType=VARCHAR},
+      shap_value_housing = #{shapValueHousing,jdbcType=VARCHAR},
+      shap_value_loan = #{shapValueLoan,jdbcType=VARCHAR},
+      shap_value_contact = #{shapValueContact,jdbcType=VARCHAR},
+      shap_value_day = #{shapValueDay,jdbcType=VARCHAR},
+      shap_value_month = #{shapValueMonth,jdbcType=VARCHAR},
+      shap_value_duration = #{shapValueDuration,jdbcType=VARCHAR},
+      shap_value_campaign = #{shapValueCampaign,jdbcType=VARCHAR},
+      shap_value_pdays = #{shapValuePdays,jdbcType=VARCHAR},
+      shap_value_previous = #{shapValuePrevious,jdbcType=VARCHAR},
+      shap_value_poutcome = #{shapValuePoutcome,jdbcType=VARCHAR}
+    where individualid = #{individualid,jdbcType=VARCHAR}
+  </update>
+</mapper>
