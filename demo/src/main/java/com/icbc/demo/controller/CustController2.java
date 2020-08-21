@@ -1,19 +1,12 @@
 package com.icbc.demo.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.icbc.demo.entity.CombineTestSet;
-import com.icbc.demo.entity.CustInfo1;
-import com.icbc.demo.entity.MarketingRecord;
-import com.icbc.demo.entity.User;
-import com.icbc.demo.service.CustInfo1Service;
-import com.icbc.demo.service.CustService;
-import com.icbc.demo.service.MarketingRecordService;
+import com.icbc.demo.entity.*;
+import com.icbc.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.icbc.demo.service.ResultScoreService;
-import com.icbc.demo.entity.ResultScore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +21,9 @@ public class CustController2 {
     @Autowired
     ResultScoreService resultScoreService;
 
+    @Autowired
+    ShapeScoreService shapeScoreService;
+
 
     //获取指定的用户
     @GetMapping(value="/getCustForDetail")
@@ -38,6 +34,52 @@ public class CustController2 {
             System.out.println(cust);
             model.addAttribute("cust", cust);
         }
+
+        ShapeScore shapeScore = shapeScoreService.findShapeScoreById(individualid);
+
+        int GAIN = 10;
+
+        if(shapeScore != null){
+            String shapGender = shapeScore.getShapValueGender();
+            shapeScore.setShapValueGender(String.format("%.2f",Double.valueOf(shapGender)*GAIN));
+            String shapNationality = shapeScore.getShapValueNationality();
+            shapeScore.setShapValueNationality(String.format("%.2f",Double.valueOf(shapNationality)*GAIN));
+            String shapAge = shapeScore.getShapValueAge();
+            shapeScore.setShapValueAge(String.format("%.2f",Double.valueOf(shapAge)*GAIN));
+            String shapJob = shapeScore.getShapValueJob();
+            shapeScore.setShapValueJob(String.format("%.2f",Double.valueOf(shapJob)*GAIN));
+            String shapMarital = shapeScore.getShapValueMarital();
+            shapeScore.setShapValueMarital(String.format("%.2f",Double.valueOf(shapMarital)*GAIN));
+            String shapEducation = shapeScore.getShapValueEducation();
+            shapeScore.setShapValueEducation(String.format("%.2f",Double.valueOf(shapEducation)*GAIN));
+            String shapDefault = shapeScore.getShapValueDefault();
+            shapeScore.setShapValueDefault(String.format("%.2f",Double.valueOf(shapDefault)*GAIN));
+            String shapBalance = shapeScore.getShapValueBalance();
+            shapeScore.setShapValueBalance(String.format("%.2f",Double.valueOf(shapBalance)*GAIN));
+            String shapHousing = shapeScore.getShapValueHousing();
+            shapeScore.setShapValueHousing(String.format("%.2f",Double.valueOf(shapHousing)*GAIN));
+            String shapLoan = shapeScore.getShapValueLoan();
+            shapeScore.setShapValueLoan(String.format("%.2f",Double.valueOf(shapLoan)*GAIN));
+            String shapContact = shapeScore.getShapValueContact();
+            shapeScore.setShapValueContact(String.format("%.2f",Double.valueOf(shapContact)*GAIN));
+            String shapDay = shapeScore.getShapValueDay();
+            shapeScore.setShapValueDay(String.format("%.2f",Double.valueOf(shapDay)*GAIN));
+            String shapMonth = shapeScore.getShapValueMonth();
+            shapeScore.setShapValueMonth(String.format("%.2f",Double.valueOf(shapMonth)*GAIN));
+            String shapDuration = shapeScore.getShapValueDuration();
+            shapeScore.setShapValueDuration(String.format("%.2f",Double.valueOf(shapDuration)*GAIN));
+            String shapCampaign = shapeScore.getShapValueCampaign();
+            shapeScore.setShapValueCampaign(String.format("%.2f",Double.valueOf(shapCampaign)*GAIN));
+            String shapPdays = shapeScore.getShapValuePdays();
+            shapeScore.setShapValuePdays(String.format("%.2f",Double.valueOf(shapPdays)*GAIN));
+            String shapPrevious = shapeScore.getShapValuePrevious();
+            shapeScore.setShapValuePrevious(String.format("%.2f",Double.valueOf(shapPrevious)*GAIN));
+            String shapPoutcome = shapeScore.getShapValuePoutcome();
+            shapeScore.setShapValuePoutcome(String.format("%.2f",Double.valueOf(shapPoutcome)*GAIN));
+
+            model.addAttribute("shapeScore", shapeScore);
+        }
+
         ResultScore resultScore = resultScoreService.findResultScoreById(individualid);
         model.addAttribute("scoreAge", resultScore.getScoreAge());
         model.addAttribute("scoreBalance", resultScore.getScoreBalance());
