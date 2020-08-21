@@ -159,6 +159,110 @@
               "target": "_self"
             }
           ]
+        },
+        {
+          "title": "可解释性",
+          "href": "",
+          "icon": "fa fa-bars",
+          "target": "_self",
+          "child": [
+            {
+              "title": "全局可解释性",
+              "href": "",
+              "icon": "fa fa-bars",
+              "target": "_self",
+              "child": [
+                {
+                  "title": "特征重要性分析",
+                  "href": "page/accountability/featureImportance.html",
+                  "icon": "fa fa-bars",
+                  "target": "_self"
+                },{
+                  "title": "单个特征分析",
+                  "href": "",
+                  "icon": "fa fa-bars",
+                  "target": "_self",
+                  "child": [
+                    {
+                      "title": "年均余额",
+                      "href": "page/accountability/balanceFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "交流时长",
+                      "href": "page/accountability/durationFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "年龄",
+                      "href": "page/accountability/ageFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "最后几号联系",
+                      "href": "page/accountability/dayFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "最后几月联系",
+                      "href": "page/accountability/monthFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "职业",
+                      "href": "page/accountability/jobFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "教育水平",
+                      "href": "page/accountability/educationFeature.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    }
+                  ]
+                },{
+                  "title": "交叉特征分析",
+                  "href": "",
+                  "icon": "fa fa-bars",
+                  "target": "_self",
+                  "child": [
+                    {
+                      "title": "余额-联系时长",
+                      "href": "page/accountability/balance-duration.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "余额-年龄",
+                      "href": "page/accountability/balance-age.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "联系时长-年龄",
+                      "href": "page/accountability/duration-age.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "年龄-教育",
+                      "href": "page/accountability/age-education.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    },{
+                      "title": "几月-几号",
+                      "href": "page/accountability/month-day.html",
+                      "icon": "fa fa-bars",
+                      "target": "_self"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "局部可解释性",
+              "href": "page/accountability/partAccountability.html",
+              "icon": "fa fa-bars",
+              "target": "_self"
+            }
+          ]
         }
       ]
     }

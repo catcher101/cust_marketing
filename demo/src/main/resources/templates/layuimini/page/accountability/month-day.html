@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+        div{
+            margin-top: 10px;
+        }
+        span{
+            font-size:20px;
+        }
+        table{
+            font-size:20px;
+            border-collapse:collapse;
+            border:2px solid black;
+        }
+        td{
+            border:2px solid black;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+
+    <div class="layuimini-main">
+
+        <div class="title">
+            <h1 style="font-weight:bold;">month-day 最后一次几月联系客户-最后一次几号联系客户</h1>
+        </div>
+
+        <div class="content_header" style="text-align:right;">
+            <span >全局可解释性的交叉特征分析分析解决的问题是：从大量的样本整体来考虑，两个特征的交互作用如何影响模型的预测。</span><br>
+        </div>
+
+        <div style="text-align:center;" class="img">
+            <img src="/images/cross-month-day.png" height="70%"
+                 width="70%"/>
+        </div>
+
+        <div class="analysis_header">
+            <span>Month是类别数据，经过数据预编码之后对应的编码如下：</span>
+            <table>
+                <tr>
+                    <td>Apr:0</td>
+                    <td>Feb：3</td>
+                    <td>Jun：6</td>
+                    <td>Nov：9</td>
+                </tr>
+                <tr>
+                    <td>Aug:：1</td>
+                    <td>Jan：4</td>
+                    <td>Mar：7</td>
+                    <td>Oct：10</td>
+                </tr>
+                <tr>
+                    <td>Dec： 2</td>
+                    <td>Jul：5</td>
+                    <td>May：8</td>
+                    <td>Sep：11</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="analysis">
+            <span style="font-weight:bold;">特征解释：</span><br>
+
+            <span>
+                1.排除所有特征的影响，描述month和day的关系
+            </span><br>
+            <span>
+                2.这批样本中大部分营销时间落在每个月的中下旬（几乎每个月份都是红色部分占多）
+            </span><br>
+            <span>
+                3.营销月份（编码0，10代表的四月，十月）和营销日（中下旬）的交互影响下，对模型输出为正样本的作用最强
+            </span><br>
+            <span>
+                4.编码为8代表的五月和营销日的交互作用是负作用，最好不要在五月进行营销活动
+            </span><br>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['layer', 'table', 'treetable', 'jquery', 'form'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var currPage = 1;
+        var layer = layui.layer;
+
+        //实现点击图片可以放大
+        $(function () {
+            $(".img img").on("click", function () {
+                layer.photos({
+                    photos: '.img', //必须绑定包裹住img的div控件
+                    shadeClose: true, //开启后，点击遮罩层可以关闭图片，无需点击右上角的X
+                    closeBtn: 2,
+                    anim: 0
+                });
+            })
+        })
+
+
+
+
+
+    });
+</script>
+</body>
+</html>

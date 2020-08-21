@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+        div{
+            margin-top: 10px;
+        }
+        span{
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+
+    <div class="layuimini-main">
+
+        <div class="title">
+            <h1 style="font-weight:bold;">balance-duration 年均余额-最后一次联系时长(s)</h1>
+        </div>
+
+        <div class="content_header" style="text-align:right;">
+            <span >全局可解释性的交叉特征分析分析解决的问题是：从大量的样本整体来考虑，两个特征的交互作用如何影响模型的预测。</span><br>
+        </div>
+
+        <div style="text-align:center;" class="img">
+            <img src="/images/cross-balance-duration.png" height="70%"
+                 width="70%"/>
+        </div>
+
+        <div class="analysis_header">
+            <span style="font-weight:bold;">图形解释：</span><br>
+            <span>
+                ·X轴：balance值
+            </span><br>
+            <span>
+                ·Y轴（左）：一个客户样本的balance对应的shap值
+            </span><br>
+            <span>
+                ·颜色：duration值从小到大 对应上图右侧颜色柱的从蓝到红
+            </span><br>
+
+
+        </div>
+
+        <div class="analysis">
+            <span style="font-weight:bold;">特征解释：</span><br>
+
+            <span>
+                1.排除所有特征的影响，描述balance和duration的关系
+            </span><br>
+            <span>
+                2.这批样本中与客户联系时间大部分不超过400s
+            </span><br>
+            <span>
+                3.对于有同样存款的客户来说，增加营销过程中的联系时间可以增加对模型输出为正样本的作用
+            </span><br>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['layer', 'table', 'treetable', 'jquery', 'form'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var currPage = 1;
+        var layer = layui.layer;
+
+        //实现点击图片可以放大
+        $(function () {
+            $(".img img").on("click", function () {
+                layer.photos({
+                    photos: '.img', //必须绑定包裹住img的div控件
+                    shadeClose: true, //开启后，点击遮罩层可以关闭图片，无需点击右上角的X
+                    closeBtn: 2,
+                    anim: 0
+                });
+            })
+        })
+
+
+
+
+
+    });
+</script>
+</body>
+</html>

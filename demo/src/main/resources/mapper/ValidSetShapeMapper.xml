@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icbc.demo.mapper.ValidSetShapeMapper">
+
+  <resultMap id="ageMap" type="ValidSetShape">
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="value" jdbcType="VARCHAR" property="shapValueAge" />
+  </resultMap>
+
+  <resultMap id="balanceMap" type="ValidSetShape">
+    <result column="balance" jdbcType="INTEGER" property="balance" />
+    <result column="value" jdbcType="VARCHAR" property="shapValueBalance" />
+  </resultMap>
+
+  <resultMap id="durationMap" type="ValidSetShape">
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="value" jdbcType="VARCHAR" property="shapValueDuration" />
+  </resultMap>
+
+  <resultMap id="dayMap" type="ValidSetShape">
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="value" jdbcType="VARCHAR" property="shapValueDay" />
+  </resultMap>
+
+  <resultMap id="monthMap" type="ValidSetShape">
+      <result column="month" jdbcType="INTEGER" property="month" />
+      <result column="value" jdbcType="VARCHAR" property="shapValueMonth" />
+  </resultMap>
+
+  <resultMap id="jobMap" type="ValidSetShape">
+    <result column="job" jdbcType="INTEGER" property="job" />
+    <result column="value" jdbcType="VARCHAR" property="shapValueJob" />
+  </resultMap>
+
+<resultMap id="educationMap" type="ValidSetShape">
+    <result column="job" jdbcType="INTEGER" property="job" />
+    <result column="value" jdbcType="VARCHAR" property="shapValueEducation" />
+  </resultMap>
+
+
+
+  <!--List<ValidSetShape> selectEducation();-->
+  <select id="selectEducation" resultMap="educationMap">
+    select education, sum(shap_value_education)-7.444644200759348 as 'value'
+    from valid_set_shape
+    group by education;
+  </select>
+
+  <!--List<ValidSetShape> selectJob();-->
+  <select id="selectJob" resultMap="jobMap">
+    select job, sum(shap_value_job)-7.444644200759348 as 'value'
+    from valid_set_shape
+    group by job;
+  </select>
+
+  <!--List<ValidSetShape> selectMonth();-->
+  <select id="selectMonth" resultMap="monthMap">
+    select month, sum(shap_value_month)-7.444644200759348 as 'value'
+    from valid_set_shape
+    group by month;
+  </select>
+
+  <!--List<ValidSetShape> selectDay();-->
+  <select id="selectDay" resultMap="dayMap">
+    select day, sum(shap_value_day)-7.444644200759348 as 'value'
+    from valid_set_shape
+    group by day;
+  </select>
+
+  <!--List<ValidSetShape> selectDuration();-->
+  <select id="selectDuration" resultMap="durationMap">
+    select duration, sum(shap_value_duration)-7.444644200759348 as 'value'
+    from valid_set_shape
+    group by duration;
+  </select>
+
+  <!--List<ValidSetShape> selectBalance();-->
+  <select id="selectBalance" resultMap="balanceMap">
+    select balance, shap_value_balance-7.444644200759348 as 'value'
+    from valid_set_shape
+    order by balance;
+  </select>
+
+  <!--List<ValidSetShape> selectAge();-->
+    <select id="selectAge" resultMap="ageMap">
+      select age, sum(shap_value_age)-7.444644200759348 as 'value'
+      from valid_set_shape
+      group by age;
+    </select>
+
+
+
+
+
+
+
+
+
+
+  <!--以下是mybatis逆向工程生成的-->
+
+  <resultMap id="BaseResultMap" type="com.icbc.demo.entity.ValidSetShape">
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="nationality" jdbcType="INTEGER" property="nationality" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="job" jdbcType="INTEGER" property="job" />
+    <result column="marital" jdbcType="INTEGER" property="marital" />
+    <result column="education" jdbcType="INTEGER" property="education" />
+    <result column="balance" jdbcType="INTEGER" property="balance" />
+    <result column="housing" jdbcType="INTEGER" property="housing" />
+    <result column="loan" jdbcType="INTEGER" property="loan" />
+    <result column="contact" jdbcType="INTEGER" property="contact" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+    <result column="month" jdbcType="INTEGER" property="month" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="campaign" jdbcType="INTEGER" property="campaign" />
+    <result column="pdays" jdbcType="INTEGER" property="pdays" />
+    <result column="previous" jdbcType="INTEGER" property="previous" />
+    <result column="poutcome" jdbcType="INTEGER" property="poutcome" />
+    <result column="shap_value_gender" jdbcType="VARCHAR" property="shapValueGender" />
+    <result column="shap_value_nationality" jdbcType="VARCHAR" property="shapValueNationality" />
+    <result column="shap_value_age" jdbcType="VARCHAR" property="shapValueAge" />
+    <result column="shap_value_job" jdbcType="VARCHAR" property="shapValueJob" />
+    <result column="shap_value_marital" jdbcType="VARCHAR" property="shapValueMarital" />
+    <result column="shap_value_education" jdbcType="VARCHAR" property="shapValueEducation" />
+    <result column="shap_value_balance" jdbcType="VARCHAR" property="shapValueBalance" />
+    <result column="shap_value_housing" jdbcType="VARCHAR" property="shapValueHousing" />
+    <result column="shap_value_loan" jdbcType="VARCHAR" property="shapValueLoan" />
+    <result column="shap_value_contact" jdbcType="VARCHAR" property="shapValueContact" />
+    <result column="shap_value_day" jdbcType="VARCHAR" property="shapValueDay" />
+    <result column="shap_value_month" jdbcType="VARCHAR" property="shapValueMonth" />
+    <result column="shap_value_duration" jdbcType="VARCHAR" property="shapValueDuration" />
+    <result column="shap_value_campaign" jdbcType="VARCHAR" property="shapValueCampaign" />
+    <result column="shap_value_pdays" jdbcType="VARCHAR" property="shapValuePdays" />
+    <result column="shap_value_previous" jdbcType="VARCHAR" property="shapValuePrevious" />
+    <result column="shap_value_poutcome" jdbcType="VARCHAR" property="shapValuePoutcome" />
+  </resultMap>
+  <insert id="insert" parameterType="com.icbc.demo.entity.ValidSetShape">
+    insert into valid_set_shape (gender, nationality, age, 
+      job, marital, education, 
+      balance, housing, loan, 
+      contact, day, month, 
+      duration, campaign, pdays, 
+      previous, poutcome, shap_value_gender, 
+      shap_value_nationality, shap_value_age, shap_value_job, 
+      shap_value_marital, shap_value_education, shap_value_balance, 
+      shap_value_housing, shap_value_loan, shap_value_contact, 
+      shap_value_day, shap_value_month, shap_value_duration, 
+      shap_value_campaign, shap_value_pdays, shap_value_previous, 
+      shap_value_poutcome)
+    values (#{gender,jdbcType=INTEGER}, #{nationality,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, 
+      #{job,jdbcType=INTEGER}, #{marital,jdbcType=INTEGER}, #{education,jdbcType=INTEGER}, 
+      #{balance,jdbcType=INTEGER}, #{housing,jdbcType=INTEGER}, #{loan,jdbcType=INTEGER}, 
+      #{contact,jdbcType=INTEGER}, #{day,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, 
+      #{duration,jdbcType=INTEGER}, #{campaign,jdbcType=INTEGER}, #{pdays,jdbcType=INTEGER}, 
+      #{previous,jdbcType=INTEGER}, #{poutcome,jdbcType=INTEGER}, #{shapValueGender,jdbcType=VARCHAR}, 
+      #{shapValueNationality,jdbcType=VARCHAR}, #{shapValueAge,jdbcType=VARCHAR}, #{shapValueJob,jdbcType=VARCHAR}, 
+      #{shapValueMarital,jdbcType=VARCHAR}, #{shapValueEducation,jdbcType=VARCHAR}, #{shapValueBalance,jdbcType=VARCHAR}, 
+      #{shapValueHousing,jdbcType=VARCHAR}, #{shapValueLoan,jdbcType=VARCHAR}, #{shapValueContact,jdbcType=VARCHAR}, 
+      #{shapValueDay,jdbcType=VARCHAR}, #{shapValueMonth,jdbcType=VARCHAR}, #{shapValueDuration,jdbcType=VARCHAR}, 
+      #{shapValueCampaign,jdbcType=VARCHAR}, #{shapValuePdays,jdbcType=VARCHAR}, #{shapValuePrevious,jdbcType=VARCHAR}, 
+      #{shapValuePoutcome,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.icbc.demo.entity.ValidSetShape">
+    insert into valid_set_shape
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      gender,
+      nationality,
+      age,
+      job,
+      marital,
+      education,
+      balance,
+      housing,
+      loan,
+      contact,
+      day,
+      month,
+      duration,
+      campaign,
+      pdays,
+      previous,
+      poutcome,
+      <if test="shapValueGender != null">
+        shap_value_gender,
+      </if>
+      <if test="shapValueNationality != null">
+        shap_value_nationality,
+      </if>
+      <if test="shapValueAge != null">
+        shap_value_age,
+      </if>
+      <if test="shapValueJob != null">
+        shap_value_job,
+      </if>
+      <if test="shapValueMarital != null">
+        shap_value_marital,
+      </if>
+      <if test="shapValueEducation != null">
+        shap_value_education,
+      </if>
+      <if test="shapValueBalance != null">
+        shap_value_balance,
+      </if>
+      <if test="shapValueHousing != null">
+        shap_value_housing,
+      </if>
+      <if test="shapValueLoan != null">
+        shap_value_loan,
+      </if>
+      <if test="shapValueContact != null">
+        shap_value_contact,
+      </if>
+      <if test="shapValueDay != null">
+        shap_value_day,
+      </if>
+      <if test="shapValueMonth != null">
+        shap_value_month,
+      </if>
+      <if test="shapValueDuration != null">
+        shap_value_duration,
+      </if>
+      <if test="shapValueCampaign != null">
+        shap_value_campaign,
+      </if>
+      <if test="shapValuePdays != null">
+        shap_value_pdays,
+      </if>
+      <if test="shapValuePrevious != null">
+        shap_value_previous,
+      </if>
+      <if test="shapValuePoutcome != null">
+        shap_value_poutcome,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{gender,jdbcType=INTEGER},
+      #{nationality,jdbcType=INTEGER},
+      #{age,jdbcType=INTEGER},
+      #{job,jdbcType=INTEGER},
+      #{marital,jdbcType=INTEGER},
+      #{education,jdbcType=INTEGER},
+      #{balance,jdbcType=INTEGER},
+      #{housing,jdbcType=INTEGER},
+      #{loan,jdbcType=INTEGER},
+      #{contact,jdbcType=INTEGER},
+      #{day,jdbcType=INTEGER},
+      #{month,jdbcType=INTEGER},
+      #{duration,jdbcType=INTEGER},
+      #{campaign,jdbcType=INTEGER},
+      #{pdays,jdbcType=INTEGER},
+      #{previous,jdbcType=INTEGER},
+      #{poutcome,jdbcType=INTEGER},
+      <if test="shapValueGender != null">
+        #{shapValueGender,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueNationality != null">
+        #{shapValueNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueAge != null">
+        #{shapValueAge,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueJob != null">
+        #{shapValueJob,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueMarital != null">
+        #{shapValueMarital,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueEducation != null">
+        #{shapValueEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueBalance != null">
+        #{shapValueBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueHousing != null">
+        #{shapValueHousing,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueLoan != null">
+        #{shapValueLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueContact != null">
+        #{shapValueContact,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDay != null">
+        #{shapValueDay,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueMonth != null">
+        #{shapValueMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueDuration != null">
+        #{shapValueDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValueCampaign != null">
+        #{shapValueCampaign,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePdays != null">
+        #{shapValuePdays,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePrevious != null">
+        #{shapValuePrevious,jdbcType=VARCHAR},
+      </if>
+      <if test="shapValuePoutcome != null">
+        #{shapValuePoutcome,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

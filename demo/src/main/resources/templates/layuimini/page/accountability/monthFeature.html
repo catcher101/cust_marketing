@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+            height: 34px;
+            line-height: 34px;
+            padding: 0 8px;
+        }
+        div{
+            margin-top: 10px;
+        }
+        span{
+            font-size:20px;
+        }
+        table{
+            font-size:20px;
+            border-collapse:collapse;
+            border:2px solid black;
+        }
+        td{
+            border:2px solid black;
+            text-align:center;
+        }
+        .highline_span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+
+    <div class="layuimini-main">
+
+        <div class="title">
+            <h1 style="font-weight:bold;">month 最后一次联系是几月</h1>
+        </div>
+
+        <div class="content_header" style="text-align:right;">
+            <span >全局可解释性的单个特征分析分析解决的问题是：从大量的样本整体来考虑，每一个特征如何影响模型的预测。</span><br>
+        </div>
+
+        <div style="text-align:center;" class="img">
+           <!-- <img src="/images/single-day.png" height="90%"
+                 width="90%"/>-->
+            <div id="echarts-records" style="background-color:#ffffff;min-height:300px;padding:
+            10px"></div>
+        </div>
+
+        <div class="analysis_header">
+            <span>Month是类别数据，经过数据预编码之后对应的编码如下：</span>
+            <table>
+                <tr>
+                    <td>Apr:0</td>
+                    <td>Feb：3</td>
+                    <td>Jun：6</td>
+                    <td>Nov：9</td>
+                </tr>
+                <tr>
+                    <td>Aug:：1</td>
+                    <td>Jan：4</td>
+                    <td>Mar：7</td>
+                    <td>Oct：10</td>
+                </tr>
+                <tr>
+                    <td>Dec： 2</td>
+                    <td>Jul：5</td>
+                    <td>May：8</td>
+                    <td>Sep：11</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="analysis">
+            <span style="font-weight:bold;">结论： 从上图可以看出：</span><br>
+
+            <span>
+                1.编号<span class="highline_span">4，5，6</span>代表的一月，七月，六月对模型预测几乎没影响；
+            </span><br>
+            <span>
+                2.编号<span class="highline_span">8，9</span>代表的五月，十一月对模型预测是负向影响；
+            </span><br>
+            <span>
+                3.其他月份对模型的影响是正向影响；
+            </span><br>
+            <span>
+                4.编号<span class="highline_span">7，11</span>代表的三月，九月进行营销对模型预测为正类别营销最大，也就是最有可能使得
+                客户购买该产品
+            </span><br>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['echarts', 'layer', 'table', 'treetable', 'jquery', 'form'], function () {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var currPage = 1;
+        var layer = layui.layer;
+        var echarts = layui.echarts;
+        var xData = [], yData = [];
+
+        //实现点击图片可以放大
+        $(function () {
+            $(".img img").on("click", function () {
+                layer.photos({
+                    photos: '.img', //必须绑定包裹住img的div控件
+                    shadeClose: true, //开启后，点击遮罩层可以关闭图片，无需点击右上角的X
+                    closeBtn: 2,
+                    anim: 0
+                });
+            })
+        })
+
+
+        //获取折线图数据
+        $(function () {
+            $.ajax({
+                url: '/accountability/getMonth',
+                type: 'GET',
+                dataType: 'json',
+                success: function(result){
+                    if(result.data != null){
+                        //请求成功时执行该函数内容，result即为服务器返回的json对象
+                        $.each(result.data, function (index, item) {
+                            xData.push(item.month); //挨个取出类别并填入类别数组
+                            yData.push(item.shapValueMonth); //挨个取出shapvalue并填入数值数组
+                        });
+                        echartsRecords.setOption(option);
+                        layer.msg(result.msg, {icon:6});
+                    }else{
+                        layer.msg(result.msg, {icon:5});
+                    }
+
+                }
+            });
+        })
+
+        /**
+         * 报表功能
+         */
+        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            title: {
+                left: 'center',
+                text: '大数据量面积图',
+            },
+            toolbox: {
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                name: '',
+                boundaryGap: false,
+                data: xData
+            },
+            yAxis: {
+                type: 'value',
+                name: '',
+                scale:true,
+                boundaryGap: [0, '10%']
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 0,
+                end: 10
+            }, {
+                start: 0,
+                end: 10,
+                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                handleSize: '80%',
+                handleStyle: {
+                    color: '#fff',
+                    shadowBlur: 3,
+                    shadowColor: 'rgba(0, 0, 0, 0.6)',
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2
+                }
+            }],
+            series: [
+                {
+                    name: 'age年龄特征',
+                    type: 'line',
+                    smooth: true,
+                    symbol: 'none',
+                    sampling: 'average',
+                    itemStyle: {
+                        color: 'rgb(255, 70, 131)'
+                    },
+                    areaStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(255, 158, 68)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(255, 70, 131)'
+                        }])
+                    },
+                    data: yData
+                }
+            ]
+        };
+
+
+    });
+</script>
+</body>
+</html>

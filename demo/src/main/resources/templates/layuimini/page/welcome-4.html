@@ -51,6 +51,10 @@
 <!--<div class="layuimini-container">-->
 <div class="layuimini-main">
 
+
+</div>
+
+
     <div class="layui-row layui-col-space15">
         <div class="layui-col-xs12 layui-col-md3">
             <div class="layui-card top-panel">
@@ -132,10 +136,20 @@
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
-    layui.use(['jquery', 'layer', 'echarts'], function () {
+    layui.use(['carousel', 'jquery', 'layer', 'echarts'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
             echarts = layui.echarts;
+            carousel = layui.carousel;
+
+
+        //图片轮播
+        carousel.render({
+            elem: '#test-carousel-img'
+            ,width: '778px'
+            ,height: '440px'
+            ,interval: 5000
+        });
 
 
         //实现点击图片可以放大
