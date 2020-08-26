@@ -43,35 +43,35 @@
   <select id="selectEducation" resultMap="educationMap">
     select education, sum(shap_value_education)-7.444644200759348 as 'value'
     from valid_set_shape
-    group by education;
+    group by education order by education;
   </select>
 
   <!--List<ValidSetShape> selectJob();-->
   <select id="selectJob" resultMap="jobMap">
     select job, sum(shap_value_job)-7.444644200759348 as 'value'
     from valid_set_shape
-    group by job;
+    group by job order by job;
   </select>
 
   <!--List<ValidSetShape> selectMonth();-->
   <select id="selectMonth" resultMap="monthMap">
     select month, sum(shap_value_month)-7.444644200759348 as 'value'
     from valid_set_shape
-    group by month;
+    group by month order by month;
   </select>
 
   <!--List<ValidSetShape> selectDay();-->
   <select id="selectDay" resultMap="dayMap">
     select day, sum(shap_value_day)-7.444644200759348 as 'value'
     from valid_set_shape
-    group by day;
+    group by day order by day;
   </select>
 
   <!--List<ValidSetShape> selectDuration();-->
   <select id="selectDuration" resultMap="durationMap">
     select duration, sum(shap_value_duration)-7.444644200759348 as 'value'
     from valid_set_shape
-    group by duration;
+    group by duration order by duration;
   </select>
 
   <!--List<ValidSetShape> selectBalance();-->
@@ -85,7 +85,7 @@
     <select id="selectAge" resultMap="ageMap">
       select age, sum(shap_value_age)-7.444644200759348 as 'value'
       from valid_set_shape
-      group by age;
+      group by age order by age;
     </select>
 
 

@@ -27,12 +27,7 @@
           "icon": "fa fa-shopping-bag",
           "target": "_self"
         },
-        {
-          "title": "营销记录",
-          "href": "page/marketRecord/marketRecord-table.html",
-          "icon": "fa fa-bars",
-          "target": "_self"
-        },
+
         {
           "title": "营销情况分析",
           "href": "",

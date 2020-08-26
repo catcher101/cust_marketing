@@ -425,8 +425,47 @@
     var Chart1 = echarts.init(document.getElementById('echarts-histogram'));
     option = {
         title:{
-            text:"用户ID:"+individualid+" / "+"是否推荐:"+result,
-            subtext: "用户名:"+name+" / "+"性别:"+gender+" / "+"称呼:"+deltGreet+" / "+"电话号码:"+phone
+            text:"用户名:"+name+" / "+"性别:"+gender+" / "+"称呼:"+deltGreet+" / "+"电话号码:"+phone,
+            textStyle:{
+            fontSize:16
+            },
+
+            //link:'http://www.baidu.com', //主标题超链接
+            //target:'blank', //主标题超链接打开方式
+            //textStyle:{
+            //color:'#9D9D9D',
+            //fontStyle:'normal',
+            //fontSize:12
+            //},
+
+            subtext: "用户ID:"+individualid+" / "+"是否推荐:"+result,
+            subtextStyle:{
+            fontSize:14,
+            fontWeight:'bold'
+            },
+
+            //subtextStyle:{
+            //color:'#000000',
+            //fontStyle:'normal',
+            //fontSize:18
+            //}
+
+            //sublink:'http://www.baidu.com',//副标题超链接
+            //subtarget:'blank',//副标题超链接打开方式
+            //padding:[5,10,5,5], //设置标题内边距，上，右，下，左
+            //itemGap:10, //主副标题之间的间距
+
+            /*left:'left', //组件的位置，center,left,right
+            top:'top',//组件离上边的距离middle,top,bottom */ //此二者的优先级高于x
+            //x:'center',
+
+            //backgroundColor:'white', //标题背景色
+            //borderColor:'gray', //标题边框颜色
+            //borderWidth:5, //标签线框
+            //borderRadius:5, //边框切圆角
+            //shadowBlur:10, //图形阴影模糊大小，该属性配合shadowColor，shadowOffsetX（阴影水平方向上的偏移距离），shadowOffset（阴影垂直方向上的偏移距离）一起设置图形的阴影效果。
+            //shadowColor:'rgba(0,0,0,0.5)' //阴影颜色
+
         },
         tooltip:{
             trigger: 'axis',

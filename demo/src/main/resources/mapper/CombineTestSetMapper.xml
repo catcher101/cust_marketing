@@ -220,17 +220,26 @@
 
 
   <!--List<CombineTestSet> selectBasicInfo();-->
+<!--  <select id="selectBasicInfo" resultMap="basicResultMap">-->
+<!--    select <include refid="selectBasicField"/>-->
+<!--    from (combine_test_set cts inner join result r-->
+<!--    on cts.individualid = r.individualid) inner join phone p on cts.individualid = p.individualid-->
+<!--  </select>-->
+
+<!--  <select id="selectBasicInfo" resultMap="basicResultMap">-->
+<!--    select <include refid="selectBasicField"/>-->
+<!--    from combine_test_set cts , result r , phone p where cts.individualid = r.individualid and cts.individualid = p.individualid-->
+<!--  </select>-->
+
   <select id="selectBasicInfo" resultMap="basicResultMap">
-    select <include refid="selectBasicField"/>
-    from (combine_test_set cts inner join result r
-    on cts.individualid = r.individualid) inner join phone p on cts.individualid = p.individualid
+      select <include refid="selectBasicField"/>
+      from combine_test_set cts left join result r
+      on cts.individualid = r.individualid left join phone p on cts.individualid = p.individualid
   </select>
 
 
 
-
-
-  <!--以下均为mybatis逆向工程自动生成的-->
+    <!--以下均为mybatis逆向工程自动生成的-->
 
   <resultMap id="BaseResultMap" type="com.icbc.demo.entity.CombineTestSet">
     <id column="individualid" jdbcType="INTEGER" property="individualid" />
